@@ -1,36 +1,151 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import ChatBot from '../components/ChatBot.astro';
 import '../styles/global.css';
 
 export interface Props {
   title?: string;
   description?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  canonical?: string;
+  schema?: any;
 }
 
-const { title, description } = Astro.props;
-const siteName = 'Chauffage et Moi';
-const fullTitle = title ? `${title} | ${siteName}` : `${siteName} - Chauffagiste et Plombier Mons`;
-const metaDesc = description || 'Chauffagiste et plombier à Mons et dans le Hainaut. Installation chaudières, pompes à chaleur, sanitaire. Agréés G1·G2·L1. Urgences 7j/7. Devis gratuit.';
+const { title, description, ogTitle, ogDescription, canonical } = Astro.props;
+
+const siteName = 'Chauffage & Moi';
+const defaultDesc = 'Chauffagiste et plombier à Mons et dans le Hainaut. Installation chaudières, pompes à chaleur, sanitaire. Agréés G1·G2·L1. Urgences 7j/7. Devis gratuit sous 24h.';
+
+const pageTitle = title ? `${title} | ${siteName}` : `${siteName} — Chauffagiste et Plombier Mons`;
+const metaDesc = description || defaultDesc;
+const ogTitleStr = ogTitle || pageTitle;
+const ogDesc = ogDescription || metaDesc;
+const canonicalUrl = canonical || Astro.url.href;
+
+// Schema.org base
+const baseSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Plumber",
+  "name": "Chauffage & Moi",
+  "alternateName": "Chauffage et Moi",
+  "description": "Chauffagiste et plombier à Mons (Ghlin), Belgique. Installation chaudières, pompes à chaleur, sanitaire, plomberie et dépannage urgent dans tout le Hainaut.",
+  "url": "https://chauffageetmoi.com",
+  "telephone": "+32491873419",
+  "email": "contact@chauffageetmoi.com",
+  "vatID": "BE 1023.953.081",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Ghlin",
+    "addressLocality": "Ghlin",
+    "addressRegion": "Hainaut",
+    "postalCode": "7011",
+    "addressCountry": "BE"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 50.4563,
+    "longitude": 3.9038
+  },
+  "areaServed": [
+    {"@type": "City", "name": "Mons"},
+    {"@type": "City", "name": "Ghlin"},
+    {"@type": "City", "name": "Jemappes"},
+    {"@type": "City", "name": "Cuesmes"},
+    {"@type": "City", "name": "Nimy"},
+    {"@type": "City", "name": "Frameries"},
+    {"@type": "City", "name": "Boussu"},
+    {"@type": "City", "name": "Quaregnon"},
+    {"@type": "City", "name": "Hornu"},
+    {"@type": "City", "name": "Pâturages"},
+    {"@type": "AdministrativeArea", "name": "Hainaut"}
+  ],
+  "openingHoursSpecification": [
+    {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "07:00", "closes": "18:00"},
+    {"@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "08:00", "closes": "12:00"}
+  ],
+  "openingHours": ["Mo-Fr 07:00-18:00", "Sa 08:00-12:00"],
+  "priceRange": "€€",
+  "currenciesAccepted": "EUR",
+  "paymentAccepted": "Cash, Virement bancaire",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Services chauffage et plomberie",
+    "itemListElement": [
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Installation chaudière"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Pompe à chaleur"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Dépannage chauffage urgence"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Plomberie sanitaire"}}
+    ]
+  }
+});
 ---
 
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{fullTitle}</title>
   <meta name="description" content={metaDesc} />
-  <link rel="icon" type="image/png" href="/favicon.png" />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="Chauffage &amp; Moi" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonicalUrl} />
+  <meta property="og:title" content={ogTitleStr} />
+  <meta property="og:description" content={ogDesc} />
+  <meta property="og:locale" content="fr_BE" />
+  <meta property="og:site_name" content="Chauffage &amp; Moi" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content={ogTitleStr} />
+  <meta name="twitter:description" content={ogDesc} />
+
+  <!-- Canonical -->
+  <link rel="canonical" href={canonicalUrl} />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.png" />
+
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <title>{pageTitle}</title>
+
+  <!-- Schema.org LocalBusiness -->
+  <script type="application/ld+json" is:inline>{baseSchema}</script>
 </head>
-<body class="bg-white text-gray-900 antialiased">
+<body class="bg-white text-gray-900 font-sans antialiased">
   <Header />
   <main>
     <slot />
   </main>
   <Footer />
+  <ChatBot />
+
+  <!-- Global Intersection Observer for .reveal elements -->
+  <script is:inline>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Re-observe dynamic content
+    const mutationObs = new MutationObserver(() => {
+      document.querySelectorAll('.reveal:not(.revealed)').forEach(el => observer.observe(el));
+    });
+    mutationObs.observe(document.body, { childList: true, subtree: true });
+  </script>
 </body>
 </html>

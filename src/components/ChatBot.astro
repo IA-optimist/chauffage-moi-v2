@@ -1,0 +1,303 @@
+<!-- ChatBot IA -->
+<!-- Bulle de message proactif -->
+<div id="chatbot-proactive" style="
+  position:fixed;bottom:100px;right:24px;z-index:9998;
+  background:#1B3A5C;color:white;
+  padding:12px 16px;border-radius:16px 16px 4px 16px;
+  max-width:240px;font-size:13px;font-family:Inter,system-ui,sans-serif;
+  box-shadow:0 8px 32px rgba(27,58,92,0.25);
+  display:none;
+  animation:proactiveFadeIn 0.4s ease;
+  line-height:1.5;
+">
+Bonjour ! Besoin d'un devis ou d'un conseil chauffage ? Je suis là 👋
+<button id="chatbot-proactive-close" style="
+    position:absolute;top:-8px;right:-8px;
+    width:20px;height:20px;border-radius:50%;
+    background:#E8521A;color:white;border:none;cursor:pointer;
+    font-size:11px;line-height:1;display:flex;align-items:center;justify-content:center;
+  ">✕</button>
+</div>
+
+<!-- Bouton flottant + fenêtre chat -->
+<div id="chatbot-wrapper" style="position:fixed;bottom:24px;right:24px;z-index:9999;font-family:Inter,system-ui,sans-serif;">
+  <button id="chatbot-toggle" aria-label="Ouvrir le chat" style="
+      width:68px;height:68px;border-radius:50%;
+      background:linear-gradient(135deg,#1B3A5C,#2a5285);border:none;cursor:pointer;
+      display:flex;align-items:center;justify-content:center;
+      box-shadow:0 6px 28px rgba(27,58,92,0.45);
+      position:relative;transition:transform 0.2s,box-shadow 0.2s;
+      animation:chatbotEntrance 0.6s cubic-bezier(0.34,1.56,0.64,1) 1s both;
+    ">
+    <svg id="icon-chat" width="30" height="30" viewBox="0 0 24 24" fill="white" style="transition:opacity 0.2s;">
+      <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12z"/>
+    </svg>
+    <svg id="icon-close-chat" width="26" height="26" viewBox="0 0 24 24" fill="white" style="display:none;transition:opacity 0.2s;">
+      <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+    </svg>
+    <span id="chatbot-badge" style="
+      position:absolute;top:-6px;right:-6px;
+      min-width:24px;height:24px;border-radius:12px;
+      background:#E8521A;color:white;
+      font-size:11px;font-weight:700;
+      display:flex;align-items:center;justify-content:center;
+      padding:0 5px;
+      border:2px solid white;
+      animation:pulse-badge 2s infinite;
+    ">1</span>
+  </button>
+
+  <!-- Fenêtre chat -->
+  <div id="chatbot-window" style="
+      display:none;
+      position:absolute;bottom:80px;right:0;
+      width:380px;max-height:580px;
+      border-radius:20px;overflow:hidden;
+      box-shadow:0 24px 64px rgba(0,0,0,0.18),0 8px 24px rgba(0,0,0,0.08);
+      background:#fff;
+      flex-direction:column;
+      animation:chatWindowOpen 0.3s cubic-bezier(0.34,1.56,0.64,1);
+    ">
+    <!-- Header -->
+    <div style="
+      background:linear-gradient(135deg,#1B3A5C,#2a5285);padding:16px 20px;
+      display:flex;align-items:center;justify-content:space-between;
+      flex-shrink:0;
+    ">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div style="
+          width:42px;height:42px;border-radius:50%;
+          background:linear-gradient(135deg,#E8521A,#ff7a45);
+          display:flex;align-items:center;justify-content:center;
+          box-shadow:0 2px 8px rgba(232,82,26,0.4);
+          flex-shrink:0;
+        ">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
+            <path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"/>
+          </svg>
+        </div>
+        <div>
+          <p style="color:white;font-weight:700;font-size:14px;margin:0;line-height:1.3;">Assistant Chauffage &amp; Moi</p>
+          <div style="display:flex;align-items:center;gap:5px;margin-top:2px;">
+            <span style="width:7px;height:7px;background:#4ade80;border-radius:50%;display:inline-block;"></span>
+            <p style="color:#93c5fd;font-size:11px;margin:0;">En ligne — Répond en quelques secondes</p>
+          </div>
+        </div>
+      </div>
+      <button id="chatbot-close-btn" aria-label="Fermer" style="
+        background:rgba(255,255,255,0.15);border:none;cursor:pointer;
+        width:30px;height:30px;border-radius:50%;
+        display:flex;align-items:center;justify-content:center;
+        color:white;font-size:16px;line-height:1;
+        transition:background 0.2s;
+      ">✕</button>
+    </div>
+
+    <!-- Messages -->
+    <div id="chatbot-messages" style="
+      flex:1;overflow-y:auto;padding:16px;
+      display:flex;flex-direction:column;gap:10px;
+      background:#f8fafc;
+      min-height:200px;max-height:320px;
+    "></div>
+
+    <!-- Suggestions -->
+    <div id="chatbot-suggestions" style="
+      padding:8px 12px;background:#f0f4f8;
+      display:flex;flex-wrap:wrap;gap:6px;
+      flex-shrink:0;border-top:1px solid #e2e8f0;
+    ">
+      <button class="suggestion-btn" data-text="Demander un devis">💬 Devis gratuit</button>
+      <button class="suggestion-btn" data-text="Zone d'intervention">📍 Zone d'intervention</button>
+      <button class="suggestion-btn" data-text="Urgence chauffage">🆘 Urgence</button>
+      <button class="suggestion-btn" data-text="Horaires">🕐 Horaires</button>
+    </div>
+
+    <!-- Input -->
+    <div style="
+      padding:10px 14px;background:#fff;
+      display:flex;gap:8px;align-items:center;
+      border-top:1px solid #e2e8f0;flex-shrink:0;
+    ">
+      <input id="chatbot-input" type="text" placeholder="Votre question..." maxlength="500" style="
+          flex:1;border:1.5px solid #e2e8f0;border-radius:24px;
+          padding:10px 16px;font-size:13px;outline:none;
+          transition:border-color 0.2s;background:#f8fafc;
+          font-family:inherit;
+        " />
+      <button id="chatbot-send" aria-label="Envoyer" style="
+        width:40px;height:40px;border-radius:50%;
+        background:#E8521A;border:none;cursor:pointer;
+        display:flex;align-items:center;justify-content:center;
+        flex-shrink:0;transition:background 0.2s;
+      ">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
+          <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Bouton Prendre RDV -->
+    <div style="padding:10px 14px 14px;background:#fff;flex-shrink:0;border-top:1px solid #f0f4f8;">
+      <a href="/contact" style="
+        display:flex;align-items:center;justify-content:center;gap:8px;
+        background:#1B3A5C;color:white;
+        padding:10px 16px;border-radius:12px;
+        font-size:13px;font-weight:700;text-decoration:none;
+        transition:background 0.2s;
+      ">📅 Prendre rendez-vous</a>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+// Chatbot IA — reconstructed faithfully from live site
+(function(){
+  const K = {
+    domain: 'chauffageetmoi.com',
+    phone: '0491/87.34.19',
+    phoneIntl: '+32491873419',
+    whatsapp: 'https://wa.me/32491873419',
+    email: 'contact@chauffageetmoi.com',
+    address: 'Ghlin (Mons), Hainaut',
+    hours: 'Lun–Ven : 7h – 18h, Sam : 8h – 12h',
+    zones: 'Mons, Ghlin, Jemappes, Cuesmes, Nimy, Frameries, Boussu, Quaregnon, Hornu, Pâturages, Saint-Ghislain, Dour et tout le Hainaut'
+  };
+
+  const msgs = document.getElementById('chatbot-messages');
+  const input = document.getElementById('chatbot-input');
+  const sendBtn = document.getElementById('chatbot-send');
+  const badge = document.getElementById('chatbot-badge');
+  const proactive = document.getElementById('chatbot-proactive');
+  const toggle = document.getElementById('chatbot-toggle');
+  const windowEl = document.getElementById('chatbot-window');
+  const closeBtn = document.getElementById('chatbot-close-btn');
+  const iconChat = document.getElementById('icon-chat');
+  const iconClose = document.getElementById('icon-close-chat');
+
+  let chatOpen = false;
+  let firstOpen = true;
+
+  function addMsg(text, cls) {
+    const d = document.createElement('div');
+    d.className = cls;
+    d.style.cssText = cls === 'user-msg'
+      ? 'align-self:flex-end;background:#E8521A;color:white;padding:8px 14px;border-radius:16px 16px 4px 16px;max-width:80%;font-size:13px;line-height:1.5;'
+      : 'align-self:flex-start;background:white;padding:10px 14px;border-radius:16px 16px 16px 4px;max-width:85%;font-size:13px;line-height:1.5;box-shadow:0 1px 3px rgba(0,0,0,0.06);';
+    d.textContent = text;
+    msgs.appendChild(d);
+    msgs.scrollTop = msgs.scrollHeight;
+  }
+
+  function addBotMsg(text) {
+    addMsg(text, 'bot-msg');
+  }
+
+  function respond(q) {
+    const Q = q.toLowerCase()
+      .replace(/[àáâãä]/g,'a').replace(/[èéêë]/g,'e').replace(/[ìíîï]/g,'i')
+      .replace(/[òóôõö]/g,'o').replace(/[ùúûü]/g,'u').replace(/[ç]/g,'c');
+
+    // Heures / horaires
+    if (/horaires|heures|quand|ouverture|disponible|quels jours/i.test(q)) {
+      return "🕐 Nos horaires :\n\n• Lundi au vendredi : 7h00 – 18h00\n• Samedi : 8h00 – 12h00\n• Dimanche : urgences uniquement\n\nPour les urgences, appelez-nous directement au 0491/87.34.19. Nous intervenons 7 jours sur 7.";
+    }
+    // Urgence
+    if (/urgence|panne|fuite|en panne|depannage|plus de chauffage/i.test(q)) {
+      return "🆘 En cas d'urgence (panne de chaudière, fuite d'eau, canalisation bouchée), appelez-nous immédiatement :\n\n📞 0491/87.34.19\n\nou WhatsApp : https://wa.me/32491873419\n\nNous intervenons rapidement dans tout le Hainaut, 7j/7.";
+    }
+    // Devis
+    if (/devis|prix|tarif|cout|combien|gratuit/i.test(q)) {
+      return "📋 Le devis est 100% gratuit et sans engagement !\n\nNos prix de référence :\n• Adoucisseur Solucalc (CO₂) : à partir de 1.490€ HTVA, posé\n• Adoucisseur Durlem (sel) : à partir de 1.190€ HTVA, posé\n\nPour un devis personnalisé, rendez-vous sur notre page Contact ou écrivez-nous sur WhatsApp au 0491/87.34.19.";
+    }
+    // Zone
+    if (/zone|intervention|ou|commune|hainaut|mons|ghlin|region|secteur/i.test(q)) {
+      return "📍 Nous intervenons dans tout le Hainaut !\n\nBasés à Ghlin (Mons), nous couvrons : Mons, Ghlin, Jemappes, Cuesmes, Nimy, Frameries, Boussu, Quaregnon, Hornu, Pâturages, Saint-Ghislain, Dour et toutes les 65 communes du Hainaut.\n\nVous ne trouvez pas votre commune ? Contactez-nous pour vérifier !";
+    }
+    // Adoucisseur / Solucalc / Durlem
+    if (/adoucisseur|solucalc|durlem|calcaire|eau dure/i.test(q)) {
+      return "💧 Nous proposons deux adoucisseurs d'eau :\n\n🔹 Solucalc (CO₂) : écologique, zéro sel, zéro électricité, zéro rejet — à partir de 1.490€ HTVA\n🔹 Durlem (sel) : résine échangeuse d'ions, eau ultra-douce (0°TH) — à partir de 1.190€ HTVA\n\nLes deux sont posés par nos techniciens agréés. Devis gratuit sur WhatsApp au 0491/87.34.19 !";
+    }
+    // Chauffage
+    if (/chaudiere|chauffage|pompe a chaleur|pac|entretien/i.test(q)) {
+      return "🔥 Nous sommes agréés G1 · G2 · L1 pour l'installation, le remplacement et l'entretien de chaudières (gaz, mazout, condensation) et pompes à chaleur.\n\nL'entretien annuel est obligatoire en Wallonie. Nos techniciens délivrent l'attestation de conformité sur place.\n\nDemandez votre devis gratuit sur notre page Contact !";
+    }
+    // Sanitaire
+    if (/sanitaire|salle de bain|douche|baignoire|plomberie|wc|lavabo/i.test(q)) {
+      return "🚿 Nous réalisons tous vos travaux de plomberie et sanitaire : création complète de salle de bain, douche italienne, baignoire îlot, détection de fuites, débouchage, chauffe-eaux…\n\nDevis gratuit et personnalisé. Contactez-nous !";
+    }
+    // Bonjour / Salutation
+    if (/bonjour|salut|hello|coucou|bonsoir/i.test(q)) {
+      return "Bonjour ! 👋 Je suis l'assistant virtuel de Chauffage & Moi. Comment puis-je vous aider ?\n\nVous pouvez me demander :\n• Un devis gratuit\n• Nos horaires\n• Notre zone d'intervention\n• Des infos sur nos adoucisseurs\n• Une urgence dépannage";
+    }
+    // Contact
+    if (/contact|telephone|tel|appeler|email|mail|adresse/i.test(q)) {
+      return "📞 Voici nos coordonnées :\n\n• Téléphone : 0491/87.34.19\n• WhatsApp : https://wa.me/32491873419\n• Email : contact@chauffageetmoi.com\n• Adresse : Ghlin (Mons), Hainaut, Belgique\n\nOu utilisez notre formulaire de contact pour un devis gratuit !";
+    }
+
+    return "Merci pour votre message ! Pour être mis en relation directement avec un technicien, le plus rapide est de nous écrire sur WhatsApp au 0491/87.34.19 📱\n\nOu remplissez notre formulaire de contact pour un devis gratuit sous 24h. Nous intervenons dans tout le Hainaut !";
+  }
+
+  function handleSend() {
+    const text = input.value.trim();
+    if (!text) return;
+    addMsg(text, 'user-msg');
+    input.value = '';
+    setTimeout(() => {
+      addBotMsg(respond(text));
+    }, 400 + Math.random() * 600);
+  }
+
+  sendBtn?.addEventListener('click', handleSend);
+  input?.addEventListener('keydown', (e) => { if (e.key === 'Enter') handleSend(); });
+
+  function toggleChat() {
+    chatOpen = !chatOpen;
+    if (chatOpen) {
+      windowEl.style.display = 'flex';
+      iconChat.style.display = 'none';
+      iconClose.style.display = 'block';
+      proactive.style.display = 'none';
+      badge.style.display = 'none';
+      if (firstOpen) {
+        setTimeout(() => {
+          addBotMsg("Bonjour ! 👋 Je suis l'assistant de Chauffage & Moi. Comment puis-je vous aider aujourd'hui ?\n\n💬 Devis gratuit\n📍 Zone d'intervention\n🆘 Urgence dépannage\n🕐 Horaires\n💧 Adoucisseurs");
+        }, 500);
+        firstOpen = false;
+      }
+    } else {
+      windowEl.style.display = 'none';
+      iconChat.style.display = 'block';
+      iconClose.style.display = 'none';
+    }
+  }
+
+  toggle?.addEventListener('click', toggleChat);
+  closeBtn?.addEventListener('click', toggleChat);
+
+  // Suggestion buttons
+  document.querySelectorAll('.suggestion-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const txt = this.getAttribute('data-text') || this.textContent.trim();
+      input.value = txt;
+      handleSend();
+    });
+  });
+
+  // Proactive bubble
+  setTimeout(() => {
+    if (!chatOpen && proactive) {
+      proactive.style.display = 'block';
+    }
+  }, 5000);
+
+  document.getElementById('chatbot-proactive-close')?.addEventListener('click', () => {
+    if (proactive) proactive.style.display = 'none';
+  });
+
+  // Click on proactive bubble opens chat
+  proactive?.addEventListener('click', (e) => {
+    if (e.target.id !== 'chatbot-proactive-close') toggleChat();
+  });
+})();
+</script>

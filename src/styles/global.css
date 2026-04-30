@@ -7,9 +7,14 @@
     scroll-behavior: smooth;
   }
   body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
-  h1, h2, h3 {
+  .font-sans {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  .font-display {
     font-family: 'Playfair Display', serif;
   }
 }
@@ -25,9 +30,90 @@
     @apply inline-flex items-center justify-center gap-2.5 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/30 hover:border-white/50 text-white px-8 py-4 rounded-full font-semibold text-base lg:text-lg transition-all;
   }
   .section-title {
-    @apply text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-4 font-display;
+    @apply text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-3 font-display;
   }
   .section-subtitle {
-    @apply text-lg text-gray-600 text-center max-w-2xl mx-auto mb-16;
+    @apply text-lg text-gray-500 text-center max-w-xl mx-auto mb-16;
   }
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile menu */
+.mobile-menu-closed {
+  max-height: 0;
+  opacity: 0;
+}
+.mobile-menu-open {
+  max-height: 500px;
+  opacity: 1;
+}
+
+/* Header transparent by default on top, then colored on scroll */
+#site-header {
+  background: transparent;
+}
+#site-header.bg-\[\#1B3A5C\]\/95 {
+  background: rgba(27, 58, 92, 0.95);
+}
+
+/* Scrollbar hide utility */
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Chatbot animations */
+@keyframes proactiveFadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes chatbotEntrance {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes chatWindowOpen {
+  from { opacity: 0; transform: translateY(20px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes pulse-badge {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+/* Nav link active */
+.nav-link-active {
+  color: white;
+}
+
+/* Suggestion buttons */
+.suggestion-btn {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  padding: 6px 12px;
+  font-size: 12px;
+  cursor: pointer;
+  color: #475569;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+.suggestion-btn:hover {
+  border-color: #E8521A;
+  color: #E8521A;
+  background: #fff5f1;
+}
+
+/* Form card styling */
+.type-card {
+  background: white;
+}
+.type-card.selected {
+  border-color: #E8521A !important;
+  background: #fff5f1 !important;
 }
