@@ -1,0 +1,330 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const communesHainaut = [
+  'Aiseau-Presles', 'Anderlues', 'Antoing', 'Ath', 'Beaumont', 'Beloeil', 'Bernissart', 'Binche', 'Boussu', 'Braine-le-Comte',
+  'Brugelette', 'Brunehaut', 'Celles', 'Chapelle-lez-Herlaimont', 'Charleroi', 'Châtelet', 'Chièvres', 'Chimay', 'Colfontaine',
+  'Comines-Warneton', 'Courcelles', 'Dour', 'Écaussinnes', 'Ellezelles', 'Enghien', 'Erquelinnes', 'Estaimpuis', 'Estinnes',
+  'Farciennes', 'Fleurus', 'Flobecq', 'Fontaine-l\'Évêque', 'Frameries', 'Frasnes-lez-Anvaing', 'Froidchapelle', 'Gerpinnes',
+  'Ham-sur-Heure-Nalinnes', 'Hensies', 'Honnelles', 'Jurbise', 'La Louvière', 'Le Roeulx', 'Lens', 'Les Bons Villers',
+  'Lessines', 'Leuze-en-Hainaut', 'Lobbes', 'Manage', 'Merbes-le-Château', 'Momignies', 'Mons', 'Mont-de-l\'Enclus',
+  'Montigny-le-Tilleul', 'Morlanwelz', 'Mouscron', 'Pecq', 'Péruwelz', 'Pont-à-Celles', 'Quaregnon', 'Quévy',
+  'Quiévrain', 'Rumes', 'Saint-Ghislain', 'Seneffe', 'Silly', 'Sivry-Rance', 'Soignies', 'Thuin', 'Tournai'
+];
+
+const googleReviews = [
+  { name: 'Nicolas D.', location: 'Ghlin', rating: 5, text: 'Remplacement chaudière et installation thermostat connecté en une journée. Travail soigné, propre, aucune mauvaise surprise. Je recommande à 100%.', date: '2025-12-15' },
+  { name: 'Sarah L.', location: 'Jemappes', rating: 5, text: 'Rénovation complète de salle de bain - baignoire, douche italienne, carrelage. Travail impeccable, chantier propre chaque jour. Merci à toute l\'équipe !', date: '2025-11-28' },
+  { name: 'Valérie M.', location: 'Saint-Ghislain', rating: 5, text: 'Plancher chauffant + pompe à chaleur. Bon conseil, respect du devis, finitions soignées. Le patron est impliqué et ça se voit vraiment.', date: '2025-11-10' },
+  { name: 'Marc D.', location: 'Mons', rating: 5, text: 'Dépannage chaudière en pleine nuit un dimanche. Intervention en moins d\'une heure. Technicien compétent et rassurant. Service d\'exception.', date: '2025-10-22' },
+  { name: 'Isabelle P.', location: 'Frameries', rating: 5, text: 'Installation complète pompe à chaleur air-eau. Équipe professionnelle, chantier impeccable. Les primes ont été gérées de A à Z. Très satisfaite !', date: '2025-10-05' },
+  { name: 'Thomas R.', location: 'Boussu', rating: 5, text: 'Remplacement de toute la plomberie de la maison. Chantier propre, délais respectés, équipe sympathique. Je ferai appel à eux pour la salle de bain.', date: '2025-09-19' },
+  { name: 'Catherine V.', location: 'Quaregnon', rating: 5, text: 'Entretien annuel chaudière et installation adoucisseur. Conseils clairs, pas de tentative de vente forcée. Une entreprise honnête, ça devient rare !', date: '2025-09-02' },
+  { name: 'Pierre J.', location: 'Dour', rating: 5, text: 'Détection de fuite et réparation. Équipement moderne, localisation précise, réparation rapide. A évité des dégâts importants. Un grand merci.', date: '2025-08-15' },
+  { name: 'Sophie M.', location: 'Cuesmes', rating: 5, text: 'Création salle de bain de A à Z : démolition, plomberie, carrelage, meubles. Résultat magnifique, équipe à l\'écoute et force de proposition.', date: '2025-07-28' },
+  { name: 'Laurent B.', location: 'Nimy', rating: 5, text: 'Remplacement vieille chaudière mazout par condensation gaz. Économies immédiates sur la facture. Installation nickel, administratif géré.', date: '2025-07-10' },
+];
+
+const stats = [
+  { value: '15+', label: 'ans expérience' },
+  { value: '500+', label: 'clients satisfaits' },
+  { value: '7j/7', label: 'urgences' },
+  { value: 'G1·G2·L1', label: 'Agréés' },
+];
+---
+
+<Layout description="Chauffagiste et plombier à Mons et dans le Hainaut. Installation chaudières, pompes à chaleur, adoucisseurs, sanitaire. Agréés G1·G2·L1. Urgences 7j/7. Devis gratuit sous 24h.">
+  
+  <!-- Hero Section - SANS PHOTO -->
+  <section class="relative min-h-[600px] max-h-[800px] flex flex-col justify-center bg-gradient-to-br from-[#1B3A5C] to-[#0D1F33] pt-20">
+    <!-- Subtle geometric overlay instead of photo -->
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute inset-0" style="background-image: radial-gradient(circle at 1px 1px, white 1px, transparent 0); background-size: 40px 40px;"></div>
+    </div>
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+      <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-5 py-2 mb-8">
+        <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+        <span class="text-white/90 text-sm font-medium">Agréés G1 · G2 · L1 — Urgences 7j/7</span>
+      </div>
+      <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-[family-name:Playfair_Display,serif] font-bold text-white leading-tight mb-8">
+        Votre confort,<br/>notre expertise.
+      </h1>
+      <p class="text-lg sm:text-xl text-blue-200 max-w-2xl mx-auto mb-12 leading-relaxed">
+        Chauffage · Sanitaire · Pompes à chaleur<br class="hidden sm:block" />Mons & Hainaut — Devis gratuit sous 24h
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/contact" class="btn-orange text-lg">
+          Demander un devis gratuit
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+        <a href="https://wa.me/32491873419" target="_blank" rel="noopener" class="btn-green text-lg">
+          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          0491 87 34 19 · WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="relative -mt-10 z-20">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6">
+      <div class="bg-white rounded-2xl shadow-2xl p-8 grid grid-cols-2 md:grid-cols-4 gap-8">
+        {stats.map(s => (
+          <div class="text-center">
+            <div class="text-3xl md:text-4xl font-bold text-[#1B3A5C] font-[family-name:Playfair_Display,serif]">{s.value}</div>
+            <div class="text-gray-500 text-sm mt-1">{s.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" class="py-24 bg-[#F8FAFC]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="section-title text-[#1B3A5C]">Tout pour votre confort</h2>
+      <p class="section-subtitle">Une seule entreprise, tous les savoir-faire.</p>
+      <div class="grid md:grid-cols-3 gap-8">
+        <a href="/services#chauffage" class="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+          <div class="w-14 h-14 bg-orange-100 rounded-xl flex items-center justify-center mb-6 text-2xl">🔥</div>
+          <h3 class="text-xl font-bold mb-3 font-[family-name:Playfair_Display,serif] group-hover:text-[#E8521A] transition-colors">Chaudières</h3>
+          <p class="text-gray-600 leading-relaxed">Installation, remplacement et entretien annuel. Gaz, mazout, condensation. Agréés G1 · G2.</p>
+        </a>
+        <a href="/services#energies" class="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+          <div class="w-14 h-14 bg-green-100 rounded-xl flex items-center justify-center mb-6 text-2xl">🌿</div>
+          <h3 class="text-xl font-bold mb-3 font-[family-name:Playfair_Display,serif] group-hover:text-[#E8521A] transition-colors">Pompes à chaleur</h3>
+          <p class="text-gray-600 leading-relaxed">Air/eau, géothermie, systèmes hybrides. Audit énergétique et accompagnement aux primes.</p>
+        </a>
+        <a href="/services#sanitaire" class="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+          <div class="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-6 text-2xl">🚿</div>
+          <h3 class="text-xl font-bold mb-3 font-[family-name:Playfair_Display,serif] group-hover:text-[#E8521A] transition-colors">Sanitaire</h3>
+          <p class="text-gray-600 leading-relaxed">Salles de bain complètes, douches, baignoires, chauffe-eaux, adoucisseurs, détection fuites.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gamme Adoucisseurs -->
+  <section id="gamme" class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="text-[#E8521A] font-semibold text-sm uppercase tracking-widest text-center block mb-4">Notre gamme</span>
+      <h2 class="section-title text-[#1B3A5C]">Adoucisseurs d'eau</h2>
+      <p class="section-subtitle">Deux technologies complémentaires pour une eau parfaitement douce. Choisissez la solution qui correspond à vos besoins.</p>
+      
+      <div class="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto">
+        <!-- Solucalc -->
+        <div class="bg-[#F8FAFC] rounded-3xl p-8 lg:p-10 border-2 border-transparent hover:border-[#1B3A5C] transition-all duration-300 relative overflow-hidden group">
+          <div class="absolute top-0 right-0 bg-green-500 text-white px-4 py-1 rounded-bl-xl text-xs font-bold uppercase tracking-wider">Écologique</div>
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center text-3xl">💧</div>
+            <div>
+              <h3 class="text-2xl font-bold font-[family-name:Playfair_Display,serif] text-[#1B3A5C]">Solucalc</h3>
+              <p class="text-green-600 font-semibold text-sm">Technologie au CO₂</p>
+            </div>
+          </div>
+          <p class="text-gray-600 mb-8 leading-relaxed">
+            L'adoucisseur écologique qui utilise le dioxyde de carbone pour neutraliser le calcaire sans sel, sans électricité et sans rejet. Respectueux de l'environnement, il préserve les minéraux essentiels de l'eau.
+          </p>
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-start gap-3 text-gray-700">
+              <span class="text-green-500 mt-1">✓</span> <span><strong>Zéro sel</strong> — aucun sac à transporter</span>
+            </li>
+            <li class="flex items-start gap-3 text-gray-700">
+              <span class="text-green-500 mt-1">✓</span> <span><strong>Zéro électricité</strong> — fonctionnement 100% mécanique</span>
+            </li>
+            <li class="flex items-start gap-3 text-gray-700">
+              <span class="text-green-500 mt-1">✓</span> <span><strong>Zéro rejet</strong> — pas d'eau gaspillée</span>
+            </li>
+            <li class="flex items-start gap-3 text-gray-700">
+              <span class="text-green-500 mt-1">✓</span> <span><strong>Minéraux préservés</strong> — calcium et magnésium conservés</span>
+            </li>
+            <li class="flex items-start gap-3 text-gray-700">
+              <span class="text-green-500 mt-1">✓</span> <span><strong>Entretien minimal</strong> — cartouche à changer tous les 2-3 ans</span>
+            </li>
+          </ul>
+          <div class="text-center">
+            <span class="text-3xl font-bold text-[#1B3A5C] font-[family-name:Playfair_Display,serif]">À partir de 1.490€</span>
+            <p class="text-gray-500 text-sm mt-1">HTVA, pose comprise</p>
+          </div>
+          <div class="mt-6 text-center">
+            <a href="https://wa.me/32491873419?text=Bonjour%2C%20je%20souhaite%20un%20devis%20pour%20l%27adoucisseur%20Solucalc" target="_blank" rel="noopener" class="btn-green text-sm px-6 py-3">
+              Devis Solucalc WhatsApp
+            </a>
+          </div>
+        </div>
+
+        <!-- Durlem -->
+        <div class="bg-[#F8FAFC] rounded-3xl p-8 lg:p-10 border-2 border-transparent hover:border-[#1B3A5C] transition-all duration-300 relative overflow-hidden group">
+          <div class="absolute top-0 right-0 bg-[#1B3A5C] text-white px-4 py-1 rounded-bl-xl text-xs font-bold uppercase tracking-wider">Best-seller</div>
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center text-3xl">🧂</div>
+            <div>
+              <h3 class="text-2xl font-bold font-[family-name:Playfair_Display,serif] text-[#1B3A5C]">Durlem</h3>
+              <p class="text-blue-600 font-semibold text-sm">Technologie au sel</p>
+            </div>
+          </div>
+          <p class="text-gray-600 mb-8 leading-relaxed">
+            L'adoucisseur à résine échangeuse d'ions, la solution traditionnelle éprouvée pour une eau parfaitement douce. Régénération automatique au sel, idéal pour les grandes familles et les eaux très dures du Hainaut.
+          </p>
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-start gap-3 text-gray-700">
+              <span class="text-blue-500 mt-1">✓</span> <span><strong>Eau ultra-douce</strong> — 0°TH, fini les traces de calcaire</span>
+            </li>
+            <li class="flex items-start gap-3 text-gray-700">
+              <span class="text-blue-500 mt-1">✓</span> <span><strong>Grande capacité</strong> — jusqu'à 6 personnes</span>
+            </li>
+            <li class="flex items-start gap-3 text-gray-700">
+              <span class="text-blue-500 mt-1">✓</span> <span><strong>Régénération intelligente</strong> — s'adapte à votre consommation</span>
+            </li>
+            <li class="flex items-start gap-3 text-gray-700">
+              <span class="text-blue-500 mt-1">✓</span> <span><strong>Protection électroménager</strong> — prolonge la durée de vie</span>
+            </li>
+            <li class="flex items-start gap-3 text-gray-700">
+              <span class="text-blue-500 mt-1">✓</span> <span><strong>Garantie 5 ans</strong> — pièces et main d'œuvre</span>
+            </li>
+          </ul>
+          <div class="text-center">
+            <span class="text-3xl font-bold text-[#1B3A5C] font-[family-name:Playfair_Display,serif]">À partir de 1.190€</span>
+            <p class="text-gray-500 text-sm mt-1">HTVA, pose comprise</p>
+          </div>
+          <div class="mt-6 text-center">
+            <a href="https://wa.me/32491873419?text=Bonjour%2C%20je%20souhaite%20un%20devis%20pour%20l%27adoucisseur%20Durlem" target="_blank" rel="noopener" class="btn-green text-sm px-6 py-3">
+              Devis Durlem WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Comparison table -->
+      <div class="mt-16 max-w-3xl mx-auto bg-[#F8FAFC] rounded-2xl p-8">
+        <h3 class="text-xl font-bold font-[family-name:Playfair_Display,serif] text-center text-[#1B3A5C] mb-8">Comparatif Solucalc vs Durlem</h3>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left">
+            <thead>
+              <tr class="border-b border-gray-200">
+                <th class="py-3 pr-4 text-gray-500 font-medium">Critère</th>
+                <th class="py-3 px-4 text-center text-green-700 font-bold">Solucalc CO₂</th>
+                <th class="py-3 pl-4 text-center text-blue-700 font-bold">Durlem Sel</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-700">
+              <tr class="border-b border-gray-100"><td class="py-3 pr-4">Technologie</td><td class="py-3 px-4 text-center">CO₂ sous pression</td><td class="py-3 pl-4 text-center">Résine échangeuse d'ions</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-3 pr-4">Consommation sel</td><td class="py-3 px-4 text-center font-bold text-green-600">Aucune</td><td class="py-3 pl-4 text-center">~2 sacs/mois</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-3 pr-4">Électricité</td><td class="py-3 px-4 text-center font-bold text-green-600">Aucune</td><td class="py-3 pl-4 text-center">Faible (transfo)</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-3 pr-4">Rejet eau</td><td class="py-3 px-4 text-center font-bold text-green-600">Aucun</td><td class="py-3 pl-4 text-center">~30L/régénération</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-3 pr-4">Entretien</td><td class="py-3 px-4 text-center">Cartouche / 2-3 ans</td><td class="py-3 pl-4 text-center">Sel + contrôle annuel</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-3 pr-4">Dureté obtenue</td><td class="py-3 px-4 text-center">~8-12°TH</td><td class="py-3 pl-4 text-center font-bold">0°TH</td></tr>
+              <tr><td class="py-3 pr-4">Idéal pour</td><td class="py-3 px-4 text-center">Écologie, santé</td><td class="py-3 pl-4 text-center">Confort maximal</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Réalisations -->
+  <section class="py-24 bg-[#1B3A5C] relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 1px 1px, white 1px, transparent 0); background-size: 40px 40px;"></div>
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="section-title text-white">Nos chantiers</h2>
+      <p class="section-subtitle text-blue-200">Des finitions soignées, des clients heureux dans tout le Hainaut.</p>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        {['/photos/vaillant-avant-apres.jpg', '/photos/remplacement-avant-apres.jpg', '/photos/sdb-renovation.jpg', '/photos/baignoire-ilot.jpg', '/photos/douche-italienne.jpg', '/photos/plancher-chauffant2.jpg'].map(src => (
+          <div class="relative group overflow-hidden rounded-xl aspect-square">
+            <img src={src} alt="Réalisation Chauffage et Moi" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy" />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Témoignages Google avis -->
+  <section id="avis-google" class="py-24 bg-[#F8FAFC]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="text-[#E8521A] font-semibold text-sm uppercase tracking-widest text-center block mb-4">Témoignages</span>
+      <h2 class="section-title text-[#1B3A5C]">Ce que disent nos clients</h2>
+      <p class="section-subtitle">Des voisins satisfaits dans tout le Hainaut.</p>
+      
+      <!-- Google rating summary -->
+      <div class="flex flex-col items-center mb-12">
+        <div class="flex items-center gap-3 mb-3">
+          <img src="/google-logo.svg" alt="Google" class="h-8 w-auto" onerror="this.style.display='none'" />
+          <span class="text-4xl font-bold text-[#1B3A5C] font-[family-name:Playfair_Display,serif]">5,0</span>
+        </div>
+        <div class="flex gap-1 text-2xl mb-2">★★★★★</div>
+        <a href="https://www.google.com/search?q=Chauffage+%26+Moi+Avis" target="_blank" rel="noopener" class="text-sm text-[#E8521A] hover:underline font-medium">
+          Voir tous les avis sur Google →
+        </a>
+      </div>
+
+      <!-- Reviews grid -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {googleReviews.map(review => (
+          <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-10 h-10 bg-[#1B3A5C] rounded-full flex items-center justify-center text-white font-bold text-sm">
+                {review.name.charAt(0)}
+              </div>
+              <div>
+                <p class="font-semibold text-gray-900">{review.name}</p>
+                <p class="text-sm text-gray-500">{review.location}</p>
+              </div>
+              <div class="ml-auto text-yellow-400 text-sm">{'★'.repeat(review.rating)}</div>
+            </div>
+            <p class="text-gray-600 leading-relaxed italic">
+              &ldquo;{review.text}&rdquo;
+            </p>
+            <p class="text-xs text-gray-400 mt-3">
+              {new Date(review.date).toLocaleDateString('fr-BE', { year: 'numeric', month: 'long' })}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Zone d'intervention SEO -->
+  <section class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="section-title text-[#1B3A5C]">Zone d'intervention</h2>
+      <p class="section-subtitle">Basés à Ghlin, au cœur de la région de Mons. Devis gratuit dans tout le Hainaut.</p>
+      
+      <div class="bg-[#F8FAFC] rounded-2xl p-8 max-w-5xl mx-auto">
+        <h3 class="text-lg font-bold text-[#1B3A5C] mb-6 text-center">Nous intervenons dans toutes les communes du Hainaut</h3>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2">
+          {communesHainaut.map(commune => (
+            <span class="text-sm text-gray-600 hover:text-[#E8521A] transition-colors py-1 px-2 rounded-lg hover:bg-orange-50">
+              {commune}
+            </span>
+          ))}
+        </div>
+        <p class="text-center text-gray-500 text-sm mt-8">
+          Vous ne trouvez pas votre commune ? Contactez-nous — nous couvrons l'ensemble du Hainaut et ses environs.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 bg-[#E8521A] relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 1px 1px, white 1px, transparent 0); background-size: 40px 40px;"></div>
+    <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white font-[family-name:Playfair_Display,serif] mb-6">
+        Prêt à améliorer votre confort ?
+      </h2>
+      <p class="text-xl text-orange-100 mb-10 max-w-2xl mx-auto">
+        Devis gratuit sous 24h — Intervention rapide dans tout le Hainaut
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/contact" class="bg-white text-[#E8521A] hover:bg-orange-50 px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 shadow-xl hover:-translate-y-1">
+          Demander un devis
+        </a>
+        <a href="https://wa.me/32491873419" target="_blank" rel="noopener" class="bg-[#25D366] hover:bg-[#1da851] text-white px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 shadow-xl hover:-translate-y-1 inline-flex items-center justify-center gap-2">
+          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+</Layout>

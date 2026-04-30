@@ -1,0 +1,70 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="À propos" description="Chauffage & Moi (Coquis-Meunier), votre chauffagiste et plombier agréé G1·G2·L1 à Mons et dans le Hainaut. Plus de 15 ans d'expérience au service des familles.">
+  
+  <section class="pt-32 pb-20 bg-gradient-to-br from-[#1B3A5C] to-[#0D1F33]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-[family-name:Playfair_Display,serif] font-bold text-white mb-6">À propos</h1>
+      <p class="text-xl text-blue-200 max-w-2xl mx-auto">Plus de 15 ans au service des familles du Hainaut. Une entreprise familiale, des valeurs solides.</p>
+    </div>
+  </section>
+
+  <section class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <span class="text-[#E8521A] font-semibold text-sm uppercase tracking-widest">Notre histoire</span>
+          <h2 class="text-3xl md:text-4xl font-bold font-[family-name:Playfair_Display,serif] text-[#1B3A5C] mt-3 mb-6">Chauffage & Moi (Coquis-Meunier)</h2>
+          <p class="text-gray-600 leading-relaxed mb-4">
+            Fondée il y a plus de 15 ans, notre entreprise familiale est devenue une référence dans la région de Mons et du Hainaut. Nous avons à cœur de proposer un service de qualité, transparent et humain.
+          </p>
+          <p class="text-gray-600 leading-relaxed mb-8">
+            Agréés G1, G2 et L1, nous maîtrisons tous les aspects du chauffage, de la plomberie et du sanitaire. De l'installation d'une nouvelle chaudière à la rénovation complète d'une salle de bain, chaque projet est traité avec le même soin.
+          </p>
+          <div class="grid grid-cols-3 gap-6 mb-8">
+            <div class="text-center">
+              <div class="text-3xl font-bold text-[#E8521A] font-[family-name:Playfair_Display,serif]">15+</div>
+              <p class="text-gray-500 text-sm mt-1">Ans d'expérience</p>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl font-bold text-[#E8521A] font-[family-name:Playfair_Display,serif]">500+</div>
+              <p class="text-gray-500 text-sm mt-1">Clients satisfaits</p>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl font-bold text-[#E8521A] font-[family-name:Playfair_Display,serif]">G1·G2·L1</div>
+              <p class="text-gray-500 text-sm mt-1">Agréments</p>
+            </div>
+          </div>
+        </div>
+        <div class="relative">
+          <img src="/photos/equipe-travail.jpg" alt="Équipe Chauffage et Moi" class="rounded-2xl shadow-2xl w-full h-[500px] object-cover" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 bg-[#F8FAFC]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="section-title text-[#1B3A5C]">Nos engagements</h2>
+      <div class="grid md:grid-cols-3 gap-8 mt-12">
+        <div class="bg-white rounded-2xl p-8 shadow-lg text-center">
+          <div class="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-6">💬</div>
+          <h3 class="text-xl font-bold font-[family-name:Playfair_Display,serif] text-[#1B3A5C] mb-4">Transparence</h3>
+          <p class="text-gray-600">Devis détaillé gratuit sous 24h, pas de surprise. Nous expliquons chaque intervention, chaque prix.</p>
+        </div>
+        <div class="bg-white rounded-2xl p-8 shadow-lg text-center">
+          <div class="w-16 h-16 bg-orange-100 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-6">⚡</div>
+          <h3 class="text-xl font-bold font-[family-name:Playfair_Display,serif] text-[#1B3A5C] mb-4">Réactivité</h3>
+          <p class="text-gray-600">Urgences 7j/7, intervention rapide dans tout le Hainaut. Votre confort n'attend pas.</p>
+        </div>
+        <div class="bg-white rounded-2xl p-8 shadow-lg text-center">
+          <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-6">🏅</div>
+          <h3 class="text-xl font-bold font-[family-name:Playfair_Display,serif] text-[#1B3A5C] mb-4">Qualité</h3>
+          <p class="text-gray-600">Matériel haut de gamme, techniciens formés en continu, finitions soignées. La satisfaction client est notre priorité.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
