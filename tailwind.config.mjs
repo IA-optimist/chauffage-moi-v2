@@ -3,17 +3,27 @@ export default {
   theme: {
     extend: {
       colors: {
-        'brand-orange': '#E8521A',
-        'brand-orange-hover': '#d4461a',
-        'brand-blue': '#1B3A5C',
-        'brand-darkblue': '#0D1F33',
-        'brand-light': '#F8FAFC',
-        'brand-green': '#25D366',
-        'brand-green-hover': '#1da851',
+        marine: {
+          DEFAULT: '#0F2A44',
+          soft: '#1B3A5C',
+          deep: '#081928',
+        },
+        cuivre: {
+          DEFAULT: '#C2632A',
+          hover: '#A8521F',
+          soft: '#FFF1E6',
+        },
+        whatsapp: {
+          DEFAULT: '#25D366',
+          hover: '#1DA851',
+        },
       },
       fontFamily: {
-        display: ["'Playfair Display'", 'serif'],
-        body: ["'Inter'", 'sans-serif'],
+        sans: ["'Inter'", 'system-ui', 'sans-serif'],
+        body: ["'Inter'", 'system-ui', 'sans-serif'],
+      },
+      letterSpacing: {
+        tightish: '-0.02em',
       },
     },
   },
