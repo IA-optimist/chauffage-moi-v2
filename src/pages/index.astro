@@ -95,11 +95,11 @@ const stats = [
   <!-- Stats -->
   <section class="relative -mt-10 z-20">
     <div class="max-w-5xl mx-auto px-4 sm:px-6">
-      <div class="bg-white rounded-2xl shadow-2xl p-8 grid grid-cols-2 md:grid-cols-4 gap-8">
+      <div class="bg-white rounded-2xl shadow-xl border border-stone-200 p-6 md:p-8 grid grid-cols-2 md:grid-cols-4 gap-6 md:divide-x md:divide-stone-200">
         {stats.map(s => (
-          <div class="text-center">
-            <div class="text-3xl md:text-4xl font-bold text-[#1B3A5C] font-[family-name:Playfair_Display,serif]">{s.value}</div>
-            <div class="text-gray-500 text-sm mt-1">{s.label}</div>
+          <div class="text-center md:px-4">
+            <div class="text-3xl md:text-4xl font-extrabold tracking-tightish text-marine">{s.value}</div>
+            <div class="text-stone-500 text-xs sm:text-sm mt-1">{s.label}</div>
           </div>
         ))}
       </div>
@@ -107,25 +107,32 @@ const stats = [
   </section>
 
   <!-- Services -->
-  <section id="services" class="py-24 bg-[#F8FAFC]">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="section-title text-[#1B3A5C]">Tout pour votre confort</h2>
-      <p class="section-subtitle">Une seule entreprise, tous les savoir-faire.</p>
-      <div class="grid md:grid-cols-3 gap-8">
-        <a href="/services#chauffage" class="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
-          <div class="w-14 h-14 bg-orange-100 rounded-xl flex items-center justify-center mb-6 text-2xl">🔥</div>
-          <h3 class="text-xl font-bold mb-3 font-[family-name:Playfair_Display,serif] group-hover:text-[#E8521A] transition-colors">Chaudières</h3>
-          <p class="text-gray-600 leading-relaxed">Installation, remplacement et entretien annuel. Gaz, mazout, condensation. Agréés G1 · G2.</p>
+  <section id="services" class="py-20 lg:py-28 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="section-eyebrow">Notre savoir-faire</span>
+      <h2 class="section-title">Tout pour votre confort</h2>
+      <p class="section-lead">Une seule entreprise, tous les savoir-faire.</p>
+      <div class="grid md:grid-cols-3 gap-6">
+        <a href="/services#chauffage" class="group bg-white rounded-lg border border-stone-200 hover:border-cuivre p-8 transition-colors hover:shadow-md">
+          <div class="w-11 h-11 rounded-lg bg-cuivre-soft text-cuivre flex items-center justify-center mb-5">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003.001 2.48z"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 18a3.75 3.75 0 00.495-7.467 5.99 5.99 0 00-1.925 3.546 5.974 5.974 0 01-2.133-1A3.75 3.75 0 0012 18z"/></svg>
+          </div>
+          <h3 class="text-lg font-semibold text-marine mb-2 tracking-tightish">Chaudières</h3>
+          <p class="text-stone-600 text-sm leading-relaxed">Installation, remplacement et entretien annuel. Gaz, mazout, condensation. Agréés G1 · G2.</p>
         </a>
-        <a href="/services#energies" class="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
-          <div class="w-14 h-14 bg-green-100 rounded-xl flex items-center justify-center mb-6 text-2xl">🌿</div>
-          <h3 class="text-xl font-bold mb-3 font-[family-name:Playfair_Display,serif] group-hover:text-[#E8521A] transition-colors">Pompes à chaleur</h3>
-          <p class="text-gray-600 leading-relaxed">Air/eau, géothermie, systèmes hybrides. Audit énergétique et accompagnement aux primes.</p>
+        <a href="/services#energies" class="group bg-white rounded-lg border border-stone-200 hover:border-cuivre p-8 transition-colors hover:shadow-md">
+          <div class="w-11 h-11 rounded-lg bg-cuivre-soft text-cuivre flex items-center justify-center mb-5">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"/></svg>
+          </div>
+          <h3 class="text-lg font-semibold text-marine mb-2 tracking-tightish">Pompes à chaleur</h3>
+          <p class="text-stone-600 text-sm leading-relaxed">Air/eau, géothermie, systèmes hybrides. Audit énergétique et accompagnement aux primes.</p>
         </a>
-        <a href="/services#sanitaire" class="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
-          <div class="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-6 text-2xl">🚿</div>
-          <h3 class="text-xl font-bold mb-3 font-[family-name:Playfair_Display,serif] group-hover:text-[#E8521A] transition-colors">Sanitaire</h3>
-          <p class="text-gray-600 leading-relaxed">Salles de bain complètes, douches, baignoires, chauffe-eaux, adoucisseurs, détection fuites.</p>
+        <a href="/services#sanitaire" class="group bg-white rounded-lg border border-stone-200 hover:border-cuivre p-8 transition-colors hover:shadow-md">
+          <div class="w-11 h-11 rounded-lg bg-cuivre-soft text-cuivre flex items-center justify-center mb-5">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2.25c-2.429 5.778-5.25 7.875-5.25 12a5.25 5.25 0 0010.5 0c0-4.125-2.821-6.222-5.25-12z"/></svg>
+          </div>
+          <h3 class="text-lg font-semibold text-marine mb-2 tracking-tightish">Sanitaire</h3>
+          <p class="text-stone-600 text-sm leading-relaxed">Salles de bain complètes, douches, baignoires, chauffe-eaux, adoucisseurs, détection fuites.</p>
         </a>
       </div>
     </div>
