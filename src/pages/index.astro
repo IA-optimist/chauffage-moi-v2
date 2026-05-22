@@ -241,13 +241,12 @@ const stats = [
   </section>
 
   <!-- Réalisations -->
-  <section class="py-24 bg-[#1B3A5C] relative overflow-hidden">
-    <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 1px 1px, white 1px, transparent 0); background-size: 40px 40px;"></div>
-    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <span class="text-orange-300 font-semibold text-sm uppercase tracking-widest text-center block mb-4">Nos chantiers finis</span>
-      <h2 class="section-title text-white">Travail propre, finitions soignées</h2>
-      <p class="section-subtitle text-blue-200">Des réalisations livrées à des clients heureux dans tout le Hainaut.</p>
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5 mt-12">
+  <section class="py-20 lg:py-28 bg-stone-100">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="section-eyebrow">Nos chantiers finis</span>
+      <h2 class="section-title">Travail propre, finitions soignées</h2>
+      <p class="section-lead">Des réalisations livrées à des clients heureux dans tout le Hainaut.</p>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
         {[
           { src: '/photos/sdb-renovation.jpg', label: 'Salle de bain rénovée' },
           { src: '/photos/baignoire-ilot.jpg', label: 'Baignoire îlot' },
@@ -258,16 +257,16 @@ const stats = [
           { src: '/photos/tuyauterie-per.jpg', label: 'Tuyauterie multi-couche' },
           { src: '/photos/equipe-travail.jpg', label: 'Notre équipe sur chantier' },
         ].map(item => (
-          <button type="button" data-lightbox="realisations" data-lightbox-src={item.src} data-lightbox-caption={item.label} class="relative group overflow-hidden rounded-2xl aspect-[4/3] shadow-xl cursor-zoom-in text-left">
-            <img src={item.src} alt={item.label} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent"></div>
+          <button type="button" data-lightbox="realisations" data-lightbox-src={item.src} data-lightbox-caption={item.label} class="relative group overflow-hidden rounded-2xl aspect-[4/3] shadow-md cursor-zoom-in text-left bg-stone-200">
+            <img src={item.src} alt={item.label} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-marine/80 via-marine/20 to-transparent opacity-90 group-hover:opacity-100 transition-opacity"></div>
             <div class="absolute bottom-0 left-0 right-0 p-3 sm:p-4 text-white">
-              <p class="font-semibold text-xs sm:text-sm md:text-base leading-tight">{item.label}</p>
+              <p class="font-semibold text-xs sm:text-sm leading-tight">{item.label}</p>
             </div>
           </button>
         ))}
       </div>
-      <p class="text-center text-blue-200 text-sm mt-8 italic">Cliquez sur une photo pour ouvrir la galerie complète</p>
+      <p class="text-center text-stone-500 text-xs mt-8">Cliquez sur une photo pour ouvrir la galerie complète</p>
     </div>
   </section>
 
