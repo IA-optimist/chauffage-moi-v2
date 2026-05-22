@@ -1,126 +1,92 @@
 ---
-// Reconstructed faithfully from live site HTML
 const currentPath = Astro.url.pathname;
 const isHome = currentPath === '/';
 const isServices = currentPath.startsWith('/services');
 const isApropos = currentPath.startsWith('/apropos');
 const isContact = currentPath.startsWith('/contact');
-const linkClass = (active: boolean) => `relative px-5 py-2.5 text-sm font-medium transition-all duration-200 nav-link group ${active ? 'text-white nav-link-active' : 'text-blue-100 hover:text-white'}`;
-const underlineClass = (active: boolean) => `absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-[#E8521A] rounded-full transition-all duration-300 ${active ? 'w-4/5' : 'w-0 group-hover:w-4/5'}`;
-const mobileLinkClass = (active: boolean) => `px-4 py-3.5 rounded-xl text-sm font-medium transition-all duration-200 flex items-center justify-between ${active ? 'bg-[#E8521A]/20 text-white border border-[#E8521A]/30' : 'text-blue-100 hover:bg-white/10 hover:text-white'}`;
+const linkClass = (active: boolean) => `relative px-4 py-2.5 text-sm font-medium transition-colors duration-200 nav-link group ${active ? 'text-marine' : 'text-stone-700 hover:text-marine'}`;
+const underlineClass = (active: boolean) => `absolute -bottom-0.5 left-1/2 -translate-x-1/2 h-0.5 bg-cuivre rounded-full transition-all duration-300 ${active ? 'w-3/4' : 'w-0 group-hover:w-3/4'}`;
+const mobileLinkClass = (active: boolean) => `px-4 py-3.5 rounded-lg text-sm font-medium transition-colors duration-200 flex items-center justify-between ${active ? 'bg-cuivre-soft text-marine border border-cuivre/30' : 'text-stone-700 hover:bg-stone-50 hover:text-marine'}`;
 ---
 
-<header id="site-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between h-20 lg:h-24">
-      <!-- Logo -->
+<header id="site-header" class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md transition-shadow duration-300">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16 lg:h-20">
       <a href="/" class="flex items-center gap-2 sm:gap-3 group z-10 min-h-touch-exempt">
-        <div class="relative">
-          <img src="/logo.png" alt="Chauffage &amp; Moi" class="h-12 sm:h-14 w-12 sm:w-14 object-contain drop-shadow-md group-hover:scale-110 transition-transform duration-300" />
-          <div class="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-[#E8521A] rounded-full border-2 border-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-        </div>
+        <img src="/logo.png" alt="Chauffage & Moi" class="h-10 sm:h-12 w-10 sm:w-12 object-contain group-hover:scale-105 transition-transform duration-300" />
         <div>
-          <span class="text-white font-bold text-base sm:text-xl leading-tight block drop-shadow-sm">Chauffage &amp; Moi</span>
-          <span class="text-blue-200 text-[10px] sm:text-xs leading-tight block opacity-80">Coquis-Meunier</span>
+          <span class="text-marine font-bold text-base sm:text-lg leading-tight block tracking-tightish">Chauffage &amp; Moi</span>
+          <span class="text-stone-500 text-[10px] sm:text-xs leading-tight block">Coquis-Meunier</span>
         </div>
       </a>
 
-      <!-- Desktop Navigation -->
       <nav class="hidden md:flex items-center gap-1 absolute left-1/2 -translate-x-1/2" aria-label="Navigation principale">
         <a href="/" class={linkClass(isHome)} aria-current={isHome ? 'page' : undefined}>
-          Accueil
-          <span class={underlineClass(isHome)}></span>
+          Accueil<span class={underlineClass(isHome)}></span>
         </a>
         <a href="/services" class={linkClass(isServices)} aria-current={isServices ? 'page' : undefined}>
-          Services
-          <span class={underlineClass(isServices)}></span>
+          Services<span class={underlineClass(isServices)}></span>
         </a>
         <a href="/apropos" class={linkClass(isApropos)} aria-current={isApropos ? 'page' : undefined}>
-          À propos
-          <span class={underlineClass(isApropos)}></span>
+          À propos<span class={underlineClass(isApropos)}></span>
         </a>
         <a href="/contact" class={linkClass(isContact)} aria-current={isContact ? 'page' : undefined}>
-          Contact
-          <span class={underlineClass(isContact)}></span>
+          Contact<span class={underlineClass(isContact)}></span>
         </a>
       </nav>
 
-      <!-- Desktop CTA -->
-      <div class="hidden md:flex items-center gap-3">
-        <a href="tel:+32491873419" class="text-blue-200 hover:text-white text-sm font-medium transition-colors duration-200 flex items-center gap-1.5">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-          </svg>
+      <div class="hidden md:flex items-center gap-4">
+        <a href="tel:+32491873419" class="text-stone-600 hover:text-marine text-sm font-medium transition-colors flex items-center gap-1.5">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
           0491/87.34.19
         </a>
-        <a href="/contact" class="inline-flex items-center gap-2 bg-[#E8521A] hover:bg-[#d4461a] text-white px-5 py-2.5 rounded-full font-bold text-sm transition-all duration-300 shadow-lg hover:shadow-[#E8521A]/40 hover:shadow-xl hover:-translate-y-0.5">
+        <a href="/contact" class="inline-flex items-center gap-1.5 bg-cuivre hover:bg-cuivre-hover text-white px-5 py-2.5 rounded-full font-semibold text-sm transition-colors">
           Devis gratuit
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
-          </svg>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" /></svg>
         </a>
       </div>
 
-      <!-- Mobile: phone + burger -->
       <div class="flex items-center gap-2 md:hidden">
-        <a href="tel:+32491873419" class="inline-flex items-center justify-center w-10 h-10 bg-[#E8521A] text-white rounded-full shadow-md transition-all duration-200 hover:scale-110" aria-label="Appeler">
-          <svg class="w-4.5 h-4.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-          </svg>
+        <a href="tel:+32491873419" class="inline-flex items-center justify-center w-10 h-10 bg-cuivre text-white rounded-full transition-transform hover:scale-105" aria-label="Appeler">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
         </a>
-        <button id="menu-btn" type="button" class="inline-flex items-center justify-center w-10 h-10 text-white hover:bg-white/10 rounded-full transition-all duration-200" aria-expanded="false" aria-controls="mobile-menu" aria-label="Ouvrir le menu">
-          <svg id="icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-          <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-          </svg>
+        <button id="menu-btn" type="button" class="inline-flex items-center justify-center w-10 h-10 text-marine hover:bg-stone-100 rounded-full transition-colors" aria-expanded="false" aria-controls="mobile-menu" aria-label="Ouvrir le menu">
+          <svg id="icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
+          <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
         </button>
       </div>
     </div>
   </div>
 
-  <!-- Mobile Menu -->
   <div id="mobile-menu" class="mobile-menu-closed md:hidden overflow-hidden transition-all duration-400 ease-in-out" role="navigation" aria-label="Menu mobile">
-    <div class="bg-[#1B3A5C]/95 backdrop-blur-xl border-t border-white/10 px-4 pb-6 pt-4">
+    <div class="bg-white/95 backdrop-blur-xl border-t border-stone-200 px-4 pb-6 pt-4">
       <nav class="flex flex-col gap-1 mb-4">
         <a href="/" class={mobileLinkClass(isHome)} aria-current={isHome ? 'page' : undefined}>
           Accueil
-          <svg class="w-4 h-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-          </svg>
+          <svg class="w-4 h-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
         </a>
         <a href="/services" class={mobileLinkClass(isServices)} aria-current={isServices ? 'page' : undefined}>
           Services
-          <svg class="w-4 h-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-          </svg>
+          <svg class="w-4 h-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
         </a>
         <a href="/apropos" class={mobileLinkClass(isApropos)} aria-current={isApropos ? 'page' : undefined}>
           À propos
-          <svg class="w-4 h-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-          </svg>
+          <svg class="w-4 h-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
         </a>
         <a href="/contact" class={mobileLinkClass(isContact)} aria-current={isContact ? 'page' : undefined}>
           Contact
-          <svg class="w-4 h-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-          </svg>
+          <svg class="w-4 h-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
         </a>
       </nav>
-      <a href="/contact" class="flex items-center justify-center gap-2 w-full bg-[#E8521A] hover:bg-[#d4461a] text-white py-3.5 rounded-xl font-bold transition-colors shadow-lg">
+      <a href="/contact" class="btn-primary w-full">
         Devis gratuit
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-        </svg>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
       </a>
     </div>
   </div>
 </header>
 
-<!-- Spacer -->
-<div class="h-20 lg:h-24 hero-header-spacer" style="display:none"></div>
+<div class="h-16 lg:h-20"></div>
 
 <script is:inline>
   const menuBtn = document.getElementById('menu-btn');
@@ -128,36 +94,23 @@ const mobileLinkClass = (active: boolean) => `px-4 py-3.5 rounded-xl text-sm fon
   const iconOpen = document.getElementById('icon-open');
   const iconClose = document.getElementById('icon-close');
   let menuOpen = false;
-
   menuBtn?.addEventListener('click', () => {
     menuOpen = !menuOpen;
     menuBtn.setAttribute('aria-expanded', String(menuOpen));
-    if (menuOpen) {
-      mobileMenu?.classList.remove('mobile-menu-closed');
-      mobileMenu?.classList.add('mobile-menu-open');
-      iconOpen?.classList.add('hidden');
-      iconClose?.classList.remove('hidden');
-    } else {
-      mobileMenu?.classList.remove('mobile-menu-open');
-      mobileMenu?.classList.add('mobile-menu-closed');
-      iconOpen?.classList.remove('hidden');
-      iconClose?.classList.add('hidden');
-    }
+    mobileMenu?.classList.toggle('mobile-menu-closed', !menuOpen);
+    mobileMenu?.classList.toggle('mobile-menu-open', menuOpen);
+    iconOpen?.classList.toggle('hidden', menuOpen);
+    iconClose?.classList.toggle('hidden', !menuOpen);
   });
 
-  // Header scroll effect
   const header = document.getElementById('site-header');
-  window.addEventListener('scroll', () => {
-    if (window.pageYOffset > 80) {
-      header?.classList.add('bg-[#1B3A5C]/95', 'backdrop-blur-md', 'shadow-xl');
-      header?.classList.remove('bg-transparent');
+  const onScroll = () => {
+    if (window.pageYOffset > 12) {
+      header?.classList.add('shadow-sm');
     } else {
-      header?.classList.add('bg-transparent');
-      header?.classList.remove('bg-[#1B3A5C]/95', 'backdrop-blur-md', 'shadow-xl');
+      header?.classList.remove('shadow-sm');
     }
-  });
-  // Initial state
-  if (window.pageYOffset > 80) {
-    header?.classList.add('bg-[#1B3A5C]/95', 'backdrop-blur-md', 'shadow-xl');
-  }
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
 </script>
