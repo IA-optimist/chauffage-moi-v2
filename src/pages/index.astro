@@ -271,59 +271,68 @@ const stats = [
   </section>
 
   <!-- Témoignages Google avis -->
-  <section id="avis-google" class="py-24 bg-[#F8FAFC]">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <span class="text-[#E8521A] font-semibold text-sm uppercase tracking-widest text-center block mb-4">Avis Google vérifiés</span>
-      <h2 class="section-title text-[#1B3A5C]">Ce que disent nos clients</h2>
-      <p class="section-subtitle">{totalReviews} avis Google de clients satisfaits dans tout le Hainaut.</p>
+  <section id="avis-google" class="py-20 lg:py-28 bg-stone-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="section-eyebrow">Avis Google vérifiés</span>
+      <h2 class="section-title">Ce que disent nos clients</h2>
+      <p class="section-lead">{totalReviews} avis Google de clients satisfaits dans tout le Hainaut.</p>
 
-      <!-- Google rating summary -->
-      <div class="flex flex-col items-center mb-14 mt-8">
-        <div class="bg-white rounded-2xl shadow-lg px-8 py-6 flex flex-col items-center">
-          <div class="flex items-center gap-3 mb-2">
-            <svg class="w-7 h-7" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-              <path fill="#FFC107" d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8c-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4C12.955 4 4 12.955 4 24s8.955 20 20 20s20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z"/>
-              <path fill="#FF3D00" d="m6.306 14.691l6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4C16.318 4 9.656 8.337 6.306 14.691z"/>
-              <path fill="#4CAF50" d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238A11.91 11.91 0 0 1 24 36c-5.202 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z"/>
-              <path fill="#1976D2" d="M43.611 20.083H42V20H24v8h11.303a12.04 12.04 0 0 1-4.087 5.571l.003-.002l6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917z"/>
-            </svg>
-            <span class="text-5xl font-bold text-[#1B3A5C] font-[family-name:Playfair_Display,serif]">{avgRating}</span>
-            <span class="text-gray-400 text-2xl">/ 5</span>
-          </div>
-          <div class="flex gap-1 text-yellow-400 text-2xl mb-3">★★★★★</div>
-          <p class="text-sm text-gray-500 mb-3">Basé sur {totalReviews} avis Google</p>
-          <a href={googleReviewsUrl} target="_blank" rel="noopener" class="text-sm text-[#E8521A] hover:underline font-medium inline-flex items-center gap-1">
-            Voir tous les avis sur Google
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-          </a>
+      <!-- Score card -->
+      <div class="max-w-2xl mx-auto bg-white border border-stone-200 rounded-2xl shadow-sm p-6 mb-12 flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
+        <svg class="w-8 h-8" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+          <path fill="#FFC107" d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8c-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4C12.955 4 4 12.955 4 24s8.955 20 20 20s20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z"/>
+          <path fill="#FF3D00" d="m6.306 14.691l6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4C16.318 4 9.656 8.337 6.306 14.691z"/>
+          <path fill="#4CAF50" d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238A11.91 11.91 0 0 1 24 36c-5.202 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z"/>
+          <path fill="#1976D2" d="M43.611 20.083H42V20H24v8h11.303a12.04 12.04 0 0 1-4.087 5.571l.003-.002l6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917z"/>
+        </svg>
+        <div class="flex items-baseline gap-1">
+          <span class="text-4xl font-extrabold text-marine tracking-tightish">{avgRating}</span>
+          <span class="text-stone-400 text-lg">/ 5</span>
         </div>
+        <div class="flex gap-0.5 text-yellow-400 text-xl">★★★★★</div>
+        <span class="text-stone-500 text-sm">Basé sur {totalReviews} avis</span>
+        <a href={googleReviewsUrl} target="_blank" rel="noopener" class="text-cuivre hover:text-cuivre-hover text-sm font-semibold inline-flex items-center gap-1">
+          Voir sur Google
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
       </div>
 
-      <!-- Reviews grid -->
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Reviews mobile : scroll snap -->
+      <div class="md:hidden -mx-4 px-4 overflow-x-auto snap-x snap-mandatory flex gap-4 pb-4 scrollbar-hide">
         {googleReviews.map(review => (
-          <article class="bg-white rounded-2xl p-6 shadow-md hover:shadow-xl transition-shadow border border-gray-100">
-            <div class="flex items-center gap-3 mb-4">
-              <div class="w-11 h-11 bg-gradient-to-br from-[#1B3A5C] to-[#2d5680] rounded-full flex items-center justify-center text-white font-bold shrink-0">
-                {review.name.charAt(0)}
-              </div>
+          <article class="snap-center shrink-0 w-[85vw] max-w-sm bg-white rounded-lg border border-stone-200 p-5">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 bg-gradient-to-br from-marine to-marine-soft rounded-full flex items-center justify-center text-white font-bold shrink-0 text-sm">{review.name.charAt(0)}</div>
               <div class="flex-1 min-w-0">
-                <p class="font-semibold text-gray-900 truncate">{review.name}</p>
-                <p class="text-xs text-gray-400">
-                  {new Date(review.date).toLocaleDateString('fr-BE', { year: 'numeric', month: 'long' })}
-                </p>
+                <p class="font-semibold text-marine truncate text-sm">{review.name}</p>
+                <p class="text-xs text-stone-400">{new Date(review.date).toLocaleDateString('fr-BE', { year: 'numeric', month: 'long' })}</p>
               </div>
-              <div class="text-yellow-400 text-sm tracking-tight">{'★'.repeat(review.rating)}<span class="text-gray-200">{'★'.repeat(5 - review.rating)}</span></div>
+              <div class="text-yellow-400 text-xs tracking-tight">{'★'.repeat(review.rating)}<span class="text-stone-200">{'★'.repeat(5 - review.rating)}</span></div>
             </div>
-            <p class="text-gray-600 leading-relaxed text-sm">
-              &ldquo;{review.text}&rdquo;
-            </p>
+            <p class="text-stone-600 text-sm leading-relaxed">&ldquo;{review.text}&rdquo;</p>
+          </article>
+        ))}
+      </div>
+
+      <!-- Reviews desktop : grid -->
+      <div class="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {googleReviews.map(review => (
+          <article class="bg-white rounded-lg border border-stone-200 p-6 hover:shadow-md transition-shadow">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 bg-gradient-to-br from-marine to-marine-soft rounded-full flex items-center justify-center text-white font-bold shrink-0 text-sm">{review.name.charAt(0)}</div>
+              <div class="flex-1 min-w-0">
+                <p class="font-semibold text-marine truncate text-sm">{review.name}</p>
+                <p class="text-xs text-stone-400">{new Date(review.date).toLocaleDateString('fr-BE', { year: 'numeric', month: 'long' })}</p>
+              </div>
+              <div class="text-yellow-400 text-xs tracking-tight">{'★'.repeat(review.rating)}<span class="text-stone-200">{'★'.repeat(5 - review.rating)}</span></div>
+            </div>
+            <p class="text-stone-600 text-sm leading-relaxed">&ldquo;{review.text}&rdquo;</p>
           </article>
         ))}
       </div>
 
       <div class="text-center mt-12">
-        <a href={googleReviewsUrl} target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-white border-2 border-[#1B3A5C] text-[#1B3A5C] hover:bg-[#1B3A5C] hover:text-white font-semibold px-8 py-3 rounded-full transition-all duration-300">
+        <a href={googleReviewsUrl} target="_blank" rel="noopener" class="btn-secondary">
           Lire tous les avis sur Google
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
         </a>
