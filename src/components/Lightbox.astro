@@ -1,0 +1,114 @@
+---
+// Lightbox global — branche tous les <img data-lightbox="GROUP"> sur ce viewer.
+// Click image → ouvre, navigation ←/→/swipe entre images du même groupe, Esc/clic fond → ferme.
+---
+
+<div id="lightbox" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/90 backdrop-blur-sm" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Galerie photo">
+  <button type="button" id="lb-close" class="absolute top-4 right-4 z-10 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors" aria-label="Fermer la galerie">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+  </button>
+
+  <button type="button" id="lb-prev" class="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors" aria-label="Photo précédente">
+    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+  </button>
+
+  <button type="button" id="lb-next" class="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors" aria-label="Photo suivante">
+    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+  </button>
+
+  <figure class="relative w-full h-full flex flex-col items-center justify-center px-4 sm:px-20 py-12">
+    <img id="lb-img" src="" alt="" class="max-w-full max-h-[80vh] object-contain rounded-xl shadow-2xl" />
+    <figcaption id="lb-caption" class="mt-4 text-white/90 text-center text-sm sm:text-base font-medium px-4 max-w-2xl"></figcaption>
+    <p id="lb-counter" class="mt-2 text-white/50 text-xs"></p>
+  </figure>
+</div>
+
+<script is:inline>
+  (function () {
+    const lb = document.getElementById('lightbox');
+    if (!lb) return;
+    const lbImg = document.getElementById('lb-img');
+    const lbCaption = document.getElementById('lb-caption');
+    const lbCounter = document.getElementById('lb-counter');
+    const lbClose = document.getElementById('lb-close');
+    const lbPrev = document.getElementById('lb-prev');
+    const lbNext = document.getElementById('lb-next');
+
+    let currentGroup = [];
+    let currentIndex = 0;
+
+    function open(group, index) {
+      currentGroup = group;
+      currentIndex = index;
+      render();
+      lb.classList.remove('hidden');
+      lb.classList.add('flex');
+      lb.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function close() {
+      lb.classList.add('hidden');
+      lb.classList.remove('flex');
+      lb.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    function render() {
+      const item = currentGroup[currentIndex];
+      if (!item) return;
+      lbImg.src = item.src;
+      lbImg.alt = item.alt || '';
+      lbCaption.textContent = item.caption || item.alt || '';
+      lbCounter.textContent = `${currentIndex + 1} / ${currentGroup.length}`;
+      lbPrev.style.visibility = currentGroup.length > 1 ? 'visible' : 'hidden';
+      lbNext.style.visibility = currentGroup.length > 1 ? 'visible' : 'hidden';
+    }
+
+    function next() {
+      currentIndex = (currentIndex + 1) % currentGroup.length;
+      render();
+    }
+    function prev() {
+      currentIndex = (currentIndex - 1 + currentGroup.length) % currentGroup.length;
+      render();
+    }
+
+    // Wire up triggers
+    document.addEventListener('click', (e) => {
+      const target = e.target.closest('[data-lightbox]');
+      if (!target) return;
+      e.preventDefault();
+      const groupName = target.getAttribute('data-lightbox');
+      const group = Array.from(document.querySelectorAll(`[data-lightbox="${groupName}"]`)).map(el => ({
+        src: el.getAttribute('data-lightbox-src') || el.getAttribute('src'),
+        alt: el.getAttribute('alt') || '',
+        caption: el.getAttribute('data-lightbox-caption') || el.getAttribute('alt') || '',
+      }));
+      const index = Array.from(document.querySelectorAll(`[data-lightbox="${groupName}"]`)).indexOf(target);
+      open(group, Math.max(0, index));
+    });
+
+    lbClose.addEventListener('click', close);
+    lbPrev.addEventListener('click', prev);
+    lbNext.addEventListener('click', next);
+    lb.addEventListener('click', (e) => {
+      if (e.target === lb) close();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (lb.classList.contains('hidden')) return;
+      if (e.key === 'Escape') close();
+      else if (e.key === 'ArrowRight') next();
+      else if (e.key === 'ArrowLeft') prev();
+    });
+
+    // Touch swipe
+    let touchStartX = 0;
+    lb.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+    lb.addEventListener('touchend', (e) => {
+      const dx = e.changedTouches[0].screenX - touchStartX;
+      if (Math.abs(dx) > 50) { dx < 0 ? next() : prev(); }
+    }, { passive: true });
+  })();
+</script>

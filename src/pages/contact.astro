@@ -1,120 +1,440 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+const typesDemande = [
+  { id: 'chauffage', label: 'Installation chauffage', icon: '🔥', desc: 'Chaudière gaz, mazout ou condensation' },
+  { id: 'pac', label: 'Pompe à chaleur', icon: '🌿', desc: 'Air/eau, géothermie, hybride' },
+  { id: 'sanitaire', label: 'Sanitaire / Salle de bain', icon: '🚿', desc: 'Rénovation, plomberie, douche, baignoire' },
+  { id: 'depannage', label: 'Dépannage urgent', icon: '🆘', desc: 'Panne, fuite, intervention rapide' },
+];
 ---
 
 <Layout title="Contact & Devis gratuit" description="Contactez Chauffage & Moi pour un devis gratuit sous 24h. Chauffagiste et plombier à Mons et dans le Hainaut. Urgences 7j/7. WhatsApp 0491 87 34 19.">
-  
-  <section class="pt-32 pb-20 bg-gradient-to-br from-[#1B3A5C] to-[#0D1F33]">
+
+  <section class="pt-28 sm:pt-32 pb-12 sm:pb-16 bg-gradient-to-br from-[#1B3A5C] to-[#0D1F33]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h1 class="text-4xl md:text-5xl lg:text-6xl font-[family-name:Playfair_Display,serif] font-bold text-white mb-6">Contactez-nous</h1>
-      <p class="text-xl text-blue-200 max-w-2xl mx-auto">Devis gratuit sous 24h. Intervention rapide dans tout le Hainaut.</p>
+      <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-[family-name:Playfair_Display,serif] font-bold text-white mb-4 sm:mb-6">Demande de devis</h1>
+      <p class="text-base sm:text-xl text-blue-200 max-w-2xl mx-auto">Devis gratuit sous 24h. Intervention rapide dans tout le Hainaut.</p>
     </div>
   </section>
 
-  <section class="py-24 bg-white">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid md:grid-cols-2 gap-12">
-        <!-- Contact info -->
-        <div>
-          <h2 class="text-2xl font-bold font-[family-name:Playfair_Display,serif] text-[#1B3A5C] mb-8">Nos coordonnées</h2>
-          
-          <div class="space-y-6">
-            <a href="https://wa.me/32491873419" target="_blank" rel="noopener" class="flex items-center gap-4 p-5 bg-green-50 rounded-2xl hover:bg-green-100 transition-colors group">
-              <div class="w-14 h-14 bg-[#25D366] rounded-xl flex items-center justify-center text-white text-2xl shrink-0">
-                <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-              </div>
-              <div>
-                <p class="font-semibold text-gray-900 group-hover:text-[#25D366] transition-colors">WhatsApp</p>
-                <p class="text-gray-500">0491 87 34 19</p>
-              </div>
-              <span class="ml-auto text-[#25D366] text-sm font-medium">Cliquez →</span>
-            </a>
+  <section class="py-12 sm:py-16 md:py-20 bg-[#F8FAFC]">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
 
-            <!-- Bouton téléphone remplacé par un bouton vert redirigeant vers WhatsApp -->
-            <a href="https://wa.me/32491873419" target="_blank" rel="noopener" class="flex items-center gap-4 p-5 bg-green-50 rounded-2xl hover:bg-green-100 transition-colors group">
-              <div class="w-14 h-14 bg-[#25D366] rounded-xl flex items-center justify-center text-white text-2xl shrink-0">📞</div>
-              <div>
-                <p class="font-semibold text-gray-900 group-hover:text-[#25D366] transition-colors">WhatsApp</p>
-                <p class="text-gray-500">0491 87 34 19</p>
-              </div>
-              <span class="ml-auto text-[#25D366] text-sm font-medium">WhatsApp →</span>
-            </a>
+      <!-- Stepper -->
+      <div class="flex items-center justify-center mb-8 sm:mb-12">
+        <div id="step-1-indicator" class="step-indicator step-active">
+          <div class="step-circle">1</div>
+          <span class="step-label hidden sm:inline">Type de demande</span>
+        </div>
+        <div class="w-8 sm:w-16 h-0.5 bg-gray-300 mx-2 sm:mx-4"></div>
+        <div id="step-2-indicator" class="step-indicator">
+          <div class="step-circle">2</div>
+          <span class="step-label hidden sm:inline">Détails & coordonnées</span>
+        </div>
+      </div>
 
-            <div class="flex items-center gap-4 p-5 bg-blue-50 rounded-2xl">
-              <div class="w-14 h-14 bg-[#1B3A5C] rounded-xl flex items-center justify-center text-white text-2xl shrink-0">✉️</div>
-              <div>
-                <p class="font-semibold text-gray-900">Email</p>
-                <p class="text-gray-500">info@chauffageetmoi.com</p>
-              </div>
-            </div>
+      <form id="devis-form" class="bg-white rounded-2xl sm:rounded-3xl shadow-xl p-5 sm:p-8 md:p-10">
 
-            <div class="flex items-center gap-4 p-5 bg-gray-50 rounded-2xl">
-              <div class="w-14 h-14 bg-gray-700 rounded-xl flex items-center justify-center text-white text-2xl shrink-0">📍</div>
-              <div>
-                <p class="font-semibold text-gray-900">Adresse</p>
-                <p class="text-gray-500">Ghlin, Mons, Hainaut, Belgique</p>
-              </div>
-            </div>
+        <!-- ÉTAPE 1 : Type de demande -->
+        <div id="step-1" class="step-pane">
+          <h2 class="text-xl sm:text-2xl font-bold font-[family-name:Playfair_Display,serif] text-[#1B3A5C] mb-2">Quelle est votre demande ?</h2>
+          <p class="text-gray-500 text-sm mb-6 sm:mb-8">Sélectionnez la catégorie qui correspond à votre projet.</p>
 
-            <div class="flex items-center gap-4 p-5 bg-gray-50 rounded-2xl">
-              <div class="w-14 h-14 bg-gray-700 rounded-xl flex items-center justify-center text-white text-2xl shrink-0">🕐</div>
-              <div>
-                <p class="font-semibold text-gray-900">Horaires</p>
-                <p class="text-gray-500">Lun-Ven 8h-18h · Urgences 7j/7</p>
-              </div>
-            </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+            {typesDemande.map(t => (
+              <label class="type-card relative flex flex-col p-4 sm:p-5 rounded-2xl border-2 border-gray-200 hover:border-[#E8521A]/40 cursor-pointer transition-all duration-200 hover:shadow-md">
+                <input type="radio" name="typeDemande" value={t.id} class="sr-only peer" required />
+                <div class="flex items-start gap-3">
+                  <span class="text-3xl sm:text-4xl shrink-0">{t.icon}</span>
+                  <div class="flex-1 min-w-0">
+                    <p class="font-bold text-gray-900 text-sm sm:text-base leading-tight">{t.label}</p>
+                    <p class="text-gray-500 text-xs sm:text-sm mt-1 leading-tight">{t.desc}</p>
+                  </div>
+                  <svg class="w-5 h-5 text-[#E8521A] opacity-0 peer-checked:opacity-100 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                </div>
+              </label>
+            ))}
+          </div>
+
+          <div class="flex justify-end mt-6 sm:mt-8">
+            <button type="button" id="btn-next" disabled class="inline-flex items-center gap-2 bg-[#E8521A] hover:bg-[#d4461a] disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-bold py-3 px-6 sm:px-8 rounded-full transition-colors shadow-lg">
+              Continuer
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+            </button>
           </div>
         </div>
 
-        <!-- Form -->
-        <div>
-          <h2 class="text-2xl font-bold font-[family-name:Playfair_Display,serif] text-[#1B3A5C] mb-8">Demande de devis</h2>
-          <p class="text-gray-600 mb-6">Remplissez le formulaire ci-dessous et nous vous répondrons sous 24h avec un devis gratuit et personnalisé.</p>
-          
-          <form class="space-y-5" action="https://formspree.io/f/placeholder" method="POST">
-            <div class="grid grid-cols-2 gap-4">
+        <!-- ÉTAPE 2 : Détails -->
+        <div id="step-2" class="step-pane hidden">
+          <button type="button" id="btn-back" class="inline-flex items-center gap-2 text-gray-500 hover:text-[#1B3A5C] text-sm font-medium mb-4 transition-colors">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+            Retour
+          </button>
+
+          <h2 class="text-xl sm:text-2xl font-bold font-[family-name:Playfair_Display,serif] text-[#1B3A5C] mb-2">Vos coordonnées et votre projet</h2>
+          <p class="text-gray-500 text-sm mb-6 sm:mb-8">Quelques précisions pour que nous puissions préparer un devis adapté.</p>
+
+          <div class="space-y-5 sm:space-y-6">
+            <!-- Coordonnées -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1.5">Nom</label>
-                <input type="text" name="nom" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-[#E8521A] focus:ring-2 focus:ring-orange-100 outline-none transition-colors" placeholder="Votre nom" />
+                <label for="prenom" class="block text-sm font-semibold text-gray-700 mb-1.5">Prénom <span class="text-[#E8521A]">*</span></label>
+                <input type="text" id="prenom" name="prenom" required class="form-input" placeholder="Marie" />
               </div>
               <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1.5">Prénom</label>
-                <input type="text" name="prenom" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-[#E8521A] focus:ring-2 focus:ring-orange-100 outline-none transition-colors" placeholder="Votre prénom" />
+                <label for="nom" class="block text-sm font-semibold text-gray-700 mb-1.5">Nom <span class="text-[#E8521A]">*</span></label>
+                <input type="text" id="nom" name="nom" required class="form-input" placeholder="Dupont" />
               </div>
             </div>
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1.5">Téléphone</label>
-              <input type="tel" name="telephone" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-[#E8521A] focus:ring-2 focus:ring-orange-100 outline-none transition-colors" placeholder="04xx xx xx xx" />
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="telephone" class="block text-sm font-semibold text-gray-700 mb-1.5">Téléphone <span class="text-[#E8521A]">*</span></label>
+                <input type="tel" id="telephone" name="telephone" required class="form-input" placeholder="04xx xx xx xx" />
+              </div>
+              <div>
+                <label for="email" class="block text-sm font-semibold text-gray-700 mb-1.5">Email</label>
+                <input type="email" id="email" name="email" class="form-input" placeholder="votre@email.com" />
+              </div>
             </div>
+
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1.5">Email</label>
-              <input type="email" name="email" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-[#E8521A] focus:ring-2 focus:ring-orange-100 outline-none transition-colors" placeholder="votre@email.com" />
+              <label for="ville" class="block text-sm font-semibold text-gray-700 mb-1.5">Ville / Code postal <span class="text-[#E8521A]">*</span></label>
+              <input type="text" id="ville" name="ville" required class="form-input" placeholder="7000 Mons" />
             </div>
+
+            <!-- Type de logement -->
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1.5">Service souhaité</label>
-              <select name="service" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-[#E8521A] focus:ring-2 focus:ring-orange-100 outline-none transition-colors">
-                <option value="">Choisissez un service</option>
-                <option value="chaudiere">Chaudière</option>
-                <option value="pompe-chaleur">Pompe à chaleur</option>
-                <option value="sanitaire">Sanitaire / Salle de bain</option>
-                <option value="adoucisseur">Adoucisseur d'eau</option>
-                <option value="depannage">Dépannage urgent</option>
-                <option value="autre">Autre</option>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Type de logement</label>
+              <div class="grid grid-cols-3 gap-2 sm:gap-3">
+                {['Maison', 'Appartement', 'Commerce'].map(t => (
+                  <label class="radio-pill">
+                    <input type="radio" name="logement" value={t} class="sr-only peer" />
+                    <span class="radio-pill-label">{t}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            <!-- Chauffage actuel -->
+            <div>
+              <label for="chauffageActuel" class="block text-sm font-semibold text-gray-700 mb-1.5">Type de chauffage actuel</label>
+              <select id="chauffageActuel" name="chauffageActuel" class="form-input">
+                <option value="">Sélectionnez...</option>
+                <option>Gaz</option>
+                <option>Mazout</option>
+                <option>Électrique</option>
+                <option>Pompe à chaleur</option>
+                <option>Pellets / Bois</option>
+                <option>Aucun</option>
+                <option>Autre</option>
               </select>
             </div>
+
+            <!-- Travaux souhaités -->
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1.5">Message</label>
-              <textarea name="message" rows="4" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-[#E8521A] focus:ring-2 focus:ring-orange-100 outline-none transition-colors" placeholder="Décrivez votre projet ou votre besoin..."></textarea>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Travaux souhaités <span class="text-gray-400 font-normal">(plusieurs choix possibles)</span></label>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                {['Installation', 'Remplacement', 'Entretien annuel', 'Dépannage', 'Audit énergétique', 'Conseil / devis'].map(t => (
+                  <label class="check-pill">
+                    <input type="checkbox" name="travaux" value={t} class="sr-only peer" />
+                    <span class="check-pill-label">
+                      <svg class="w-4 h-4 opacity-0 peer-checked:opacity-100" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                      {t}
+                    </span>
+                  </label>
+                ))}
+              </div>
             </div>
-            <button type="submit" class="w-full bg-[#E8521A] hover:bg-[#d4461a] text-white font-bold text-lg py-4 px-8 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1">
-              Envoyer la demande
+
+            <!-- Délai souhaité -->
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Délai souhaité</label>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                {['Urgent', '< 1 mois', '1-3 mois', 'Plus tard'].map(t => (
+                  <label class="radio-pill">
+                    <input type="radio" name="delai" value={t} class="sr-only peer" />
+                    <span class="radio-pill-label text-xs sm:text-sm">{t}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            <!-- Disponibilités -->
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Disponibilités préférées</label>
+              <div class="grid grid-cols-3 gap-2 sm:gap-3">
+                {['Matin', 'Après-midi', 'Indifférent'].map(t => (
+                  <label class="radio-pill">
+                    <input type="radio" name="dispo" value={t} class="sr-only peer" />
+                    <span class="radio-pill-label">{t}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            <!-- Message -->
+            <div>
+              <label for="message" class="block text-sm font-semibold text-gray-700 mb-1.5">Message complémentaire</label>
+              <textarea id="message" name="message" rows="4" class="form-input" placeholder="Décrivez votre projet, contraintes, particularités..."></textarea>
+            </div>
+
+            <!-- RGPD -->
+            <label class="flex items-start gap-3 p-4 bg-gray-50 rounded-xl cursor-pointer">
+              <input type="checkbox" id="rgpd" name="rgpd" required class="mt-1 w-5 h-5 accent-[#E8521A] cursor-pointer shrink-0" />
+              <span class="text-sm text-gray-600 leading-relaxed">
+                J'accepte d'être contacté par Chauffage &amp; Moi (Coquis-Meunier) au sujet de ma demande de devis. Mes données ne seront pas transmises à des tiers. <span class="text-[#E8521A]">*</span>
+              </span>
+            </label>
+
+            <button type="submit" class="w-full inline-flex items-center justify-center gap-2 bg-[#E8521A] hover:bg-[#d4461a] text-white font-bold text-base sm:text-lg py-4 px-6 rounded-full transition-all duration-300 shadow-xl hover:-translate-y-1">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Envoyer ma demande
             </button>
-            <p class="text-xs text-gray-400 text-center mt-3">
-              En soumettant ce formulaire, vous acceptez d'être contacté par Chauffage & Moi.
+            <p class="text-xs text-gray-400 text-center">
+              Réponse garantie sous 24h ouvrées · Devis 100% gratuit et sans engagement
             </p>
-          </form>
+          </div>
+        </div>
+      </form>
+
+      <!-- Confirmation overlay -->
+      <div id="form-success" class="hidden mt-6 p-6 bg-green-50 border-2 border-green-200 rounded-2xl text-center">
+        <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+          <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+        </div>
+        <h3 class="text-xl font-bold text-[#1B3A5C] mb-2">Demande prête à être envoyée</h3>
+        <p class="text-gray-600 mb-4">Votre récapitulatif a été préparé. Cliquez ci-dessous pour l'envoyer via WhatsApp à notre équipe.</p>
+        <a id="wa-link" href="#" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#1da851] text-white font-bold py-3 px-6 rounded-full transition-colors shadow-lg">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Envoyer sur WhatsApp
+        </a>
+        <p class="text-xs text-gray-400 mt-4">Préférez l'email ? <a href="#" id="mail-link" class="text-[#E8521A] underline">Cliquez ici</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Coordonnées -->
+  <section class="py-12 sm:py-16 md:py-20 bg-white">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl sm:text-3xl font-bold font-[family-name:Playfair_Display,serif] text-[#1B3A5C] mb-8 sm:mb-10 text-center">Nos coordonnées</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <a href="https://wa.me/32491873419" target="_blank" rel="noopener" class="flex items-center gap-4 p-5 bg-green-50 rounded-2xl hover:bg-green-100 transition-colors group">
+          <div class="w-12 h-12 bg-[#25D366] rounded-xl flex items-center justify-center text-white shrink-0">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </div>
+          <div class="min-w-0">
+            <p class="text-xs text-gray-500">WhatsApp · principale</p>
+            <p class="font-bold text-gray-900">0491 87 34 19</p>
+          </div>
+        </a>
+
+        <a href="tel:+32472805871" class="flex items-center gap-4 p-5 bg-orange-50 rounded-2xl hover:bg-orange-100 transition-colors group">
+          <div class="w-12 h-12 bg-[#E8521A] rounded-xl flex items-center justify-center text-white shrink-0 text-xl">📞</div>
+          <div class="min-w-0">
+            <p class="text-xs text-gray-500">Téléphone</p>
+            <p class="font-bold text-gray-900">0472 80 58 71</p>
+          </div>
+        </a>
+
+        <a href="tel:+32470328147" class="flex items-center gap-4 p-5 bg-orange-50 rounded-2xl hover:bg-orange-100 transition-colors group">
+          <div class="w-12 h-12 bg-[#E8521A] rounded-xl flex items-center justify-center text-white shrink-0 text-xl">📞</div>
+          <div class="min-w-0">
+            <p class="text-xs text-gray-500">Téléphone</p>
+            <p class="font-bold text-gray-900">0470 32 81 47</p>
+          </div>
+        </a>
+
+        <a href="mailto:Chauffagesanitaire@outlook.com" class="flex items-center gap-4 p-5 bg-blue-50 rounded-2xl hover:bg-blue-100 transition-colors group md:col-span-2 lg:col-span-1">
+          <div class="w-12 h-12 bg-[#1B3A5C] rounded-xl flex items-center justify-center text-white shrink-0 text-xl">✉️</div>
+          <div class="min-w-0 flex-1">
+            <p class="text-xs text-gray-500">Email</p>
+            <p class="font-bold text-gray-900 break-all text-sm">Chauffagesanitaire@outlook.com</p>
+          </div>
+        </a>
+
+        <div class="flex items-center gap-4 p-5 bg-gray-50 rounded-2xl">
+          <div class="w-12 h-12 bg-gray-700 rounded-xl flex items-center justify-center text-white shrink-0 text-xl">📍</div>
+          <div class="min-w-0">
+            <p class="text-xs text-gray-500">Adresse</p>
+            <p class="font-bold text-gray-900 text-sm">Ghlin, Mons, Hainaut, Belgique</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4 p-5 bg-gray-50 rounded-2xl">
+          <div class="w-12 h-12 bg-gray-700 rounded-xl flex items-center justify-center text-white shrink-0 text-xl">🕐</div>
+          <div class="min-w-0">
+            <p class="text-xs text-gray-500">Horaires</p>
+            <p class="font-bold text-gray-900 text-sm">Lun-Ven 7h-18h · Sam 8h-12h<br/>Urgences 7j/7</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
+
+  <style>
+    .step-indicator { display: flex; align-items: center; gap: 0.75rem; }
+    .step-circle {
+      width: 2rem; height: 2rem;
+      border-radius: 9999px;
+      background: #e5e7eb;
+      color: #6b7280;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 0.875rem;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    @media (min-width: 640px) {
+      .step-circle { width: 2.5rem; height: 2.5rem; font-size: 1rem; }
+    }
+    .step-active .step-circle {
+      background: #E8521A;
+      color: white;
+    }
+    .step-complete .step-circle {
+      background: #10b981;
+      color: white;
+    }
+    .step-label {
+      color: #6b7280;
+      font-weight: 600;
+      font-size: 0.875rem;
+    }
+    .step-active .step-label { color: #1B3A5C; }
+
+    .form-input {
+      width: 100%;
+      padding: 0.875rem 1rem;
+      border-radius: 0.75rem;
+      border: 1.5px solid #e5e7eb;
+      outline: none;
+      transition: all 0.2s;
+      font-size: 1rem;
+      background: white;
+    }
+    .form-input:focus {
+      border-color: #E8521A;
+      box-shadow: 0 0 0 3px rgba(232, 82, 26, 0.1);
+    }
+
+    .type-card:has(input:checked) {
+      border-color: #E8521A !important;
+      background: #fff5f1;
+      box-shadow: 0 4px 12px rgba(232, 82, 26, 0.1);
+    }
+
+    .radio-pill .radio-pill-label,
+    .check-pill .check-pill-label {
+      display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+      padding: 0.625rem 0.875rem;
+      border-radius: 0.75rem;
+      border: 1.5px solid #e5e7eb;
+      background: white;
+      color: #4b5563;
+      font-weight: 500;
+      font-size: 0.875rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: center;
+      width: 100%;
+    }
+    .radio-pill:hover .radio-pill-label,
+    .check-pill:hover .check-pill-label {
+      border-color: #E8521A;
+      color: #E8521A;
+    }
+    .radio-pill input:checked + .radio-pill-label,
+    .check-pill input:checked + .check-pill-label {
+      background: #E8521A;
+      color: white;
+      border-color: #E8521A;
+    }
+  </style>
+
+  <script is:inline>
+    (function () {
+      const form = document.getElementById('devis-form');
+      if (!form) return;
+
+      const step1 = document.getElementById('step-1');
+      const step2 = document.getElementById('step-2');
+      const step1Indicator = document.getElementById('step-1-indicator');
+      const step2Indicator = document.getElementById('step-2-indicator');
+      const btnNext = document.getElementById('btn-next');
+      const btnBack = document.getElementById('btn-back');
+      const successPane = document.getElementById('form-success');
+      const waLink = document.getElementById('wa-link');
+      const mailLink = document.getElementById('mail-link');
+
+      // Activer le bouton "Continuer" quand un type est sélectionné
+      form.querySelectorAll('input[name="typeDemande"]').forEach(input => {
+        input.addEventListener('change', () => {
+          btnNext.disabled = false;
+        });
+      });
+
+      // Step navigation
+      btnNext.addEventListener('click', () => {
+        step1.classList.add('hidden');
+        step2.classList.remove('hidden');
+        step1Indicator.classList.remove('step-active');
+        step1Indicator.classList.add('step-complete');
+        step2Indicator.classList.add('step-active');
+        window.scrollTo({ top: form.offsetTop - 100, behavior: 'smooth' });
+      });
+      btnBack.addEventListener('click', () => {
+        step2.classList.add('hidden');
+        step1.classList.remove('hidden');
+        step2Indicator.classList.remove('step-active');
+        step1Indicator.classList.add('step-active');
+        step1Indicator.classList.remove('step-complete');
+        window.scrollTo({ top: form.offsetTop - 100, behavior: 'smooth' });
+      });
+
+      // Submission → WhatsApp deep link + mailto fallback
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const fd = new FormData(form);
+        const get = (k) => fd.get(k) || '';
+        const getAll = (k) => fd.getAll(k);
+
+        const typeLabels = {
+          'chauffage': 'Installation chauffage',
+          'pac': 'Pompe à chaleur',
+          'sanitaire': 'Sanitaire / Salle de bain',
+          'depannage': 'Dépannage urgent',
+        };
+
+        const lines = [
+          '*Demande de devis — Chauffage & Moi*',
+          '',
+          `📋 *Type de demande :* ${typeLabels[get('typeDemande')] || get('typeDemande')}`,
+          '',
+          `👤 *Nom :* ${get('prenom')} ${get('nom')}`,
+          `📞 *Téléphone :* ${get('telephone')}`,
+          get('email') ? `✉️ *Email :* ${get('email')}` : null,
+          `📍 *Ville/CP :* ${get('ville')}`,
+          '',
+          get('logement') ? `🏠 *Logement :* ${get('logement')}` : null,
+          get('chauffageActuel') ? `🔥 *Chauffage actuel :* ${get('chauffageActuel')}` : null,
+          getAll('travaux').length ? `🔧 *Travaux :* ${getAll('travaux').join(', ')}` : null,
+          get('delai') ? `⏰ *Délai :* ${get('delai')}` : null,
+          get('dispo') ? `🗓️ *Disponibilités :* ${get('dispo')}` : null,
+          '',
+          get('message') ? `💬 *Message :*\n${get('message')}` : null,
+        ].filter(Boolean);
+
+        const message = lines.join('\n');
+        const encoded = encodeURIComponent(message);
+        waLink.href = `https://wa.me/32491873419?text=${encoded}`;
+        mailLink.href = `mailto:Chauffagesanitaire@outlook.com?subject=${encodeURIComponent('Demande de devis — ' + (typeLabels[get('typeDemande')] || ''))}&body=${encoded}`;
+
+        // Hide form, show success
+        form.classList.add('hidden');
+        successPane.classList.remove('hidden');
+        window.scrollTo({ top: successPane.offsetTop - 100, behavior: 'smooth' });
+      });
+    })();
+  </script>
 </Layout>

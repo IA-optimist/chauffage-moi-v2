@@ -12,18 +12,33 @@ const communesHainaut = [
   'Quiévrain', 'Rumes', 'Saint-Ghislain', 'Seneffe', 'Silly', 'Sivry-Rance', 'Soignies', 'Thuin', 'Tournai'
 ];
 
+// Avis Google authentiques — Chauffage & Moi (Coquis-Meunier)
 const googleReviews = [
-  { name: 'Nicolas D.', location: 'Ghlin', rating: 5, text: 'Remplacement chaudière et installation thermostat connecté en une journée. Travail soigné, propre, aucune mauvaise surprise. Je recommande à 100%.', date: '2025-12-15' },
-  { name: 'Sarah L.', location: 'Jemappes', rating: 5, text: 'Rénovation complète de salle de bain - baignoire, douche italienne, carrelage. Travail impeccable, chantier propre chaque jour. Merci à toute l\'équipe !', date: '2025-11-28' },
-  { name: 'Valérie M.', location: 'Saint-Ghislain', rating: 5, text: 'Plancher chauffant + pompe à chaleur. Bon conseil, respect du devis, finitions soignées. Le patron est impliqué et ça se voit vraiment.', date: '2025-11-10' },
-  { name: 'Marc D.', location: 'Mons', rating: 5, text: 'Dépannage chaudière en pleine nuit un dimanche. Intervention en moins d\'une heure. Technicien compétent et rassurant. Service d\'exception.', date: '2025-10-22' },
-  { name: 'Isabelle P.', location: 'Frameries', rating: 5, text: 'Installation complète pompe à chaleur air-eau. Équipe professionnelle, chantier impeccable. Les primes ont été gérées de A à Z. Très satisfaite !', date: '2025-10-05' },
-  { name: 'Thomas R.', location: 'Boussu', rating: 5, text: 'Remplacement de toute la plomberie de la maison. Chantier propre, délais respectés, équipe sympathique. Je ferai appel à eux pour la salle de bain.', date: '2025-09-19' },
-  { name: 'Catherine V.', location: 'Quaregnon', rating: 5, text: 'Entretien annuel chaudière et installation adoucisseur. Conseils clairs, pas de tentative de vente forcée. Une entreprise honnête, ça devient rare !', date: '2025-09-02' },
-  { name: 'Pierre J.', location: 'Dour', rating: 5, text: 'Détection de fuite et réparation. Équipement moderne, localisation précise, réparation rapide. A évité des dégâts importants. Un grand merci.', date: '2025-08-15' },
-  { name: 'Sophie M.', location: 'Cuesmes', rating: 5, text: 'Création salle de bain de A à Z : démolition, plomberie, carrelage, meubles. Résultat magnifique, équipe à l\'écoute et force de proposition.', date: '2025-07-28' },
-  { name: 'Laurent B.', location: 'Nimy', rating: 5, text: 'Remplacement vieille chaudière mazout par condensation gaz. Économies immédiates sur la facture. Installation nickel, administratif géré.', date: '2025-07-10' },
+  { name: 'Valérie Gehenot', rating: 5, text: 'Super équipe, dynamique, organisée, ils donnent des idées neuves pour nos projets, très contente du résultat et du suivi des travaux, je les conseille les yeux fermés.', date: '2026-04-15' },
+  { name: 'Patrice Chevalier', rating: 5, text: 'Super équipe, on réalise un travail titanesque à la maison : remplacement total tuyauterie eau, installation d\'une PAC air-eau, nouveaux radiateurs et arrivée à d\'autres endroits que j\'ai choisis.', date: '2026-04-05' },
+  { name: 'Joanne Knecht', rating: 5, text: 'Équipe pro, fiable, je recommande vivement 👍', date: '2026-03-12' },
+  { name: 'Nora Aia', rating: 5, text: 'Nous sommes entièrement satisfaits de notre nouvelle installation de chauffage avec la chaudière à condensation, ainsi que de la nouvelle tuyauterie d\'eau dans la maison. Le travail a été réalisé avec sérieux et professionnalisme.', date: '2026-03-02' },
+  { name: 'Fatima Ramdani', rating: 5, text: 'Nous vous recommandons grandement. Travail propre et méticuleux. Et les prix sont plus que raisonnables vu le boulot fourni. Encore un grand merci à vous pour votre professionnalisme.', date: '2026-02-10' },
+  { name: 'David Puvilland', rating: 4, text: 'Travail propre et personnes très aimables !', date: '2026-02-05' },
+  { name: 'Laura Lorenz', rating: 5, text: 'Rapidité. Efficacité. Je recommande.', date: '2026-01-20' },
+  { name: 'Kiki Gloria', rating: 5, text: 'Top et sérieux, prix très correct.', date: '2026-01-08' },
+  { name: 'Sébastien Reumont', rating: 5, text: 'Je cherchais un prestataire de service pour un simple ramonage de cheminée et au final j\'ai trouvé une entreprise à l\'écoute et qui fait un travail parfait pour des prix plus que raisonnables.', date: '2025-12-15' },
+  { name: 'Meylemans Christopher', rating: 5, text: 'Prise de contact un dimanche et intervention le lundi après-midi : une société qui ne laisse pas les clients dans l\'embarras avec un problème de tuyauterie pour finir le placement de la cuisine.', date: '2025-12-10' },
+  { name: 'Tennessee Bellez', rating: 5, text: 'Je recommande à 200% ! Réalisation de ma salle de bain avec leurs services. De bonnes idées du début jusqu\'à la fin. Du matériel de bonne qualité avec leurs conseils avisés. À bientôt, sans aucun doute.', date: '2025-12-04' },
+  { name: 'Cédric Trautes', rating: 5, text: 'Installation impeccable du début à la fin. Société sérieuse, équipe réactive et très professionnelle. Les explications sont claires, le chantier est propre et le résultat parfaitement fonctionnel. Un vrai partenaire de confiance.', date: '2025-11-28' },
+  { name: 'Mehdi Allali', rating: 5, text: 'Entreprise très professionnelle et à l\'écoute de mes demandes. Équipe honnête, sérieuse et toujours prête à trouver une solution. Je ne peux que les recommander ! Un grand merci à Sébastien pour son professionnalisme et sa gentillesse.', date: '2025-11-22' },
+  { name: 'Tony Di Lella', rating: 5, text: '🌟 Excellent service ! Je tiens à souligner le sérieux de la société Chauffage et Moi. Ponctualité irréprochable : le monsieur est venu ce jour même pour réaliser le travail.', date: '2025-11-15' },
+  { name: 'Jenny Charlier', rating: 5, text: 'Une équipe de chauffagistes au top du top ! Nous sommes vraiment ravis de leur intervention. Dès le début, ils ont été très gentils, disponibles et à l\'écoute. Ils ont pris le temps de tout nous expliquer.', date: '2025-11-10' },
+  { name: 'Stephanie Aubly', rating: 5, text: 'Installation complète à mon domicile et très professionnels avec de bonnes explications claires et complètes, n\'hésitent pas à répondre en cas de questions et le chantier a été effectué rapidement.', date: '2025-11-08' },
+  { name: 'Rochdi Hassani', rating: 5, text: 'Top, rien à dire. Une très bonne installation, propre et respect des délais. Aucun regret.', date: '2025-11-04' },
+  { name: 'Enzo Cp', rating: 5, text: 'Équipe de professionnels. Travail propre et soigné, et dans la bonne humeur ! Vous pouvez y aller les yeux fermés.', date: '2025-11-02' },
+  { name: 'Azahara H', rating: 5, text: 'Rapide, efficace.', date: '2025-11-01' },
+  { name: 'Fouzi Feriati', rating: 5, text: 'Deux personnes sérieuses, ponctuelles et professionnelles. Je recommande vivement !', date: '2025-10-12' },
 ];
+
+const googleReviewsUrl = 'https://www.google.com/maps/place/Chauffage+%26+Moi+(Coquis-Meunier)';
+const totalReviews = googleReviews.length;
+const avgRating = (googleReviews.reduce((s, r) => s + r.rating, 0) / totalReviews).toFixed(1).replace('.', ',');
 
 const stats = [
   { value: '15+', label: 'ans expérience' },
@@ -226,59 +241,90 @@ const stats = [
   <section class="py-24 bg-[#1B3A5C] relative overflow-hidden">
     <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 1px 1px, white 1px, transparent 0); background-size: 40px 40px;"></div>
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="section-title text-white">Nos chantiers</h2>
-      <p class="section-subtitle text-blue-200">Des finitions soignées, des clients heureux dans tout le Hainaut.</p>
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-        {['/photos/vaillant-avant-apres.jpg', '/photos/remplacement-avant-apres.jpg', '/photos/sdb-renovation.jpg', '/photos/baignoire-ilot.jpg', '/photos/douche-italienne.jpg', '/photos/plancher-chauffant2.jpg'].map(src => (
-          <div class="relative group overflow-hidden rounded-xl aspect-square">
-            <img src={src} alt="Réalisation Chauffage et Moi" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy" />
-          </div>
+      <span class="text-orange-300 font-semibold text-sm uppercase tracking-widest text-center block mb-4">Nos chantiers finis</span>
+      <h2 class="section-title text-white">Travail propre, finitions soignées</h2>
+      <p class="section-subtitle text-blue-200">Des réalisations livrées à des clients heureux dans tout le Hainaut.</p>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5 mt-12">
+        {[
+          { src: '/photos/sdb-renovation.jpg', label: 'Salle de bain rénovée' },
+          { src: '/photos/baignoire-ilot.jpg', label: 'Baignoire îlot' },
+          { src: '/photos/douche-italienne.jpg', label: 'Douche italienne' },
+          { src: '/photos/plancher-chauffant2.jpg', label: 'Plancher chauffant' },
+          { src: '/photos/vaillant-avant-apres.jpg', label: 'Chaudière condensation · avant/après' },
+          { src: '/photos/remplacement-avant-apres.jpg', label: 'Remplacement installation · avant/après' },
+          { src: '/photos/tuyauterie-per.jpg', label: 'Tuyauterie multi-couche' },
+          { src: '/photos/equipe-travail.jpg', label: 'Notre équipe sur chantier' },
+        ].map(item => (
+          <button type="button" data-lightbox="realisations" data-lightbox-src={item.src} data-lightbox-caption={item.label} class="relative group overflow-hidden rounded-2xl aspect-[4/3] shadow-xl cursor-zoom-in text-left">
+            <img src={item.src} alt={item.label} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent"></div>
+            <div class="absolute bottom-0 left-0 right-0 p-3 sm:p-4 text-white">
+              <p class="font-semibold text-xs sm:text-sm md:text-base leading-tight">{item.label}</p>
+            </div>
+          </button>
         ))}
       </div>
+      <p class="text-center text-blue-200 text-sm mt-8 italic">Cliquez sur une photo pour ouvrir la galerie complète</p>
     </div>
   </section>
 
   <!-- Témoignages Google avis -->
   <section id="avis-google" class="py-24 bg-[#F8FAFC]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <span class="text-[#E8521A] font-semibold text-sm uppercase tracking-widest text-center block mb-4">Témoignages</span>
+      <span class="text-[#E8521A] font-semibold text-sm uppercase tracking-widest text-center block mb-4">Avis Google vérifiés</span>
       <h2 class="section-title text-[#1B3A5C]">Ce que disent nos clients</h2>
-      <p class="section-subtitle">Des voisins satisfaits dans tout le Hainaut.</p>
-      
+      <p class="section-subtitle">{totalReviews} avis Google de clients satisfaits dans tout le Hainaut.</p>
+
       <!-- Google rating summary -->
-      <div class="flex flex-col items-center mb-12">
-        <div class="flex items-center gap-3 mb-3">
-          <img src="/google-logo.svg" alt="Google" class="h-8 w-auto" onerror="this.style.display='none'" />
-          <span class="text-4xl font-bold text-[#1B3A5C] font-[family-name:Playfair_Display,serif]">5,0</span>
+      <div class="flex flex-col items-center mb-14 mt-8">
+        <div class="bg-white rounded-2xl shadow-lg px-8 py-6 flex flex-col items-center">
+          <div class="flex items-center gap-3 mb-2">
+            <svg class="w-7 h-7" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+              <path fill="#FFC107" d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8c-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4C12.955 4 4 12.955 4 24s8.955 20 20 20s20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z"/>
+              <path fill="#FF3D00" d="m6.306 14.691l6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4C16.318 4 9.656 8.337 6.306 14.691z"/>
+              <path fill="#4CAF50" d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238A11.91 11.91 0 0 1 24 36c-5.202 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z"/>
+              <path fill="#1976D2" d="M43.611 20.083H42V20H24v8h11.303a12.04 12.04 0 0 1-4.087 5.571l.003-.002l6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917z"/>
+            </svg>
+            <span class="text-5xl font-bold text-[#1B3A5C] font-[family-name:Playfair_Display,serif]">{avgRating}</span>
+            <span class="text-gray-400 text-2xl">/ 5</span>
+          </div>
+          <div class="flex gap-1 text-yellow-400 text-2xl mb-3">★★★★★</div>
+          <p class="text-sm text-gray-500 mb-3">Basé sur {totalReviews} avis Google</p>
+          <a href={googleReviewsUrl} target="_blank" rel="noopener" class="text-sm text-[#E8521A] hover:underline font-medium inline-flex items-center gap-1">
+            Voir tous les avis sur Google
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          </a>
         </div>
-        <div class="flex gap-1 text-2xl mb-2">★★★★★</div>
-        <a href="https://www.google.com/search?q=Chauffage+%26+Moi+Avis" target="_blank" rel="noopener" class="text-sm text-[#E8521A] hover:underline font-medium">
-          Voir tous les avis sur Google →
-        </a>
       </div>
 
       <!-- Reviews grid -->
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {googleReviews.map(review => (
-          <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+          <article class="bg-white rounded-2xl p-6 shadow-md hover:shadow-xl transition-shadow border border-gray-100">
             <div class="flex items-center gap-3 mb-4">
-              <div class="w-10 h-10 bg-[#1B3A5C] rounded-full flex items-center justify-center text-white font-bold text-sm">
+              <div class="w-11 h-11 bg-gradient-to-br from-[#1B3A5C] to-[#2d5680] rounded-full flex items-center justify-center text-white font-bold shrink-0">
                 {review.name.charAt(0)}
               </div>
-              <div>
-                <p class="font-semibold text-gray-900">{review.name}</p>
-                <p class="text-sm text-gray-500">{review.location}</p>
+              <div class="flex-1 min-w-0">
+                <p class="font-semibold text-gray-900 truncate">{review.name}</p>
+                <p class="text-xs text-gray-400">
+                  {new Date(review.date).toLocaleDateString('fr-BE', { year: 'numeric', month: 'long' })}
+                </p>
               </div>
-              <div class="ml-auto text-yellow-400 text-sm">{'★'.repeat(review.rating)}</div>
+              <div class="text-yellow-400 text-sm tracking-tight">{'★'.repeat(review.rating)}<span class="text-gray-200">{'★'.repeat(5 - review.rating)}</span></div>
             </div>
-            <p class="text-gray-600 leading-relaxed italic">
+            <p class="text-gray-600 leading-relaxed text-sm">
               &ldquo;{review.text}&rdquo;
             </p>
-            <p class="text-xs text-gray-400 mt-3">
-              {new Date(review.date).toLocaleDateString('fr-BE', { year: 'numeric', month: 'long' })}
-            </p>
-          </div>
+          </article>
         ))}
+      </div>
+
+      <div class="text-center mt-12">
+        <a href={googleReviewsUrl} target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-white border-2 border-[#1B3A5C] text-[#1B3A5C] hover:bg-[#1B3A5C] hover:text-white font-semibold px-8 py-3 rounded-full transition-all duration-300">
+          Lire tous les avis sur Google
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
       </div>
     </div>
   </section>

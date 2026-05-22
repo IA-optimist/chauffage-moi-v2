@@ -1,7 +1,8 @@
----
+﻿---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import ChatBot from '../components/ChatBot.astro';
+import Lightbox from '../components/Lightbox.astro';
 import '../styles/global.css';
 
 export interface Props {
@@ -33,7 +34,7 @@ const baseSchema = JSON.stringify({
   "description": "Chauffagiste et plombier à Mons (Ghlin), Belgique. Installation chaudières, pompes à chaleur, sanitaire, plomberie et dépannage urgent dans tout le Hainaut.",
   "url": "https://chauffageetmoi.com",
   "telephone": "+32491873419",
-  "email": "contact@chauffageetmoi.com",
+  "email": "Chauffagesanitaire@outlook.com",
   "vatID": "BE 1023.953.081",
   "address": {
     "@type": "PostalAddress",
@@ -127,6 +128,7 @@ const baseSchema = JSON.stringify({
   </main>
   <Footer />
   <ChatBot />
+  <Lightbox />
 
   <!-- Global Intersection Observer for .reveal elements -->
   <script is:inline>

@@ -1,5 +1,23 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+const galChaudiere = [
+  { src: '/photos/vaillant-avant-apres.jpg', caption: 'Chaudière Vaillant — avant/après' },
+  { src: '/photos/remplacement-avant-apres.jpg', caption: 'Remplacement chaudière — avant/après' },
+  { src: '/photos/technicien-bruleur.jpg', caption: 'Entretien brûleur — agréés G1·G2' },
+];
+
+const galPac = [
+  { src: '/photos/plancher-chauffant2.jpg', caption: 'Plancher chauffant — diffusion idéale pour PAC' },
+  { src: '/photos/equipe-travail.jpg', caption: 'Notre équipe sur chantier' },
+];
+
+const galSanitaire = [
+  { src: '/photos/sdb-renovation.jpg', caption: 'Salle de bain — rénovation complète' },
+  { src: '/photos/baignoire-ilot.jpg', caption: 'Baignoire îlot' },
+  { src: '/photos/douche-italienne.jpg', caption: 'Douche italienne sur mesure' },
+  { src: '/photos/tuyauterie-per.jpg', caption: 'Tuyauterie multi-couche' },
+];
 ---
 
 <Layout title="Services" description="Chauffagiste et plombier à Mons : installation chaudières, pompes à chaleur, sanitaire, adoucisseurs. Agréés G1·G2·L1. Devis gratuit sous 24h. Urgences 7j/7.">
@@ -12,9 +30,9 @@ import Layout from '../layouts/Layout.astro';
   </section>
 
   <!-- Chaudières -->
-  <section id="chauffage" class="py-24 bg-white">
+  <section id="chauffage" class="py-20 md:py-24 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div class="grid md:grid-cols-2 gap-10 lg:gap-12 items-center">
         <div>
           <span class="text-[#E8521A] font-semibold text-sm uppercase tracking-widest">Chauffage</span>
           <h2 class="text-3xl md:text-4xl font-bold font-[family-name:Playfair_Display,serif] text-[#1B3A5C] mt-3 mb-6">Installation et entretien de chaudières</h2>
@@ -29,20 +47,42 @@ import Layout from '../layouts/Layout.astro';
           </ul>
           <a href="https://wa.me/32491873419" target="_blank" rel="noopener" class="btn-green">Devis chaudière WhatsApp</a>
         </div>
-        <div class="relative">
-          <img src="/photos/vaillant-avant-apres.jpg" alt="Installation chaudière" class="rounded-2xl shadow-2xl w-full h-[400px] object-cover" loading="lazy" />
+
+        <!-- Galerie thématique chauffage -->
+        <div class="grid grid-cols-2 gap-3 sm:gap-4">
+          <button type="button" data-lightbox="chauffage" data-lightbox-src={galChaudiere[0].src} data-lightbox-caption={galChaudiere[0].caption} class="relative col-span-2 group rounded-2xl overflow-hidden shadow-xl aspect-[16/10] cursor-zoom-in">
+            <img src={galChaudiere[0].src} alt={galChaudiere[0].caption} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            <span class="absolute bottom-3 right-3 bg-white/90 text-[#1B3A5C] text-xs font-semibold px-3 py-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">🔍 Voir la galerie</span>
+          </button>
+          {galChaudiere.slice(1).map(item => (
+            <button type="button" data-lightbox="chauffage" data-lightbox-src={item.src} data-lightbox-caption={item.caption} class="relative group rounded-xl overflow-hidden shadow-lg aspect-square cursor-zoom-in">
+              <img src={item.src} alt={item.caption} class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy" />
+              <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors"></div>
+            </button>
+          ))}
         </div>
       </div>
     </div>
   </section>
 
   <!-- Pompes à chaleur -->
-  <section id="energies" class="py-24 bg-[#F8FAFC]">
+  <section id="energies" class="py-20 md:py-24 bg-[#F8FAFC]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid md:grid-cols-2 gap-12 items-center">
-        <div class="relative order-2 md:order-1">
-          <img src="/photos/plancher-chauffant2.jpg" alt="Pompe à chaleur" class="rounded-2xl shadow-2xl w-full h-[400px] object-cover" loading="lazy" />
+      <div class="grid md:grid-cols-2 gap-10 lg:gap-12 items-center">
+        <!-- Galerie thématique PAC -->
+        <div class="grid grid-cols-1 gap-3 sm:gap-4 order-2 md:order-1">
+          {galPac.map((item, i) => (
+            <button type="button" data-lightbox="pac" data-lightbox-src={item.src} data-lightbox-caption={item.caption} class="relative group rounded-2xl overflow-hidden shadow-xl aspect-[16/10] cursor-zoom-in">
+              <img src={item.src} alt={item.caption} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              {i === 0 && (
+                <span class="absolute bottom-3 right-3 bg-white/90 text-[#1B3A5C] text-xs font-semibold px-3 py-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">🔍 Voir la galerie</span>
+              )}
+            </button>
+          ))}
         </div>
+
         <div class="order-1 md:order-2">
           <span class="text-green-600 font-semibold text-sm uppercase tracking-widest">Énergies renouvelables</span>
           <h2 class="text-3xl md:text-4xl font-bold font-[family-name:Playfair_Display,serif] text-[#1B3A5C] mt-3 mb-6">Pompes à chaleur</h2>
@@ -62,9 +102,9 @@ import Layout from '../layouts/Layout.astro';
   </section>
 
   <!-- Sanitaire -->
-  <section id="sanitaire" class="py-24 bg-white">
+  <section id="sanitaire" class="py-20 md:py-24 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div class="grid md:grid-cols-2 gap-10 lg:gap-12 items-center">
         <div>
           <span class="text-blue-600 font-semibold text-sm uppercase tracking-widest">Plomberie & Sanitaire</span>
           <h2 class="text-3xl md:text-4xl font-bold font-[family-name:Playfair_Display,serif] text-[#1B3A5C] mt-3 mb-6">Salles de bain & plomberie</h2>
@@ -75,12 +115,25 @@ import Layout from '../layouts/Layout.astro';
             <li class="flex items-start gap-3"><span class="text-blue-500 mt-1">✓</span> Création salle de bain complète</li>
             <li class="flex items-start gap-3"><span class="text-blue-500 mt-1">✓</span> Douche italienne sur mesure</li>
             <li class="flex items-start gap-3"><span class="text-blue-500 mt-1">✓</span> Détection de fuites</li>
+            <li class="flex items-start gap-3"><span class="text-blue-500 mt-1">✓</span> Tuyauterie multi-couche</li>
             <li class="flex items-start gap-3"><span class="text-blue-500 mt-1">✓</span> Chauffe-eau & ballons thermodynamiques</li>
           </ul>
           <a href="https://wa.me/32491873419" target="_blank" rel="noopener" class="btn-green">Devis sanitaire WhatsApp</a>
         </div>
-        <div class="relative">
-          <img src="/photos/sdb-renovation.jpg" alt="Salle de bain rénovée" class="rounded-2xl shadow-2xl w-full h-[400px] object-cover" loading="lazy" />
+
+        <!-- Galerie thématique sanitaire -->
+        <div class="grid grid-cols-2 gap-3 sm:gap-4">
+          <button type="button" data-lightbox="sanitaire" data-lightbox-src={galSanitaire[0].src} data-lightbox-caption={galSanitaire[0].caption} class="relative col-span-2 group rounded-2xl overflow-hidden shadow-xl aspect-[16/10] cursor-zoom-in">
+            <img src={galSanitaire[0].src} alt={galSanitaire[0].caption} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            <span class="absolute bottom-3 right-3 bg-white/90 text-[#1B3A5C] text-xs font-semibold px-3 py-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">🔍 Voir la galerie</span>
+          </button>
+          {galSanitaire.slice(1).map(item => (
+            <button type="button" data-lightbox="sanitaire" data-lightbox-src={item.src} data-lightbox-caption={item.caption} class="relative group rounded-xl overflow-hidden shadow-lg aspect-square cursor-zoom-in">
+              <img src={item.src} alt={item.caption} class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy" />
+              <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors"></div>
+            </button>
+          ))}
         </div>
       </div>
     </div>

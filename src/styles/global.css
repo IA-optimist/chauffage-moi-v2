@@ -5,17 +5,33 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
   }
   body {
     font-family: 'Inter', system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
   }
   .font-sans {
     font-family: 'Inter', system-ui, sans-serif;
   }
   .font-display {
     font-family: 'Playfair Display', serif;
+  }
+  /* Empêche le débordement images sur mobile */
+  img, video {
+    max-width: 100%;
+    height: auto;
+  }
+  /* Cibles tactiles minimales 44px (WCAG/Apple HIG) */
+  @media (max-width: 640px) {
+    a, button {
+      min-height: 44px;
+    }
+    .min-h-touch-exempt {
+      min-height: 0;
+    }
   }
 }
 
