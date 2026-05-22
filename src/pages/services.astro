@@ -21,44 +21,50 @@ const galSanitaire = [
 ---
 
 <Layout title="Services" description="Chauffagiste et plombier à Mons : installation chaudières, pompes à chaleur, sanitaire, adoucisseurs. Agréés G1·G2·L1. Devis gratuit sous 24h. Urgences 7j/7.">
-  
-  <section class="pt-32 pb-20 bg-gradient-to-br from-[#1B3A5C] to-[#0D1F33]">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h1 class="text-4xl md:text-5xl lg:text-6xl font-[family-name:Playfair_Display,serif] font-bold text-white mb-6">Nos services</h1>
-      <p class="text-xl text-blue-200 max-w-2xl mx-auto">Une seule entreprise, tous les savoir-faire. Du dépannage urgent à la rénovation complète.</p>
+
+  <!-- Hero -->
+  <section class="bg-stone-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
+      <div class="max-w-3xl">
+        <span class="text-cuivre font-semibold text-xs uppercase tracking-[0.18em] mb-3 block">Nos services</span>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tightish text-marine leading-[1.1] mb-5">
+          Une seule entreprise,<br/>tous les savoir-faire.
+        </h1>
+        <p class="text-lg text-stone-600 leading-relaxed">
+          Du dépannage urgent à la rénovation complète. Chauffage, pompes à chaleur, sanitaire, adoucisseurs — tout est pris en charge par nos équipes agréées.
+        </p>
+      </div>
     </div>
   </section>
 
   <!-- Chaudières -->
-  <section id="chauffage" class="py-20 md:py-24 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section id="chauffage" class="py-20 lg:py-28 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid md:grid-cols-2 gap-10 lg:gap-12 items-center">
         <div>
-          <span class="text-[#E8521A] font-semibold text-sm uppercase tracking-widest">Chauffage</span>
-          <h2 class="text-3xl md:text-4xl font-bold font-[family-name:Playfair_Display,serif] text-[#1B3A5C] mt-3 mb-6">Installation et entretien de chaudières</h2>
-          <p class="text-gray-600 leading-relaxed mb-6">
+          <span class="text-cuivre font-semibold text-xs uppercase tracking-[0.18em]">Chauffage</span>
+          <h2 class="text-3xl md:text-4xl font-bold tracking-tightish text-marine mt-3 mb-5">Installation et entretien de chaudières</h2>
+          <p class="text-stone-600 leading-relaxed mb-6">
             Agréés G1 et G2, nous installons, remplaçons et entretenons tous types de chaudières : gaz, mazout, condensation. Intervention rapide, devis gratuit, service après-vente réactif.
           </p>
-          <ul class="space-y-3 mb-8 text-gray-700">
-            <li class="flex items-start gap-3"><span class="text-[#E8521A] mt-1">✓</span> Installation complète clé en main</li>
-            <li class="flex items-start gap-3"><span class="text-[#E8521A] mt-1">✓</span> Remplacement vieille chaudière</li>
-            <li class="flex items-start gap-3"><span class="text-[#E8521A] mt-1">✓</span> Entretien annuel obligatoire</li>
-            <li class="flex items-start gap-3"><span class="text-[#E8521A] mt-1">✓</span> Dépannage toutes marques</li>
+          <ul class="space-y-2.5 mb-8 text-stone-700 text-sm">
+            <li class="flex items-start gap-2.5"><span class="text-cuivre mt-0.5">✓</span> Installation complète clé en main</li>
+            <li class="flex items-start gap-2.5"><span class="text-cuivre mt-0.5">✓</span> Remplacement vieille chaudière</li>
+            <li class="flex items-start gap-2.5"><span class="text-cuivre mt-0.5">✓</span> Entretien annuel obligatoire</li>
+            <li class="flex items-start gap-2.5"><span class="text-cuivre mt-0.5">✓</span> Dépannage toutes marques</li>
           </ul>
-          <a href="https://wa.me/32491873419" target="_blank" rel="noopener" class="btn-green">Devis chaudière WhatsApp</a>
+          <a href="https://wa.me/32491873419" target="_blank" rel="noopener" class="btn-whatsapp">Devis chaudière WhatsApp</a>
         </div>
 
-        <!-- Galerie thématique chauffage -->
         <div class="grid grid-cols-2 gap-3 sm:gap-4">
-          <button type="button" data-lightbox="chauffage" data-lightbox-src={galChaudiere[0].src} data-lightbox-caption={galChaudiere[0].caption} class="relative col-span-2 group rounded-2xl overflow-hidden shadow-xl aspect-[16/10] cursor-zoom-in">
+          <button type="button" data-lightbox="chauffage" data-lightbox-src={galChaudiere[0].src} data-lightbox-caption={galChaudiere[0].caption} class="relative col-span-2 group rounded-2xl overflow-hidden shadow-md aspect-[16/10] cursor-zoom-in bg-stone-200">
             <img src={galChaudiere[0].src} alt={galChaudiere[0].caption} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-            <span class="absolute bottom-3 right-3 bg-white/90 text-[#1B3A5C] text-xs font-semibold px-3 py-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">🔍 Voir la galerie</span>
+            <div class="absolute inset-0 bg-gradient-to-t from-marine/70 via-marine/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
           </button>
           {galChaudiere.slice(1).map(item => (
-            <button type="button" data-lightbox="chauffage" data-lightbox-src={item.src} data-lightbox-caption={item.caption} class="relative group rounded-xl overflow-hidden shadow-lg aspect-square cursor-zoom-in">
-              <img src={item.src} alt={item.caption} class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy" />
-              <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors"></div>
+            <button type="button" data-lightbox="chauffage" data-lightbox-src={item.src} data-lightbox-caption={item.caption} class="relative group rounded-2xl overflow-hidden shadow-md aspect-square cursor-zoom-in bg-stone-200">
+              <img src={item.src} alt={item.caption} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+              <div class="absolute inset-0 bg-marine/0 group-hover:bg-marine/20 transition-colors"></div>
             </button>
           ))}
         </div>
@@ -67,71 +73,65 @@ const galSanitaire = [
   </section>
 
   <!-- Pompes à chaleur -->
-  <section id="energies" class="py-20 md:py-24 bg-[#F8FAFC]">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section id="energies" class="py-20 lg:py-28 bg-stone-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid md:grid-cols-2 gap-10 lg:gap-12 items-center">
-        <!-- Galerie thématique PAC -->
         <div class="grid grid-cols-1 gap-3 sm:gap-4 order-2 md:order-1">
-          {galPac.map((item, i) => (
-            <button type="button" data-lightbox="pac" data-lightbox-src={item.src} data-lightbox-caption={item.caption} class="relative group rounded-2xl overflow-hidden shadow-xl aspect-[16/10] cursor-zoom-in">
+          {galPac.map(item => (
+            <button type="button" data-lightbox="pac" data-lightbox-src={item.src} data-lightbox-caption={item.caption} class="relative group rounded-2xl overflow-hidden shadow-md aspect-[16/10] cursor-zoom-in bg-stone-200">
               <img src={item.src} alt={item.caption} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
-              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-              {i === 0 && (
-                <span class="absolute bottom-3 right-3 bg-white/90 text-[#1B3A5C] text-xs font-semibold px-3 py-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">🔍 Voir la galerie</span>
-              )}
+              <div class="absolute inset-0 bg-gradient-to-t from-marine/70 via-marine/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
             </button>
           ))}
         </div>
 
         <div class="order-1 md:order-2">
-          <span class="text-green-600 font-semibold text-sm uppercase tracking-widest">Énergies renouvelables</span>
-          <h2 class="text-3xl md:text-4xl font-bold font-[family-name:Playfair_Display,serif] text-[#1B3A5C] mt-3 mb-6">Pompes à chaleur</h2>
-          <p class="text-gray-600 leading-relaxed mb-6">
+          <span class="text-cuivre font-semibold text-xs uppercase tracking-[0.18em]">Énergies renouvelables</span>
+          <h2 class="text-3xl md:text-4xl font-bold tracking-tightish text-marine mt-3 mb-5">Pompes à chaleur</h2>
+          <p class="text-stone-600 leading-relaxed mb-6">
             Air/eau, géothermie, systèmes hybrides. Nous réalisons l'audit énergétique complet et vous accompagnons dans toutes les démarches de primes régionales.
           </p>
-          <ul class="space-y-3 mb-8 text-gray-700">
-            <li class="flex items-start gap-3"><span class="text-green-500 mt-1">✓</span> Audit énergétique complet</li>
-            <li class="flex items-start gap-3"><span class="text-green-500 mt-1">✓</span> Pompe à chaleur air/eau</li>
-            <li class="flex items-start gap-3"><span class="text-green-500 mt-1">✓</span> Géothermie</li>
-            <li class="flex items-start gap-3"><span class="text-green-500 mt-1">✓</span> Accompagnement primes Habitation</li>
+          <ul class="space-y-2.5 mb-8 text-stone-700 text-sm">
+            <li class="flex items-start gap-2.5"><span class="text-cuivre mt-0.5">✓</span> Audit énergétique complet</li>
+            <li class="flex items-start gap-2.5"><span class="text-cuivre mt-0.5">✓</span> Pompe à chaleur air/eau</li>
+            <li class="flex items-start gap-2.5"><span class="text-cuivre mt-0.5">✓</span> Géothermie</li>
+            <li class="flex items-start gap-2.5"><span class="text-cuivre mt-0.5">✓</span> Accompagnement primes Habitation</li>
           </ul>
-          <a href="https://wa.me/32491873419" target="_blank" rel="noopener" class="btn-green">Devis pompe à chaleur WhatsApp</a>
+          <a href="https://wa.me/32491873419" target="_blank" rel="noopener" class="btn-whatsapp">Devis pompe à chaleur WhatsApp</a>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Sanitaire -->
-  <section id="sanitaire" class="py-20 md:py-24 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section id="sanitaire" class="py-20 lg:py-28 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid md:grid-cols-2 gap-10 lg:gap-12 items-center">
         <div>
-          <span class="text-blue-600 font-semibold text-sm uppercase tracking-widest">Plomberie & Sanitaire</span>
-          <h2 class="text-3xl md:text-4xl font-bold font-[family-name:Playfair_Display,serif] text-[#1B3A5C] mt-3 mb-6">Salles de bain & plomberie</h2>
-          <p class="text-gray-600 leading-relaxed mb-6">
+          <span class="text-cuivre font-semibold text-xs uppercase tracking-[0.18em]">Plomberie &amp; Sanitaire</span>
+          <h2 class="text-3xl md:text-4xl font-bold tracking-tightish text-marine mt-3 mb-5">Salles de bain &amp; plomberie</h2>
+          <p class="text-stone-600 leading-relaxed mb-6">
             De la simple réparation à la rénovation complète de salle de bain : douche italienne, baignoire îlot, carrelage, meubles. Tout est pris en charge par nos équipes.
           </p>
-          <ul class="space-y-3 mb-8 text-gray-700">
-            <li class="flex items-start gap-3"><span class="text-blue-500 mt-1">✓</span> Création salle de bain complète</li>
-            <li class="flex items-start gap-3"><span class="text-blue-500 mt-1">✓</span> Douche italienne sur mesure</li>
-            <li class="flex items-start gap-3"><span class="text-blue-500 mt-1">✓</span> Détection de fuites</li>
-            <li class="flex items-start gap-3"><span class="text-blue-500 mt-1">✓</span> Tuyauterie multi-couche</li>
-            <li class="flex items-start gap-3"><span class="text-blue-500 mt-1">✓</span> Chauffe-eau & ballons thermodynamiques</li>
+          <ul class="space-y-2.5 mb-8 text-stone-700 text-sm">
+            <li class="flex items-start gap-2.5"><span class="text-cuivre mt-0.5">✓</span> Création salle de bain complète</li>
+            <li class="flex items-start gap-2.5"><span class="text-cuivre mt-0.5">✓</span> Douche italienne sur mesure</li>
+            <li class="flex items-start gap-2.5"><span class="text-cuivre mt-0.5">✓</span> Détection de fuites</li>
+            <li class="flex items-start gap-2.5"><span class="text-cuivre mt-0.5">✓</span> Tuyauterie multi-couche</li>
+            <li class="flex items-start gap-2.5"><span class="text-cuivre mt-0.5">✓</span> Chauffe-eau &amp; ballons thermodynamiques</li>
           </ul>
-          <a href="https://wa.me/32491873419" target="_blank" rel="noopener" class="btn-green">Devis sanitaire WhatsApp</a>
+          <a href="https://wa.me/32491873419" target="_blank" rel="noopener" class="btn-whatsapp">Devis sanitaire WhatsApp</a>
         </div>
 
-        <!-- Galerie thématique sanitaire -->
         <div class="grid grid-cols-2 gap-3 sm:gap-4">
-          <button type="button" data-lightbox="sanitaire" data-lightbox-src={galSanitaire[0].src} data-lightbox-caption={galSanitaire[0].caption} class="relative col-span-2 group rounded-2xl overflow-hidden shadow-xl aspect-[16/10] cursor-zoom-in">
+          <button type="button" data-lightbox="sanitaire" data-lightbox-src={galSanitaire[0].src} data-lightbox-caption={galSanitaire[0].caption} class="relative col-span-2 group rounded-2xl overflow-hidden shadow-md aspect-[16/10] cursor-zoom-in bg-stone-200">
             <img src={galSanitaire[0].src} alt={galSanitaire[0].caption} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-            <span class="absolute bottom-3 right-3 bg-white/90 text-[#1B3A5C] text-xs font-semibold px-3 py-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">🔍 Voir la galerie</span>
+            <div class="absolute inset-0 bg-gradient-to-t from-marine/70 via-marine/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
           </button>
           {galSanitaire.slice(1).map(item => (
-            <button type="button" data-lightbox="sanitaire" data-lightbox-src={item.src} data-lightbox-caption={item.caption} class="relative group rounded-xl overflow-hidden shadow-lg aspect-square cursor-zoom-in">
-              <img src={item.src} alt={item.caption} class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy" />
-              <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors"></div>
+            <button type="button" data-lightbox="sanitaire" data-lightbox-src={item.src} data-lightbox-caption={item.caption} class="relative group rounded-2xl overflow-hidden shadow-md aspect-square cursor-zoom-in bg-stone-200">
+              <img src={item.src} alt={item.caption} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+              <div class="absolute inset-0 bg-marine/0 group-hover:bg-marine/20 transition-colors"></div>
             </button>
           ))}
         </div>
@@ -140,52 +140,55 @@ const galSanitaire = [
   </section>
 
   <!-- Adoucisseurs -->
-  <section id="gamme" class="py-24 bg-[#F8FAFC]">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <span class="text-[#E8521A] font-semibold text-sm uppercase tracking-widest text-center block mb-4">Gamme</span>
-      <h2 class="section-title text-[#1B3A5C]">Adoucisseurs d'eau</h2>
-      <p class="section-subtitle">Deux technologies pour une eau parfaitement douce.</p>
-      
-      <div class="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto mt-12">
-        <div class="bg-white rounded-3xl p-8 lg:p-10 shadow-xl border-t-4 border-green-500">
-          <div class="flex items-center gap-4 mb-6">
-            <div class="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center text-3xl">💧</div>
+  <section id="gamme" class="py-20 lg:py-28 bg-stone-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="section-eyebrow">Gamme</span>
+      <h2 class="section-title">Adoucisseurs d'eau</h2>
+      <p class="section-lead">Deux technologies pour une eau parfaitement douce.</p>
+
+      <div class="grid md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto">
+        <div class="bg-white rounded-2xl p-8 border border-stone-200 hover:border-cuivre transition-colors">
+          <div class="flex items-center gap-4 mb-5">
+            <div class="w-12 h-12 rounded-lg bg-cuivre-soft text-cuivre flex items-center justify-center">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2.25c-2.429 5.778-5.25 7.875-5.25 12a5.25 5.25 0 0010.5 0c0-4.125-2.821-6.222-5.25-12z"/></svg>
+            </div>
             <div>
-              <h3 class="text-2xl font-bold font-[family-name:Playfair_Display,serif] text-[#1B3A5C]">Solucalc</h3>
-              <p class="text-green-600 font-semibold">Technologie au CO₂ — Écologique</p>
+              <h3 class="text-xl font-bold text-marine tracking-tightish">Solucalc</h3>
+              <p class="text-stone-500 text-xs">CO₂ — Écologique</p>
             </div>
           </div>
-          <p class="text-gray-600 mb-6">Neutralise le calcaire sans sel, sans électricité, sans rejet. Préserve les minéraux de l'eau. Cartouche à changer tous les 2-3 ans.</p>
-          <p class="text-2xl font-bold text-[#1B3A5C] mb-6">À partir de 1.490€ <span class="text-sm text-gray-400 font-normal">HTVA, posé</span></p>
-          <a href="https://wa.me/32491873419?text=Bonjour%2C%20je%20souhaite%20un%20devis%20pour%20l%27adoucisseur%20Solucalc" target="_blank" rel="noopener" class="btn-green text-sm">Devis WhatsApp</a>
+          <p class="text-stone-600 text-sm mb-5 leading-relaxed">Neutralise le calcaire sans sel, sans électricité, sans rejet. Préserve les minéraux de l'eau. Cartouche à changer tous les 2-3 ans.</p>
+          <p class="text-2xl font-extrabold text-marine tracking-tightish mb-5">À partir de 1.490€ <span class="text-xs text-stone-500 font-normal">HTVA, posé</span></p>
+          <a href="https://wa.me/32491873419?text=Bonjour%2C%20je%20souhaite%20un%20devis%20pour%20l%27adoucisseur%20Solucalc" target="_blank" rel="noopener" class="btn-whatsapp text-sm w-full">Devis WhatsApp</a>
         </div>
-        <div class="bg-white rounded-3xl p-8 lg:p-10 shadow-xl border-t-4 border-[#1B3A5C]">
-          <div class="flex items-center gap-4 mb-6">
-            <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center text-3xl">🧂</div>
+        <div class="bg-white rounded-2xl p-8 border border-stone-200 hover:border-cuivre transition-colors">
+          <div class="flex items-center gap-4 mb-5">
+            <div class="w-12 h-12 rounded-lg bg-cuivre-soft text-cuivre flex items-center justify-center">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="9" cy="10" r="1" fill="currentColor"/><circle cx="14" cy="9" r="1" fill="currentColor"/><circle cx="13" cy="14" r="1" fill="currentColor"/><circle cx="10" cy="15" r="1" fill="currentColor"/></svg>
+            </div>
             <div>
-              <h3 class="text-2xl font-bold font-[family-name:Playfair_Display,serif] text-[#1B3A5C]">Durlem</h3>
-              <p class="text-blue-600 font-semibold">Technologie au sel — Eau ultra-douce</p>
+              <h3 class="text-xl font-bold text-marine tracking-tightish">Durlem</h3>
+              <p class="text-stone-500 text-xs">Sel — Eau ultra-douce</p>
             </div>
           </div>
-          <p class="text-gray-600 mb-6">Résine échangeuse d'ions avec régénération automatique au sel. Eau à 0°TH, idéal pour les grandes familles. Garantie 5 ans.</p>
-          <p class="text-2xl font-bold text-[#1B3A5C] mb-6">À partir de 1.190€ <span class="text-sm text-gray-400 font-normal">HTVA, posé</span></p>
-          <a href="https://wa.me/32491873419?text=Bonjour%2C%20je%20souhaite%20un%20devis%20pour%20l%27adoucisseur%20Durlem" target="_blank" rel="noopener" class="btn-green text-sm">Devis WhatsApp</a>
+          <p class="text-stone-600 text-sm mb-5 leading-relaxed">Résine échangeuse d'ions avec régénération automatique au sel. Eau à 0°TH, idéal pour les grandes familles. Garantie 5 ans.</p>
+          <p class="text-2xl font-extrabold text-marine tracking-tightish mb-5">À partir de 1.190€ <span class="text-xs text-stone-500 font-normal">HTVA, posé</span></p>
+          <a href="https://wa.me/32491873419?text=Bonjour%2C%20je%20souhaite%20un%20devis%20pour%20l%27adoucisseur%20Durlem" target="_blank" rel="noopener" class="btn-whatsapp text-sm w-full">Devis WhatsApp</a>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Dépannage -->
-  <section id="depannage" class="py-24 bg-[#1B3A5C] relative">
-    <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 1px 1px, white 1px, transparent 0); background-size: 40px 40px;"></div>
-    <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <span class="text-orange-300 font-semibold text-sm uppercase tracking-widest">Urgences 7j/7</span>
-      <h2 class="text-3xl md:text-4xl font-bold font-[family-name:Playfair_Display,serif] text-white mt-3 mb-6">Dépannage urgent</h2>
-      <p class="text-xl text-blue-200 mb-10 leading-relaxed">
+  <section id="depannage" class="py-16 lg:py-24 bg-marine">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <span class="text-cuivre font-semibold text-xs uppercase tracking-[0.18em]">Urgences 7j/7</span>
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white tracking-tightish mt-3 mb-5">Dépannage urgent</h2>
+      <p class="text-lg text-stone-300 mb-10 max-w-2xl mx-auto">
         Panne chauffage, fuite d'eau, canalisation bouchée — nos techniciens interviennent rapidement dans tout le Hainaut.
       </p>
-      <a href="https://wa.me/32491873419?text=URGENT%20-%20D%C3%A9pannage" target="_blank" rel="noopener" class="btn-green text-lg">
-        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      <a href="https://wa.me/32491873419?text=URGENT%20-%20D%C3%A9pannage" target="_blank" rel="noopener" class="btn-whatsapp">
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         WhatsApp dépannage urgent
       </a>
     </div>
