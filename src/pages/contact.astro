@@ -1,4 +1,5 @@
 ---
+export const prerender = true;
 import Layout from '../layouts/Layout.astro';
 
 const typesDemande = [
@@ -181,6 +182,11 @@ const typesDemande = [
               <textarea id="message" name="message" rows="4" class="form-input" placeholder="Décrivez votre projet, contraintes, particularités..."></textarea>
             </div>
 
+            <!-- Honeypot anti-spam : un humain ne remplit jamais ce champ -->
+            <div style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;" aria-hidden="true">
+              <label>Ne rien écrire ici : <input type="text" name="hp" tabindex="-1" autocomplete="off" /></label>
+            </div>
+
             <label class="flex items-start gap-3 p-4 bg-white border border-stone-200 rounded-lg cursor-pointer">
               <input type="checkbox" id="rgpd" name="rgpd" required class="mt-1 w-5 h-5 accent-cuivre cursor-pointer shrink-0" />
               <span class="text-sm text-stone-600 leading-relaxed">
@@ -188,7 +194,11 @@ const typesDemande = [
               </span>
             </label>
 
-            <button type="submit" class="btn-primary w-full text-base">
+            <div id="form-error" class="hidden p-4 bg-red-50 border border-red-200 rounded-lg text-sm text-red-700">
+              <strong>Une erreur est survenue.</strong> <span id="form-error-msg">Réessayez ou contactez-nous par WhatsApp au 0491 87 34 19.</span>
+            </div>
+
+            <button id="submit-btn" type="submit" class="btn-primary w-full text-base">
               <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
               Envoyer ma demande
             </button>
@@ -199,18 +209,17 @@ const typesDemande = [
         </div>
       </form>
 
-      <!-- Confirmation -->
+      <!-- Confirmation succès -->
       <div id="form-success" class="hidden mt-6 p-6 bg-whatsapp/5 border border-whatsapp/30 rounded-2xl text-center">
         <div class="w-14 h-14 bg-whatsapp rounded-full flex items-center justify-center mx-auto mb-4">
           <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
         </div>
-        <h3 class="text-xl font-bold tracking-tightish text-marine mb-2">Demande prête à être envoyée</h3>
-        <p class="text-stone-600 mb-4 text-sm">Votre récapitulatif a été préparé. Cliquez ci-dessous pour l'envoyer via WhatsApp à notre équipe.</p>
-        <a id="wa-link" href="#" target="_blank" rel="noopener" class="btn-whatsapp">
+        <h3 class="text-xl font-bold tracking-tightish text-marine mb-2">Demande envoyée !</h3>
+        <p class="text-stone-600 mb-5 text-sm">Notre équipe vous recontacte sous 24h ouvrées. Pour une réponse plus rapide, vous pouvez aussi nous écrire directement sur WhatsApp.</p>
+        <a id="wa-link" href="https://wa.me/32491873419" target="_blank" rel="noopener" class="btn-whatsapp">
           <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Envoyer sur WhatsApp
+          Continuer sur WhatsApp
         </a>
-        <p class="text-xs text-stone-500 mt-4">Préférez l'email ? <a href="#" id="mail-link" class="text-cuivre underline">Cliquez ici</a></p>
       </div>
     </div>
   </section>
@@ -377,7 +386,7 @@ const typesDemande = [
       const btnBack = document.getElementById('btn-back');
       const successPane = document.getElementById('form-success');
       const waLink = document.getElementById('wa-link');
-      const mailLink = document.getElementById('mail-link');
+      // mailLink removed — we now POST to /api/contact via Resend
 
       form.querySelectorAll('input[name="typeDemande"]').forEach(input => {
         input.addEventListener('change', () => {
@@ -402,46 +411,77 @@ const typesDemande = [
         window.scrollTo({ top: form.offsetTop - 100, behavior: 'smooth' });
       });
 
-      form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const fd = new FormData(form);
-        const get = (k) => fd.get(k) || '';
-        const getAll = (k) => fd.getAll(k);
+      const submitBtn = document.getElementById('submit-btn');
+      const errorPane = document.getElementById('form-error');
+      const errorMsg = document.getElementById('form-error-msg');
 
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (submitBtn.disabled) return;
+
+        const fd = new FormData(form);
+        const payload = {
+          typeDemande: fd.get('typeDemande') || '',
+          prenom: fd.get('prenom') || '',
+          nom: fd.get('nom') || '',
+          telephone: fd.get('telephone') || '',
+          email: fd.get('email') || '',
+          ville: fd.get('ville') || '',
+          logement: fd.get('logement') || '',
+          chauffageActuel: fd.get('chauffageActuel') || '',
+          travaux: fd.getAll('travaux'),
+          delai: fd.get('delai') || '',
+          dispo: fd.get('dispo') || '',
+          message: fd.get('message') || '',
+          hp: fd.get('hp') || '',
+        };
+
+        // Pre-build WhatsApp fallback link for the success pane
         const typeLabels = {
           'chauffage': 'Installation chauffage',
           'pac': 'Pompe à chaleur',
           'sanitaire': 'Sanitaire / Salle de bain',
           'depannage': 'Dépannage urgent',
         };
-
-        const lines = [
+        const waLines = [
           '*Demande de devis — Chauffage & Moi*',
           '',
-          `*Type de demande :* ${typeLabels[get('typeDemande')] || get('typeDemande')}`,
-          '',
-          `*Nom :* ${get('prenom')} ${get('nom')}`,
-          `*Téléphone :* ${get('telephone')}`,
-          get('email') ? `*Email :* ${get('email')}` : null,
-          `*Ville/CP :* ${get('ville')}`,
-          '',
-          get('logement') ? `*Logement :* ${get('logement')}` : null,
-          get('chauffageActuel') ? `*Chauffage actuel :* ${get('chauffageActuel')}` : null,
-          getAll('travaux').length ? `*Travaux :* ${getAll('travaux').join(', ')}` : null,
-          get('delai') ? `*Délai :* ${get('delai')}` : null,
-          get('dispo') ? `*Disponibilités :* ${get('dispo')}` : null,
-          '',
-          get('message') ? `*Message :*\n${get('message')}` : null,
-        ].filter(Boolean);
+          `*Type :* ${typeLabels[payload.typeDemande] || payload.typeDemande}`,
+          `*Nom :* ${payload.prenom} ${payload.nom}`.trim(),
+          `*Téléphone :* ${payload.telephone}`,
+          payload.email ? `*Email :* ${payload.email}` : null,
+          `*Ville/CP :* ${payload.ville}`,
+        ].filter(Boolean).join('\n');
+        if (waLink) waLink.href = `https://wa.me/32491873419?text=${encodeURIComponent(waLines)}`;
 
-        const message = lines.join('\n');
-        const encoded = encodeURIComponent(message);
-        waLink.href = `https://wa.me/32491873419?text=${encoded}`;
-        mailLink.href = `mailto:chauffagesanitaire@outlook.com?subject=${encodeURIComponent('Demande de devis — ' + (typeLabels[get('typeDemande')] || ''))}&body=${encoded}`;
+        // Disable submit + show loading state
+        const originalBtnHtml = submitBtn.innerHTML;
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<svg class="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" stroke-dasharray="40 60" opacity="0.4"/></svg> Envoi en cours…';
+        errorPane.classList.add('hidden');
 
-        form.classList.add('hidden');
-        successPane.classList.remove('hidden');
-        window.scrollTo({ top: successPane.offsetTop - 100, behavior: 'smooth' });
+        try {
+          const res = await fetch('/api/contact', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+          });
+          const data = await res.json().catch(() => ({}));
+          if (!res.ok || !data.ok) {
+            throw new Error(data.error || ('HTTP ' + res.status));
+          }
+          // Success
+          form.classList.add('hidden');
+          successPane.classList.remove('hidden');
+          window.scrollTo({ top: successPane.offsetTop - 100, behavior: 'smooth' });
+        } catch (err) {
+          console.error('Contact submit failed:', err);
+          errorMsg.textContent = "Notre serveur n'a pas pu envoyer votre demande. Réessayez ou écrivez-nous directement sur WhatsApp au 0491 87 34 19.";
+          errorPane.classList.remove('hidden');
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalBtnHtml;
+          errorPane.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
       });
     })();
   </script>
