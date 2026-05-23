@@ -7,14 +7,9 @@ const galChaudiere = [
   { src: '/photos/technicien-bruleur.jpg', caption: 'Entretien brûleur — agréés G1·G2' },
 ];
 
-const galPac = [
-  { src: '/photos/plancher-chauffant2.jpg', caption: 'Plancher chauffant — diffusion idéale pour PAC' },
-];
-
 const galSanitaire = [
   { src: '/photos/baignoire-ilot.jpg', caption: 'Baignoire îlot' },
   { src: '/photos/douche-italienne.jpg', caption: 'Douche italienne sur mesure' },
-  { src: '/photos/tuyauterie-per.jpg', caption: 'Tuyauterie multi-couche' },
 ];
 ---
 
@@ -72,32 +67,19 @@ const galSanitaire = [
 
   <!-- Pompes à chaleur -->
   <section id="energies" class="py-20 lg:py-28 bg-stone-50">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid md:grid-cols-2 gap-10 lg:gap-12 items-center">
-        <div class="grid grid-cols-1 gap-3 sm:gap-4 order-2 md:order-1">
-          {galPac.map(item => (
-            <button type="button" data-lightbox="pac" data-lightbox-src={item.src} data-lightbox-caption={item.caption} class="relative group rounded-2xl overflow-hidden shadow-md aspect-[16/10] cursor-zoom-in bg-stone-200">
-              <img src={item.src} alt={item.caption} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
-              <div class="absolute inset-0 bg-gradient-to-t from-marine/70 via-marine/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-            </button>
-          ))}
-        </div>
-
-        <div class="order-1 md:order-2">
-          <span class="text-cuivre font-semibold text-xs uppercase tracking-[0.18em]">Énergies renouvelables</span>
-          <h2 class="text-3xl md:text-4xl font-bold tracking-tightish text-marine mt-3 mb-5">Pompes à chaleur</h2>
-          <p class="text-stone-600 leading-relaxed mb-6">
-            Air/eau, géothermie, systèmes hybrides. Nous réalisons l'audit énergétique complet et vous accompagnons dans toutes les démarches de primes régionales.
-          </p>
-          <ul class="space-y-2.5 mb-8 text-stone-700 text-sm">
-            <li class="flex items-start gap-2.5"><span class="text-cuivre mt-0.5">✓</span> Audit énergétique complet</li>
-            <li class="flex items-start gap-2.5"><span class="text-cuivre mt-0.5">✓</span> Pompe à chaleur air/eau</li>
-            <li class="flex items-start gap-2.5"><span class="text-cuivre mt-0.5">✓</span> Géothermie</li>
-            <li class="flex items-start gap-2.5"><span class="text-cuivre mt-0.5">✓</span> Accompagnement primes Habitation</li>
-          </ul>
-          <a href="https://wa.me/32491873419" target="_blank" rel="noopener" class="btn-whatsapp">Devis pompe à chaleur WhatsApp</a>
-        </div>
-      </div>
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <span class="text-cuivre font-semibold text-xs uppercase tracking-[0.18em]">Énergies renouvelables</span>
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tightish text-marine mt-3 mb-5">Pompes à chaleur</h2>
+      <p class="text-stone-600 leading-relaxed mb-8 max-w-2xl mx-auto">
+        Air/eau, géothermie, systèmes hybrides. Nous réalisons l'audit énergétique complet et vous accompagnons dans toutes les démarches de primes régionales.
+      </p>
+      <ul class="space-y-2.5 mb-10 text-stone-700 text-sm max-w-md mx-auto text-left">
+        <li class="flex items-start gap-2.5"><span class="text-cuivre mt-0.5">✓</span> Audit énergétique complet</li>
+        <li class="flex items-start gap-2.5"><span class="text-cuivre mt-0.5">✓</span> Pompe à chaleur air/eau</li>
+        <li class="flex items-start gap-2.5"><span class="text-cuivre mt-0.5">✓</span> Géothermie</li>
+        <li class="flex items-start gap-2.5"><span class="text-cuivre mt-0.5">✓</span> Accompagnement primes Habitation</li>
+      </ul>
+      <a href="https://wa.me/32491873419" target="_blank" rel="noopener" class="btn-whatsapp">Devis pompe à chaleur WhatsApp</a>
     </div>
   </section>
 
@@ -121,15 +103,11 @@ const galSanitaire = [
           <a href="https://wa.me/32491873419" target="_blank" rel="noopener" class="btn-whatsapp">Devis sanitaire WhatsApp</a>
         </div>
 
-        <div class="grid grid-cols-2 gap-3 sm:gap-4">
-          <button type="button" data-lightbox="sanitaire" data-lightbox-src={galSanitaire[0].src} data-lightbox-caption={galSanitaire[0].caption} class="relative col-span-2 group rounded-2xl overflow-hidden shadow-md aspect-[16/10] cursor-zoom-in bg-stone-200">
-            <img src={galSanitaire[0].src} alt={galSanitaire[0].caption} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
-            <div class="absolute inset-0 bg-gradient-to-t from-marine/70 via-marine/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-          </button>
-          {galSanitaire.slice(1).map(item => (
-            <button type="button" data-lightbox="sanitaire" data-lightbox-src={item.src} data-lightbox-caption={item.caption} class="relative group rounded-2xl overflow-hidden shadow-md aspect-square cursor-zoom-in bg-stone-200">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+          {galSanitaire.map(item => (
+            <button type="button" data-lightbox="sanitaire" data-lightbox-src={item.src} data-lightbox-caption={item.caption} class="relative group rounded-2xl overflow-hidden shadow-md aspect-[4/3] cursor-zoom-in bg-stone-200">
               <img src={item.src} alt={item.caption} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
-              <div class="absolute inset-0 bg-marine/0 group-hover:bg-marine/20 transition-colors"></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-marine/70 via-marine/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
             </button>
           ))}
         </div>
