@@ -2,13 +2,20 @@
 import Layout from '../layouts/Layout.astro';
 
 const galChaudiere = [
+  { src: '/photos/chaudiere-vaillant-cave.jpg', caption: 'Chaudière Vaillant — installation cave' },
+  { src: '/photos/chaudiere-vaillant-brique.jpg', caption: 'Chaudière Vaillant — installation mur brique' },
   { src: '/photos/vaillant-avant-apres.jpg', caption: 'Chaudière Vaillant — avant/après' },
   { src: '/photos/remplacement-avant-apres.jpg', caption: 'Remplacement chaudière — avant/après' },
   { src: '/photos/technicien-bruleur.jpg', caption: 'Entretien brûleur — agréés G1·G2' },
 ];
 
 const galSanitaire = [
-  { src: '/photos/baignoire-ilot.jpg', caption: 'Baignoire îlot' },
+  { src: '/photos/sdb-baignoire-ilot-moderne.jpg', caption: 'Salle de bain — baignoire îlot &amp; douche italienne' },
+  { src: '/photos/sdb-double-vasque-bois.jpg', caption: 'Double vasque sur meuble bois' },
+  { src: '/photos/sdb-baignoire-balneo-marbre.jpg', caption: 'Baignoire balnéo &mdash; finition marbre' },
+  { src: '/photos/douche-italienne-motifs.jpg', caption: 'Douche italienne &mdash; carrelage motifs' },
+  { src: '/photos/chauffe-eau-atlantic.jpg', caption: 'Chauffe-eau Atlantic connecté' },
+  { src: '/photos/baignoire-ilot.jpg', caption: 'Baignoire îlot — finition épurée' },
   { src: '/photos/douche-italienne.jpg', caption: 'Douche italienne sur mesure' },
 ];
 ---
@@ -103,11 +110,15 @@ const galSanitaire = [
           <a href="https://wa.me/32491873419" target="_blank" rel="noopener" class="btn-whatsapp">Devis sanitaire WhatsApp</a>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-          {galSanitaire.map(item => (
-            <button type="button" data-lightbox="sanitaire" data-lightbox-src={item.src} data-lightbox-caption={item.caption} class="relative group rounded-2xl overflow-hidden shadow-md aspect-[4/3] cursor-zoom-in bg-stone-200">
+        <div class="grid grid-cols-2 gap-3 sm:gap-4">
+          <button type="button" data-lightbox="sanitaire" data-lightbox-src={galSanitaire[0].src} data-lightbox-caption={galSanitaire[0].caption} class="relative col-span-2 group rounded-2xl overflow-hidden shadow-md aspect-[16/10] cursor-zoom-in bg-stone-200">
+            <img src={galSanitaire[0].src} alt={galSanitaire[0].caption} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-marine/70 via-marine/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+          </button>
+          {galSanitaire.slice(1).map(item => (
+            <button type="button" data-lightbox="sanitaire" data-lightbox-src={item.src} data-lightbox-caption={item.caption} class="relative group rounded-2xl overflow-hidden shadow-md aspect-square cursor-zoom-in bg-stone-200">
               <img src={item.src} alt={item.caption} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
-              <div class="absolute inset-0 bg-gradient-to-t from-marine/70 via-marine/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              <div class="absolute inset-0 bg-marine/0 group-hover:bg-marine/20 transition-colors"></div>
             </button>
           ))}
         </div>
