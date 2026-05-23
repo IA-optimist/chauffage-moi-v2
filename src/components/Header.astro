@@ -2,6 +2,7 @@
 const currentPath = Astro.url.pathname;
 const isHome = currentPath === '/';
 const isServices = currentPath.startsWith('/services');
+const isRealisations = currentPath.startsWith('/realisations');
 const isApropos = currentPath.startsWith('/apropos');
 const isContact = currentPath.startsWith('/contact');
 const linkClass = (active: boolean) => `relative px-4 py-2.5 text-sm font-medium transition-colors duration-200 nav-link group ${active ? 'text-marine' : 'text-stone-700 hover:text-marine'}`;
@@ -26,6 +27,9 @@ const mobileLinkClass = (active: boolean) => `px-4 py-3.5 rounded-lg text-sm fon
         </a>
         <a href="/services" class={linkClass(isServices)} aria-current={isServices ? 'page' : undefined}>
           Services<span class={underlineClass(isServices)}></span>
+        </a>
+        <a href="/realisations" class={linkClass(isRealisations)} aria-current={isRealisations ? 'page' : undefined}>
+          Réalisations<span class={underlineClass(isRealisations)}></span>
         </a>
         <a href="/apropos" class={linkClass(isApropos)} aria-current={isApropos ? 'page' : undefined}>
           À propos<span class={underlineClass(isApropos)}></span>
@@ -67,6 +71,10 @@ const mobileLinkClass = (active: boolean) => `px-4 py-3.5 rounded-lg text-sm fon
         </a>
         <a href="/services" class={mobileLinkClass(isServices)} aria-current={isServices ? 'page' : undefined}>
           Services
+          <svg class="w-4 h-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        </a>
+        <a href="/realisations" class={mobileLinkClass(isRealisations)} aria-current={isRealisations ? 'page' : undefined}>
+          Réalisations
           <svg class="w-4 h-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
         </a>
         <a href="/apropos" class={mobileLinkClass(isApropos)} aria-current={isApropos ? 'page' : undefined}>

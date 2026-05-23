@@ -1,0 +1,157 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const galChauffage = [
+  { src: '/photos/chaudiere-vaillant-cave.jpg', caption: 'Chaudière Vaillant — installation cave' },
+  { src: '/photos/chaudiere-vaillant-brique.jpg', caption: 'Chaudière Vaillant — mur brique' },
+  { src: '/photos/chaudiere-vaillant-pierre.jpg', caption: 'Chaudière Vaillant — pierre apparente' },
+  { src: '/photos/vaillant-avant-apres.jpg', caption: 'Vaillant — avant/après' },
+  { src: '/photos/remplacement-avant-apres.jpg', caption: 'Remplacement chaudière — avant/après' },
+  { src: '/photos/radiateur-design-noir.jpg', caption: 'Radiateur design vertical noir' },
+];
+
+const galSanitaire = [
+  { src: '/photos/sdb-baignoire-ilot-moderne.jpg', caption: 'Salle de bain — baignoire îlot &amp; douche italienne' },
+  { src: '/photos/sdb-double-vasque-bois.jpg', caption: 'Double vasque sur meuble bois' },
+  { src: '/photos/sdb-baignoire-balneo-marbre.jpg', caption: 'Baignoire balnéo — finition marbre' },
+  { src: '/photos/douche-italienne-motifs.jpg', caption: 'Douche italienne — carrelage motifs' },
+  { src: '/photos/baignoire-ilot.jpg', caption: 'Baignoire îlot — finition épurée' },
+  { src: '/photos/douche-italienne.jpg', caption: 'Douche italienne sur mesure' },
+  { src: '/photos/chauffe-eau-atlantic.jpg', caption: 'Chauffe-eau Atlantic connecté' },
+];
+
+const galAdoucisseur = [
+  { src: '/photos/solucalc-bouteille-co2.jpg', caption: 'Solucalc — bouteille CO₂' },
+  { src: '/photos/solucalc-equipe-installation.jpg', caption: 'Installation Solucalc en cours' },
+  { src: '/photos/solucalc-installateur-agree.jpg', caption: 'Installateur agréé Solucalc' },
+];
+
+const galEquipe = [
+  { src: '/photos/equipe-chauffage-et-moi.jpg', caption: 'Technicien Chauffage &amp; Moi — entretien chaudière mazout' },
+  { src: '/photos/technicien-bruleur.jpg', caption: 'Entretien brûleur — agréés G1·G2' },
+  { src: '/photos/technicien.jpg', caption: 'Technicien sur intervention' },
+];
+
+const totalPhotos = galChauffage.length + galSanitaire.length + galAdoucisseur.length + galEquipe.length;
+---
+
+<Layout title="Nos réalisations" description="Galerie de réalisations Chauffage & Moi : installations de chaudières, salles de bain rénovées, adoucisseurs d'eau Solucalc. Travail propre et finitions soignées à Mons et dans tout le Hainaut.">
+
+  <!-- Hero -->
+  <section class="bg-stone-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
+      <div class="max-w-3xl">
+        <span class="text-cuivre font-semibold text-xs uppercase tracking-[0.18em] mb-3 block">Nos réalisations</span>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tightish text-marine leading-[1.1] mb-5">
+          Travail propre,<br/>finitions soignées.
+        </h1>
+        <p class="text-lg text-stone-600 leading-relaxed">
+          {totalPhotos} chantiers livrés à des clients heureux dans tout le Hainaut. Chaudières, salles de bain, plomberie, adoucisseurs &mdash; cliquez sur une photo pour l'agrandir.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Chauffage -->
+  <section class="py-20 lg:py-28 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="section-eyebrow">Chaudières &amp; chauffage</span>
+      <h2 class="section-title">Installations de chauffage</h2>
+      <p class="section-lead">Chaudières Vaillant, Bulex et autres marques. Avant/après, neufs et remplacements.</p>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
+        {galChauffage.map(item => (
+          <button type="button" data-lightbox="realisations" data-lightbox-src={item.src} data-lightbox-caption={item.caption} class="relative group overflow-hidden rounded-2xl aspect-square shadow-md cursor-zoom-in text-left bg-stone-200">
+            <img src={item.src} alt={item.caption} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-marine/80 via-marine/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            <div class="absolute bottom-0 left-0 right-0 p-3 sm:p-4 text-white opacity-0 group-hover:opacity-100 transition-opacity">
+              <p class="font-semibold text-xs sm:text-sm leading-tight" set:html={item.caption}></p>
+            </div>
+          </button>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Sanitaire -->
+  <section class="py-20 lg:py-28 bg-stone-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="section-eyebrow">Salles de bain &amp; plomberie</span>
+      <h2 class="section-title">Sanitaire &amp; rénovations</h2>
+      <p class="section-lead">Baignoires îlot, douches italiennes, double vasques. Salles de bain complètes clé en main.</p>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
+        {galSanitaire.map(item => (
+          <button type="button" data-lightbox="realisations" data-lightbox-src={item.src} data-lightbox-caption={item.caption} class="relative group overflow-hidden rounded-2xl aspect-square shadow-md cursor-zoom-in text-left bg-stone-200">
+            <img src={item.src} alt={item.caption} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-marine/80 via-marine/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            <div class="absolute bottom-0 left-0 right-0 p-3 sm:p-4 text-white opacity-0 group-hover:opacity-100 transition-opacity">
+              <p class="font-semibold text-xs sm:text-sm leading-tight" set:html={item.caption}></p>
+            </div>
+          </button>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Adoucisseurs -->
+  <section class="py-20 lg:py-28 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="section-eyebrow">Adoucisseurs d'eau</span>
+      <h2 class="section-title">Installations Solucalc</h2>
+      <p class="section-lead">Chauffage &amp; Moi est installateur agréé Solucalc — adoucisseur écologique au CO₂.</p>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 max-w-4xl mx-auto">
+        {galAdoucisseur.map(item => (
+          <button type="button" data-lightbox="realisations" data-lightbox-src={item.src} data-lightbox-caption={item.caption} class="relative group overflow-hidden rounded-2xl aspect-square shadow-md cursor-zoom-in text-left bg-stone-200">
+            <img src={item.src} alt={item.caption} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-marine/80 via-marine/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            <div class="absolute bottom-0 left-0 right-0 p-3 sm:p-4 text-white opacity-0 group-hover:opacity-100 transition-opacity">
+              <p class="font-semibold text-xs sm:text-sm leading-tight" set:html={item.caption}></p>
+            </div>
+          </button>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Équipe en action -->
+  <section class="py-20 lg:py-28 bg-stone-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="section-eyebrow">L'équipe en action</span>
+      <h2 class="section-title">Techniciens Chauffage &amp; Moi</h2>
+      <p class="section-lead">Entretiens, dépannages, interventions urgentes &mdash; agréés G1 · G2 · L1.</p>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 max-w-4xl mx-auto">
+        {galEquipe.map(item => (
+          <button type="button" data-lightbox="realisations" data-lightbox-src={item.src} data-lightbox-caption={item.caption} class="relative group overflow-hidden rounded-2xl aspect-square shadow-md cursor-zoom-in text-left bg-stone-200">
+            <img src={item.src} alt={item.caption} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-marine/80 via-marine/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            <div class="absolute bottom-0 left-0 right-0 p-3 sm:p-4 text-white opacity-0 group-hover:opacity-100 transition-opacity">
+              <p class="font-semibold text-xs sm:text-sm leading-tight" set:html={item.caption}></p>
+            </div>
+          </button>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA final -->
+  <section class="py-16 lg:py-24 bg-marine">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white tracking-tightish mb-5">
+        Votre chantier mérite le même soin
+      </h2>
+      <p class="text-lg text-stone-300 mb-10 max-w-2xl mx-auto">
+        Devis gratuit sous 24h — Intervention rapide dans tout le Hainaut
+      </p>
+      <div class="flex flex-col sm:flex-row gap-3 justify-center">
+        <a href="/contact" class="btn-primary">
+          Demander un devis
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+        <a href="https://wa.me/32491873419" target="_blank" rel="noopener" class="btn-whatsapp">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+</Layout>
