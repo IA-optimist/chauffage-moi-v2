@@ -20,3 +20,6 @@ pnpm-debug.log*
 .vercel
 
 .vercel
+
+# Source photos archive (90 files, batch 2026-05-25 — see spec)
+/fb-photos-raw/
