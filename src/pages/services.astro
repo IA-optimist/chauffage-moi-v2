@@ -75,19 +75,34 @@ const galSanitaire = [
 
   <!-- Pompes à chaleur -->
   <section id="energies" class="py-20 lg:py-28 bg-stone-50">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <span class="text-cuivre font-semibold text-xs uppercase tracking-[0.18em]">Énergies renouvelables</span>
-      <h2 class="text-3xl md:text-4xl font-bold tracking-tightish text-marine mt-3 mb-5">Pompes à chaleur</h2>
-      <p class="text-stone-600 leading-relaxed mb-8 max-w-2xl mx-auto">
-        Air/eau, géothermie, systèmes hybrides. Nous réalisons l'audit énergétique complet et vous accompagnons dans toutes les démarches de primes régionales.
-      </p>
-      <ul class="space-y-2.5 mb-10 text-stone-700 text-sm max-w-md mx-auto text-left">
-        <li class="flex items-start gap-2.5"><span class="text-cuivre mt-0.5">✓</span> Audit énergétique complet</li>
-        <li class="flex items-start gap-2.5"><span class="text-cuivre mt-0.5">✓</span> Pompe à chaleur air/eau</li>
-        <li class="flex items-start gap-2.5"><span class="text-cuivre mt-0.5">✓</span> Géothermie</li>
-        <li class="flex items-start gap-2.5"><span class="text-cuivre mt-0.5">✓</span> Accompagnement primes Habitation</li>
-      </ul>
-      <a href="https://wa.me/32491873419" target="_blank" rel="noopener" class="btn-whatsapp">Devis pompe à chaleur WhatsApp</a>
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 gap-10 lg:gap-12 items-center">
+        <div>
+          <span class="text-cuivre font-semibold text-xs uppercase tracking-[0.18em]">Énergies renouvelables</span>
+          <h2 class="text-3xl md:text-4xl font-bold tracking-tightish text-marine mt-3 mb-5">Pompes à chaleur</h2>
+          <p class="text-stone-600 leading-relaxed mb-6">
+            Air/eau, géothermie, systèmes hybrides. Nous réalisons l'audit énergétique complet et vous accompagnons dans toutes les démarches de primes régionales.
+          </p>
+          <ul class="space-y-2.5 mb-8 text-stone-700 text-sm">
+            <li class="flex items-start gap-2.5"><span class="text-cuivre mt-0.5">✓</span> Audit énergétique complet</li>
+            <li class="flex items-start gap-2.5"><span class="text-cuivre mt-0.5">✓</span> Pompe à chaleur air/eau</li>
+            <li class="flex items-start gap-2.5"><span class="text-cuivre mt-0.5">✓</span> Géothermie</li>
+            <li class="flex items-start gap-2.5"><span class="text-cuivre mt-0.5">✓</span> Accompagnement primes Habitation</li>
+          </ul>
+          <a href="https://wa.me/32491873419" target="_blank" rel="noopener" class="btn-whatsapp">Devis pompe à chaleur WhatsApp</a>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3 sm:gap-4">
+          <button type="button" data-lightbox="pac" data-lightbox-src="/photos/pac-air-eau-exterieure.jpg" data-lightbox-caption="PAC air-eau — unité extérieure" class="relative col-span-2 group rounded-2xl overflow-hidden shadow-md aspect-[16/10] cursor-zoom-in bg-stone-200">
+            <img src="/photos/pac-air-eau-exterieure.jpg" alt="PAC air-eau — unité extérieure" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-marine/70 via-marine/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+          </button>
+          <button type="button" data-lightbox="pac" data-lightbox-src="/photos/pac-installation-interieure.jpg" data-lightbox-caption="PAC — module intérieur &amp; ballon" class="relative group rounded-2xl overflow-hidden shadow-md aspect-square cursor-zoom-in bg-stone-200">
+            <img src="/photos/pac-installation-interieure.jpg" alt="PAC — module intérieur et ballon" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+            <div class="absolute inset-0 bg-marine/0 group-hover:bg-marine/20 transition-colors"></div>
+          </button>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -135,31 +150,41 @@ const galSanitaire = [
       <p class="section-lead">Deux technologies pour une eau parfaitement douce.</p>
 
       <div class="grid md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto">
-        <div class="bg-white rounded-2xl p-8 border border-stone-200 hover:border-cuivre transition-colors">
-          <div class="flex items-center gap-4 mb-5">
-            <div class="w-12 h-12 rounded-lg bg-cuivre-soft text-cuivre flex items-center justify-center">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2.25c-2.429 5.778-5.25 7.875-5.25 12a5.25 5.25 0 0010.5 0c0-4.125-2.821-6.222-5.25-12z"/></svg>
+        <div class="bg-white rounded-2xl overflow-hidden border border-stone-200 hover:border-cuivre transition-colors">
+          <button type="button" data-lightbox="adoucisseur" data-lightbox-src="/photos/solucalc-bouteille-co2.jpg" data-lightbox-caption="Solucalc — bouteille CO₂" class="block w-full aspect-[16/10] bg-stone-100 cursor-zoom-in overflow-hidden group">
+            <img src="/photos/solucalc-bouteille-co2.jpg" alt="Solucalc — bouteille CO₂" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+          </button>
+          <div class="p-8">
+            <div class="flex items-center gap-4 mb-5">
+              <div class="w-12 h-12 rounded-lg bg-cuivre-soft text-cuivre flex items-center justify-center">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2.25c-2.429 5.778-5.25 7.875-5.25 12a5.25 5.25 0 0010.5 0c0-4.125-2.821-6.222-5.25-12z"/></svg>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-marine tracking-tightish">Solucalc</h3>
+                <p class="text-stone-500 text-xs">CO₂ — Écologique</p>
+              </div>
             </div>
-            <div>
-              <h3 class="text-xl font-bold text-marine tracking-tightish">Solucalc</h3>
-              <p class="text-stone-500 text-xs">CO₂ — Écologique</p>
-            </div>
+            <p class="text-stone-600 text-sm mb-6 leading-relaxed">Neutralise le calcaire sans sel, sans électricité, sans rejet. Préserve les minéraux de l'eau. Cartouche à changer tous les 2-3 ans.</p>
+            <a href="https://wa.me/32491873419?text=Bonjour%2C%20je%20souhaite%20un%20devis%20pour%20l%27adoucisseur%20Solucalc" target="_blank" rel="noopener" class="btn-whatsapp text-sm w-full">Devis WhatsApp</a>
           </div>
-          <p class="text-stone-600 text-sm mb-6 leading-relaxed">Neutralise le calcaire sans sel, sans électricité, sans rejet. Préserve les minéraux de l'eau. Cartouche à changer tous les 2-3 ans.</p>
-          <a href="https://wa.me/32491873419?text=Bonjour%2C%20je%20souhaite%20un%20devis%20pour%20l%27adoucisseur%20Solucalc" target="_blank" rel="noopener" class="btn-whatsapp text-sm w-full">Devis WhatsApp</a>
         </div>
-        <div class="bg-white rounded-2xl p-8 border border-stone-200 hover:border-cuivre transition-colors">
-          <div class="flex items-center gap-4 mb-5">
-            <div class="w-12 h-12 rounded-lg bg-cuivre-soft text-cuivre flex items-center justify-center">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="9" cy="10" r="1" fill="currentColor"/><circle cx="14" cy="9" r="1" fill="currentColor"/><circle cx="13" cy="14" r="1" fill="currentColor"/><circle cx="10" cy="15" r="1" fill="currentColor"/></svg>
+        <div class="bg-white rounded-2xl overflow-hidden border border-stone-200 hover:border-cuivre transition-colors">
+          <button type="button" data-lightbox="adoucisseur" data-lightbox-src="/photos/durlem-vi-mini.jpg" data-lightbox-caption="Durlem Vi mini — adoucisseur au sel" class="block w-full aspect-[16/10] bg-stone-100 cursor-zoom-in overflow-hidden group">
+            <img src="/photos/durlem-vi-mini.jpg" alt="Durlem Vi mini — adoucisseur au sel" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+          </button>
+          <div class="p-8">
+            <div class="flex items-center gap-4 mb-5">
+              <div class="w-12 h-12 rounded-lg bg-cuivre-soft text-cuivre flex items-center justify-center">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="9" cy="10" r="1" fill="currentColor"/><circle cx="14" cy="9" r="1" fill="currentColor"/><circle cx="13" cy="14" r="1" fill="currentColor"/><circle cx="10" cy="15" r="1" fill="currentColor"/></svg>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-marine tracking-tightish">Durlem</h3>
+                <p class="text-stone-500 text-xs">Sel — Eau ultra-douce</p>
+              </div>
             </div>
-            <div>
-              <h3 class="text-xl font-bold text-marine tracking-tightish">Durlem</h3>
-              <p class="text-stone-500 text-xs">Sel — Eau ultra-douce</p>
-            </div>
+            <p class="text-stone-600 text-sm mb-6 leading-relaxed">Résine échangeuse d'ions avec régénération automatique au sel. Eau à 0°TH, idéal pour les grandes familles. Garantie 5 ans.</p>
+            <a href="https://wa.me/32491873419?text=Bonjour%2C%20je%20souhaite%20un%20devis%20pour%20l%27adoucisseur%20Durlem" target="_blank" rel="noopener" class="btn-whatsapp text-sm w-full">Devis WhatsApp</a>
           </div>
-          <p class="text-stone-600 text-sm mb-6 leading-relaxed">Résine échangeuse d'ions avec régénération automatique au sel. Eau à 0°TH, idéal pour les grandes familles. Garantie 5 ans.</p>
-          <a href="https://wa.me/32491873419?text=Bonjour%2C%20je%20souhaite%20un%20devis%20pour%20l%27adoucisseur%20Durlem" target="_blank" rel="noopener" class="btn-whatsapp text-sm w-full">Devis WhatsApp</a>
         </div>
       </div>
     </div>
