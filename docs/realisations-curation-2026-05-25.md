@@ -54,11 +54,14 @@ Note : les photos chevalier1-5 sont déjà REJECT (résolution insuffisante
 - `557575390_1471961454446281_395246518502713190_n.jpg` — gdpr_flag:visages techniciens partiellement visibles, branding Solucalc
 - `616826946_1565444018431357_2487977771249251836_n.jpg` — gdpr_flag:visage technicien clairement identifiable frontal
 - `617041559_1565444345097991_531383307728102204_n.jpg` — gdpr_flag:visage technicien identifiable de profil
-- `619425107_1569883801320712_8325618435518124697_n.jpg` — gdpr_flag:document personnel avec nom (attestation formation Vaillant)
 - `669663315_1640203424288749_6507569792376976246_n.jpg` — gdpr_flag:deux visages frontaux identifiables au salon
-- `669845710_1640203287622096_8463383596457286116_n.jpg` — out_of_scope:selfie thermique salon, pas une installation; gdpr_flag visage identifiable
 - `671505513_1640203337622091_4561133998002988089_n.jpg` — gdpr_flag:visage identifiable + prénom Sébastien lisible sur sweat
 - `WhatsApp Image 2026-05-25 at 14.32.33 (4).jpeg` — gdpr_flag:visage technicien identifiable de profil
+
+### Sections sans nouvelle photo dans ce batch
+
+- **adoucisseur**: aucune photo Durlem retenue (catalog screenshots avec watermark). Le titre Adoucisseurs ne sera **pas renommé** en 'Solucalc & Durlem'.
+- **pac**: aucune photo PAC trouvée dans le batch. La nouvelle section PAC ne sera **pas créée** dans Task 11.
 
 ---
 

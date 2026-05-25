@@ -27,7 +27,7 @@ def render_summary(decisions: list[dict]) -> str:
     by_decision = Counter(d["decision"] for d in decisions)
     by_section = Counter(d["section"] for d in decisions if d["decision"] == "RETAIN")
     by_reject = Counter(d["reason"].split(":")[0] for d in decisions if d["decision"] == "REJECT")
-    gdpr = [d for d in decisions if d.get("gdpr_flag")]
+    gdpr = [d for d in decisions if d.get("gdpr_flag") and d["decision"] == "GDPR_REVIEW"]
 
     out = ["## Summary stats", ""]
     out.append(f"- **Total photos:** {len(decisions)}")
@@ -45,12 +45,27 @@ def render_summary(decisions: list[dict]) -> str:
             out.append(f"- `{d['filename']}` — {d.get('reason') or ''}")
     else:
         out.append("- (none)")
+
+    # Add explicit notes about sections that gained no content
+    expected_sections = {"chauffage", "sanitaire", "adoucisseur", "pac", "equipe"}
+    missing_sections = sorted(expected_sections - set(by_section.keys()))
+    if missing_sections:
+        out += ["", "### Sections sans nouvelle photo dans ce batch", ""]
+        for sec in missing_sections:
+            if sec == "pac":
+                out.append(f"- **{sec}**: aucune photo PAC trouvée dans le batch. La nouvelle section PAC ne sera **pas créée** dans Task 11.")
+            elif sec == "adoucisseur":
+                out.append(f"- **{sec}**: aucune photo Durlem retenue (catalog screenshots avec watermark). Le titre Adoucisseurs ne sera **pas renommé** en 'Solucalc & Durlem'.")
+            else:
+                out.append(f"- **{sec}**: aucune photo retenue dans cette catégorie.")
     return "\n".join(out)
 
 
 def main():
-    inventory = json.load(open(sys.argv[1]))           # /tmp/inventory.json
-    dups = json.load(open(sys.argv[2]))["vs_reference"] # /tmp/dedup.json
+    if len(sys.argv) != 5:
+        sys.exit("Usage: generate_report.py <inventory.json> <dedup.json> <decisions.jsonl> <output.md>")
+    inventory = json.load(open(sys.argv[1], encoding="utf-8"))           # /tmp/inventory.json
+    dups = json.load(open(sys.argv[2], encoding="utf-8"))["vs_reference"] # /tmp/dedup.json
     decisions_path = Path(sys.argv[3])                  # curation-decisions.json
     decisions = [json.loads(l) for l in decisions_path.read_text(encoding="utf-8").splitlines() if l.strip()]
     out_path = Path(sys.argv[4])                        # final report path
