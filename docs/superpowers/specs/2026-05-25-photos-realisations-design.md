@@ -10,10 +10,11 @@
 ## Contexte & déclencheur
 
 Un dossier `Photos/` est apparu le 23 mai 2026 à la racine du repo AI OS `Chauffage-et-moi-Site` :
-- 85 fichiers, 19 Mo
+- 90 fichiers, 19 Mo (inventaire au 25 mai 2026 ~19h25)
 - 62 photos FB-CDN (filenames `505XXXXXX_..._n.jpg`) — batch téléchargé depuis Facebook
 - 10 captures d'écran Durlem (ajoutées par l'utilisateur le 25 mai)
 - 11 photos WhatsApp (ajoutées le 25 mai)
+- 5 WebP "chevalier" (`chevalier1.webp` à `chevalier5.webp`, ajoutées le 25 mai) — probablement PAC, tailles 2.6-5.2 Ko **suspectes** (thumbnails ?)
 - 2 fichiers de test (`fb-race-test.jpg`, `fb-test-photo-0.jpg`)
 - Non commité, non gitignoré, aucune référence dans le code
 
@@ -43,8 +44,9 @@ Faire disparaître `Photos/` du repo AI OS et enrichir la galerie publique `/rea
 | Facebook CDN | 62 | `505XXXXXXX_NNNNNNN_..._n.jpg` | 1200×1600, JPEG, EXIF stripé |
 | Durlem (captures) | 10 | `Capture d'écran 2026-05-25 19XXXX.png` | PNG, probablement screenshots site/catalogue Durlem |
 | WhatsApp | 11 | `WhatsApp Image 2026-05-25 at 14.32.XX.jpeg` | Contenu inconnu, inspection requise |
+| **Chevalier (WebP)** | **5** | **`chevalierN.webp` (N=1..5)** | **WebP, 2.6-5.2 Ko, 125×125 px — thumbnails scrapés depuis les avis Google de Chauffage & Moi (client "Chevalier"). Contenu vérifié visuellement : (1) chaudière + ballon intérieur, (2) PAC air-eau extérieure brick, (3) radiateur sous fenêtre, (4) tuyauterie local technique, (5) soupape + vase d'expansion. HD à récupérer depuis Google Business reviews (phase 3) + consentement client requis (cf. R8).** |
 | Test artefact | 2 | `fb-race-test.jpg`, `fb-test-photo-0.jpg` | Auto-reject |
-| **Total** | **85** | | **À curer : 83 (test exclus)** |
+| **Total** | **90** | | **À curer : 88 (test exclus)** |
 
 ## 2. État actuel de `/realisations` (à étendre)
 
@@ -115,13 +117,18 @@ Reprise du même style pour les nouvelles photos. Examples :
 - `Durlem — adoucisseur au sel installé`
 - `Salle de bain — baignoire ovale &amp; vasque pierre`
 
-## 6. Conversion PNG → JPEG (10 captures Durlem)
+## 6. Conversion vers JPEG (PNG Durlem + WebP chevalier)
 
+Photos non-JPEG dans le batch → convertir vers JPEG pour cohérence avec `public/photos/` (100% JPEG actuellement) :
+- **10 PNG Durlem** (`Capture d'écran 2026-05-25 19XXXX.png`)
+- **5 WebP chevalier** (`chevalierN.webp`) — **uniquement si retenues après inspection visuelle** : avec des fichiers à 2.6-5.2 Ko, la résolution est probablement trop basse pour la galerie (cf. règle §7.3 quality_low / nouvelle règle §7.9 résolution minimale)
+
+Paramètres conversion :
 - Outil : `Pillow` (Python) ou ImageMagick — peu importe, choix laissé au plan d'implémentation
-- Sortie : JPEG quality 85, conservation des dimensions originales
+- Sortie : JPEG quality 85, conservation des dimensions originales (si dimensions ≥ seuil §7.9 ; sinon REJECT avant conversion)
 - Profil colorimétrique sRGB (par défaut Pillow)
-- Si la capture contient de la transparence (alpha non plein), fond blanc avant conversion (rare pour des screenshots web)
-- Fichier source PNG : **conservé en archive** dans `fb-photos-raw/` (gitignored), pas re-supprimé après conversion
+- Si la source contient de la transparence (PNG alpha non plein, WebP alpha), fond blanc avant conversion
+- Fichiers sources PNG/WebP : **conservés en archive** dans `fb-photos-raw/` (gitignored), pas re-supprimés après conversion
 
 ## 7. Règles de curation (déterministes)
 
@@ -135,6 +142,7 @@ Appliquées dans cet ordre — la première règle qui matche décide :
 6. **REJECT — redondance interne** : si N photos quasi-identiques du même chantier (perceptual hash similaire entre photos du batch lui-même, distance ≤ 5), garder les 1-2 meilleures. Raison : `internal_redundancy:<kept_file>`.
 7. **REJECT — Durlem watermark / catalogue** : si capture d'écran contient watermark Durlem ou logo de site tiers ostentatoire. Raison : `branding_concern:durlem_watermark`.
 8. **RETAIN** : tout le reste. Classification dans Chauffage / Sanitaire / Adoucisseurs / PAC / Équipe selon contenu visuel.
+9. **REJECT — résolution insuffisante** : largeur **OU** hauteur < 600 px, ou poids fichier < 30 Ko à la source (signe de thumbnail). Cible : les 5 WebP chevalier sont quasi-certainement REJECT par cette règle. Raison : `resolution_low:<WxH>` ou `weight_low:<size_kb>`.
 
 **Edge case** : photo borderline (ex. visage flouté naturellement, ou seulement partiellement visible) → flag `gdpr_review` au lieu d'auto-decision, attendre validation user.
 
@@ -165,8 +173,8 @@ Le report est **commité dans `chauffageetmoi-v2`** (sur la branche `redesign-20
 | Phase | Repo | Étapes | Validation user |
 |---|---|---|---|
 | 1. Cleanup AI OS | Chauffage-et-moi-Site | Add `Photos/` à `.gitignore` ; ne pas supprimer le dossier physiquement avant d'avoir copié les sources vers le repo Astro ; commit séparé sur une branche dédiée (ne pas polluer `phase-34-editable-policy`) | Non bloquant |
-| 2. Préparation Astro repo | chauffageetmoi-v2 | Créer (ou réutiliser) `fb-photos-raw/`, vérifier qu'il est gitignored ; copier les 85 photos depuis AI OS vers `fb-photos-raw/` ; créer une feature branch (ex. `feat/realisations-batch-2026-05`) | Non bloquant |
-| 3. Curation auto | chauffageetmoi-v2 | **(a)** Détection doublons (règle 2 §7) via script Python `imagehash.phash` — produit une liste machine de doublons + distances. **(b)** Inspection visuelle Claude des autres photos pour règles 3-8 §7 (qualité, RGPD, scope, redondance interne, watermark Durlem, classification). **(c)** Génération de `docs/realisations-curation-2026-05-25.md` selon format §8. **(d)** Conversion PNG Durlem → JPEG via Pillow en parallèle. | **Bloquant — user lit le rapport** |
+| 2. Préparation Astro repo | chauffageetmoi-v2 | Créer (ou réutiliser) `fb-photos-raw/`, vérifier qu'il est gitignored ; copier les 90 photos depuis AI OS vers `fb-photos-raw/` ; créer une feature branch (ex. `feat/realisations-batch-2026-05`) | Non bloquant |
+| 3. Curation auto | chauffageetmoi-v2 | **(a)** Détection doublons (règle 2 §7) via script Python `imagehash.phash` — produit une liste machine de doublons + distances. **(b)** Inspection visuelle Claude des autres photos pour règles 3-9 §7 (qualité, RGPD, scope, redondance interne, watermark Durlem, résolution, classification). **(c)** Récupération HD chevalier1-5 depuis avis Google de Chauffage & Moi (WebFetch sur la fiche Google Business, identification du compte client "Chevalier"). **(d)** Génération de `docs/realisations-curation-2026-05-25.md` selon format §8 — **inclut une section "Action utilisateur requise"** listant les photos chevalier avec procédure de demande de consentement. **(e)** Conversion PNG Durlem + WebP chevalier (si retenus en HD) → JPEG q=85 via Pillow en parallèle. | **Bloquant — user lit le rapport + déclenche demandes de consentement** |
 | 4. Intégration | chauffageetmoi-v2 | Copier photos retenues vers `public/photos/` avec nouveaux noms ; éditer `realisations.astro` (extend `gal*`, créer section PAC si applicable, mettre à jour titre Adoucisseurs) ; `npm run build` doit passer | Visuel local possible (`npm run dev`) |
 | 5. Commit & deploy | chauffageetmoi-v2 + AI OS | Commit/push feature branch chauffageetmoi-v2 → PR (ou merge direct selon habitude) → Vercel auto-deploy ; séparément, commit `.gitignore` AI OS sur sa branche dédiée | User valide visuel prod |
 | 6. Cleanup final | Chauffage-et-moi-Site | Supprimer physiquement `Photos/` (sources désormais dans `fb-photos-raw/` du repo Astro) | — |
@@ -184,13 +192,14 @@ Le report est **commité dans `chauffageetmoi-v2`** (sur la branche `redesign-20
 | R5 | Poids des images sur Vercel (pas d'optim astro:assets) | Moyenne si on ajoute beaucoup | Lighthouse score, mobile perf | Hors scope cette spec ; compensé par `loading="lazy"` déjà en place et JPEG q=85 sur conversions |
 | R6 | Merge conflict sur `realisations.astro` si la branche `redesign-2026-05` continue d'évoluer | Faible | Travail de merge manuel | Feature branch dédiée + rebase régulier ; éviter de modifier `realisations.astro` ailleurs pendant ce travail |
 | R7 | Dépassement scope vers d'autres pages (services PAC mentionne PAC sans illustration, etc.) | Élevée — tentation naturelle | Scope creep | §"Hors scope" en haut de spec ; aucune modif autre page ; ouvrir tickets séparés si besoins identifiés |
+| **R8** | **Photos d'avis Google (chevalier1-5) = contenu utilisateur tiers** | **Certaine pour ces 5 fichiers** | **Risque légal (droit à l'image, RGPD) + risque réputationnel si re-publication sans accord** | **Phase 3 : récupération HD depuis Google Business reviews ; flag obligatoire pour décision utilisateur ; consentement explicite du client "Chevalier" requis avant intégration (par message Google reviews ou contact direct) ; à défaut → REJECT toute la sous-série** |
 
 ## 11. Critère de "done"
 
 - [ ] `Photos/` ne figure plus sur disque dans `Chauffage-et-moi-Site/`
 - [ ] `.gitignore` du repo AI OS contient une ligne `Photos/` (ou pattern équivalent), commitée
 - [ ] Le commit `.gitignore` du repo AI OS est sur une branche **autre que** `phase-34-editable-policy` (typiquement `master` après PR, ou branche dédiée `chore/gitignore-photos`)
-- [ ] `chauffageetmoi-v2/fb-photos-raw/` contient les 85 fichiers source (gitignored, préservés)
+- [ ] `chauffageetmoi-v2/fb-photos-raw/` contient les 90 fichiers source (gitignored, préservés)
 - [ ] `chauffageetmoi-v2/docs/realisations-curation-2026-05-25.md` existe, complet, **validé** par l'utilisateur
 - [ ] N photos curées copiées dans `chauffageetmoi-v2/public/photos/` avec noms sémantiques (§4)
 - [ ] `src/pages/realisations.astro` étendu :
@@ -212,7 +221,7 @@ Le report est **commité dans `chauffageetmoi-v2`** (sur la branche `redesign-20
 | `docs/realisations-curation-2026-05-25.md` | chauffageetmoi-v2 | Curation report (phase 3) |
 | `public/photos/{N nouveaux fichiers}.jpg` | chauffageetmoi-v2 | Photos curées (phase 4) |
 | `src/pages/realisations.astro` (modifié) | chauffageetmoi-v2 | Page étendue (phase 4) |
-| `fb-photos-raw/{85 fichiers}` | chauffageetmoi-v2 | Archive batch source (gitignored, préservé) |
+| `fb-photos-raw/{90 fichiers}` | chauffageetmoi-v2 | Archive batch source (gitignored, préservé) |
 | `.gitignore` (1 ligne ajoutée) | Chauffage-et-moi-Site (AI OS) | Cleanup (phase 1) |
 
 ## 13. Liens & références
