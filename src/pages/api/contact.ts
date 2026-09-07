@@ -1,9 +1,9 @@
 import type { APIRoute } from 'astro';
-import { Resend } from 'resend';
+import nodemailer from 'nodemailer';
 
 export const prerender = false;
 
-const FROM_EMAIL = 'Chauffage & Moi <contact@chauffageetmoi.com>';
+const SMTP_USER = 'chauffagesanitaire@outlook.com';
 const TO_EMAIL = 'chauffagesanitaire@outlook.com';
 
 interface ContactPayload {
@@ -53,7 +53,7 @@ function buildHtml(d: ContactPayload): string {
 <div style="max-width:640px;margin:0 auto;padding:32px 16px;">
   <div style="background:#0F2A44;color:#fff;padding:24px 32px;border-radius:8px 8px 0 0;">
     <h1 style="margin:0 0 4px;font-size:20px;font-weight:800;letter-spacing:-0.02em;">Nouvelle demande de devis</h1>
-    <p style="margin:0;color:#94a3b8;font-size:14px;">Reçue via chauffage-mirror.vercel.app</p>
+    <p style="margin:0;color:#94a3b8;font-size:14px;">Reçue via chauffageetmoi.com</p>
   </div>
   <div style="background:#fff;padding:24px 32px;border-radius:0 0 8px 8px;border:1px solid #e7e5e4;border-top:none;">
     <p style="margin:0 0 16px;font-size:16px;color:#1c1917;"><strong style="color:#C2632A;">${escapeHtml(typeLabel)}</strong></p>
@@ -115,34 +115,41 @@ export const POST: APIRoute = async ({ request }) => {
     return new Response(JSON.stringify({ error: 'missing_required_fields' }), { status: 400, headers: { 'Content-Type': 'application/json' } });
   }
 
-  const apiKey = import.meta.env.RESEND_API_KEY;
-  if (!apiKey) {
-    console.error('RESEND_API_KEY not configured');
+  const smtpPassword = import.meta.env.SMTP_PASSWORD;
+  if (!smtpPassword) {
+    console.error('SMTP_PASSWORD not configured');
     return new Response(JSON.stringify({ error: 'server_not_configured' }), { status: 500, headers: { 'Content-Type': 'application/json' } });
   }
 
-  const resend = new Resend(apiKey);
   const typeLabel = typeLabels[payload.typeDemande] || payload.typeDemande;
   const nomComplet = `${payload.prenom} ${payload.nom}`.trim();
 
+  // Envoi direct via le compte Outlook de l'entreprise — pas de service tiers
+  // (Resend retiré : plus aucun sous-traitant email, l'email part directement
+  // du compte chauffagesanitaire@outlook.com vers lui-même).
+  const transporter = nodemailer.createTransport({
+    host: 'smtp-mail.outlook.com',
+    port: 587,
+    secure: false, // STARTTLS sur le port 587
+    auth: {
+      user: SMTP_USER,
+      pass: smtpPassword,
+    },
+  });
+
   try {
-    const { error } = await resend.emails.send({
-      from: FROM_EMAIL,
-      to: [TO_EMAIL],
+    await transporter.sendMail({
+      from: `Chauffage & Moi <${SMTP_USER}>`,
+      to: TO_EMAIL,
       replyTo: payload.email && /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(payload.email) ? payload.email : undefined,
       subject: `Demande de devis — ${typeLabel} — ${nomComplet}`,
       html: buildHtml(payload),
       text: buildText(payload),
     });
 
-    if (error) {
-      console.error('Resend error:', error);
-      return new Response(JSON.stringify({ error: 'send_failed', detail: error.message }), { status: 502, headers: { 'Content-Type': 'application/json' } });
-    }
-
     return new Response(JSON.stringify({ ok: true }), { status: 200, headers: { 'Content-Type': 'application/json' } });
   } catch (e: any) {
-    console.error('Unexpected error:', e);
-    return new Response(JSON.stringify({ error: 'unexpected', detail: String(e?.message || e) }), { status: 500, headers: { 'Content-Type': 'application/json' } });
+    console.error('SMTP send error:', e);
+    return new Response(JSON.stringify({ error: 'send_failed', detail: String(e?.message || e) }), { status: 502, headers: { 'Content-Type': 'application/json' } });
   }
 };
